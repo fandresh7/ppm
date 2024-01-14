@@ -53,6 +53,21 @@
    }
    ```
 
+### Install Husky
+
+1. Installation: 
+   ```
+   npx husky-init && npm install
+   ```
+
+2. Update `pre-commit` file:
+   ```
+   #!/usr/bin/env sh
+   . "$(dirname -- "$0")/_/husky.sh"
+
+   npm run lint
+   ```
+
 ### Add Tailwind CSS (Optional)
 
 1. Install tailwind CSS: [Tailwind CSS for Angular](https://tailwindcss.com/docs/guides/angular)
