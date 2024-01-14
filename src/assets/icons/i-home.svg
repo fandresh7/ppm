@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.309 29.01">
+  <g transform="translate(1 1)">
+    <g transform="translate(-4.5 -3)" opacity="0.5">
+      <path
+        d="M4.5,12.453,16.654,3l12.154,9.453V27.309a2.7,2.7,0,0,1-2.7,2.7H7.2a2.7,2.7,0,0,1-2.7-2.7Z"
+        transform="translate(0 0)"
+        fill="none"
+        stroke="#1e2b3b"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2" />
+      <path
+        d="M13.5,31.5V18h8.1V31.5"
+        transform="translate(-0.897 -1.495)"
+        fill="none"
+        stroke="#1e2b3b"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2" />
+    </g>
+  </g>
+</svg>

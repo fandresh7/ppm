@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27.477 26.232">
+  <g transform="translate(1.028 1.112)">
+    <g transform="translate(-2.027 -2.648)" opacity="0.5">
+      <path
+        d="M20.93,19.731a6.494,6.494,0,1,1-6.494-6.494,6.494,6.494,0,0,1,6.494,6.494Z"
+        transform="translate(0.303 0.542)"
+        fill="none"
+        stroke="#1e2b3b"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2" />
+      <path
+        d="M17.039,19.551a2.783,2.783,0,1,1-2.783-2.783,2.783,2.783,0,0,1,2.783,2.783Z"
+        transform="translate(0.484 0.723)"
+        fill="none"
+        stroke="#1e2b3b"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2" />
+      <path
+        d="M8.419,18.592,2.322,9.1a1.855,1.855,0,0,1-.1-1.833l1.8-3.594A1.855,1.855,0,0,1,5.682,2.648H23.8a1.855,1.855,0,0,1,1.659,1.026l1.8,3.594a1.855,1.855,0,0,1-.1,1.833l-6.1,9.491"
+        fill="none"
+        stroke="#1e2b3b"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2" />
+      <path
+        d="M21.406,7.943H2.041"
+        transform="translate(0.001 0.271)"
+        fill="none"
+        stroke="#1e2b3b"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2" />
+      <path
+        d="M24,2.9,16.823,14.346"
+        transform="translate(0.757 0.013)"
+        fill="none"
+        stroke="#1e2b3b"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2" />
+      <path
+        d="M7.752,7.943l3.853,6.146"
+        transform="translate(0.293 0.271)"
+        fill="none"
+        stroke="#1e2b3b"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2" />
+    </g>
+  </g>
+</svg>

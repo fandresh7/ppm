@@ -1,0 +1,17 @@
+.wrapper {
+  grid-template-areas: 
+    "header sidebar"
+    "content sidebar";
+}
+
+.header {
+  grid-area: header;
+}
+
+.content {
+  grid-area: content;
+}
+
+.sidebar {
+  grid-area: sidebar;
+}

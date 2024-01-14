@@ -1,0 +1,67 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="27.477"
+  height="26.232"
+  viewBox="0 0 27.477 26.232">
+  <g id="whole-word" transform="translate(-1 -1.535)">
+    <path
+      id="Trazado_717"
+      data-name="Trazado 717"
+      d="M20.93,19.731a6.494,6.494,0,1,1-6.494-6.494,6.494,6.494,0,0,1,6.494,6.494Z"
+      transform="translate(0.303 0.542)"
+      fill="none"
+      stroke="#fff"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2" />
+    <path
+      id="Trazado_718"
+      data-name="Trazado 718"
+      d="M17.039,19.551a2.783,2.783,0,1,1-2.783-2.783,2.783,2.783,0,0,1,2.783,2.783Z"
+      transform="translate(0.484 0.723)"
+      fill="none"
+      stroke="#fff"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2" />
+    <path
+      id="Trazado_719"
+      data-name="Trazado 719"
+      d="M8.419,18.592,2.322,9.1a1.855,1.855,0,0,1-.1-1.833l1.8-3.594A1.855,1.855,0,0,1,5.682,2.648H23.8a1.855,1.855,0,0,1,1.659,1.026l1.8,3.594a1.855,1.855,0,0,1-.1,1.833l-6.1,9.491"
+      fill="none"
+      stroke="#fff"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2" />
+    <path
+      id="Trazado_720"
+      data-name="Trazado 720"
+      d="M21.406,7.943H2.041"
+      transform="translate(0.001 0.271)"
+      fill="none"
+      stroke="#fff"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2" />
+    <path
+      id="Trazado_721"
+      data-name="Trazado 721"
+      d="M24,2.9,16.823,14.346"
+      transform="translate(0.757 0.013)"
+      fill="none"
+      stroke="#fff"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2" />
+    <path
+      id="Trazado_722"
+      data-name="Trazado 722"
+      d="M7.752,7.943l3.853,6.146"
+      transform="translate(0.293 0.271)"
+      fill="none"
+      stroke="#fff"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2" />
+  </g>
+</svg>

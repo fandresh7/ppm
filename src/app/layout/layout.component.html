@@ -1,0 +1,45 @@
+<div
+  class="wrapper bg-white group grid relative h-screen overflow-hidden grid-rows-[auto_1fr] transition-[grid-template-columns] duration-300 ease-[ease-out]"
+  [ngClass]="{
+    'md:grid-cols-[1fr_240px]': (sidebar$ | async) === false,
+    'sidebar-hidden grid-cols-[1fr_0px]': sidebar$ | async
+  }">
+  <header class="header">
+    <app-header></app-header>
+  </header>
+
+  <main
+    class="content transition-all duration-700 block overflow-y-scroll rounded-t-3xl bg-theme-grey py-10 px-6 max-w-full lg:z-30"
+    [ngClass]="{
+      'md:mx-auto md:w-11/12': sidebar$ | async
+    }">
+    <router-outlet></router-outlet>
+  </main>
+
+  <aside
+    class="sidebar bg-white z-40 transition-[width] duration-300 ease-[ease-out] fixed md:relative block w-60 max-w-full right-0 h-full overflow-y-scroll group-[.sidebar-hidden]:w-0">
+    <app-sidebar></app-sidebar>
+  </aside>
+
+  <img
+    class="absolute transition-all hidden top-1/3 right-0 w-7 cursor-pointer lg:block"
+    [ngClass]="{
+      '-scale-x-100 z-50': (sidebar$ | async) === false,
+      'md:right-[5%] lg:right-[2.2%] xl:right-[2.8%]': sidebar$ | async
+    }"
+    src="https://superlikers-themes.s3.amazonaws.com/ppmu/icon-panel.svg"
+    alt=""
+    (click)="toggleSidebar()" />
+
+  <div
+    (click)="toggleSidebar()"
+    [ngClass]="{
+      'bg-sidebar-button-close': sidebar$ | async,
+      'bg-sidebar-button-open bg-50': (sidebar$ | async) === false
+    }"
+    class="fixed bottom-4 right-4 z-[1000000] h-12 w-12 cursor-pointer rounded-full bg-theme-black bg-center bg-no-repeat transition-all duration-500 lg:hidden"></div>
+
+  <div
+    class="overlay-sidebar transition-opacity backdrop-blur-sm bg-black/10 block opacity-100 absolute w-full h-screen cursor-pointer md:hidden group-[.sidebar-hidden]:opacity-0 group-[.sidebar-hidden]:pointer-events-none"
+    (click)="toggleSidebar()"></div>
+</div>

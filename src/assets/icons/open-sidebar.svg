@@ -1,0 +1,18 @@
+<svg
+  id="Icon_ionic-ios-close-circle-outline"
+  data-name="Icon ionic-ios-close-circle-outline"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20.793 20.793">
+  <path
+    id="Trazado_2134"
+    data-name="Trazado 2134"
+    d="M20.133,19,17.5,16.368l2.634-2.634A.8.8,0,0,0,19,12.6l-2.634,2.634L13.735,12.6a.8.8,0,0,0-1.13,1.13l2.634,2.634L12.605,19a.772.772,0,0,0,0,1.13.793.793,0,0,0,1.13,0L16.369,17.5,19,20.132a.8.8,0,0,0,1.13,0A.793.793,0,0,0,20.133,19Z"
+    transform="translate(-5.973 -5.971)"
+    fill="#fff" />
+  <path
+    id="Trazado_2135"
+    data-name="Trazado 2135"
+    d="M13.772,4.775A8.994,8.994,0,1,1,7.409,7.409a8.938,8.938,0,0,1,6.363-2.634m0-1.4a10.4,10.4,0,1,0,10.4,10.4,10.4,10.4,0,0,0-10.4-10.4Z"
+    transform="translate(-3.375 -3.375)"
+    fill="#fff" />
+</svg>
