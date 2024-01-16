@@ -1,0 +1,106 @@
+<header class="my-6 flex justify-center">
+  <img
+    class="w-36"
+    src="https://superlikers-themes.s3.amazonaws.com/ppmu/ppm-university-logo.svg"
+    alt="PPM University" />
+</header>
+
+<section class="rounded-t-3xl bg-theme-green">
+  <div
+    class="mx-auto flex max-w-7xl flex-wrap gap-6 p-6 md:flex-nowrap md:items-center">
+    <video
+      id="video"
+      class="w-full rounded-2xl md:w-1/2"
+      controls=""
+      preload="auto">
+      <source
+        src="https://contenidospmm.s3.amazonaws.com/cursos/PPMU-historia-3_1_1.mp4"
+        type="video/mp4" />
+      Tu navegador no implementa el elemento <code>video</code>.
+    </video>
+
+    <div class="flex h-full flex-col p-6 bg-white rounded-xl">
+      <p class="text-xl">Consolidamos y redefinimos el conocimiento</p>
+      <p class="text-xl font-bold">PPM de AB InBev en un solo lugar</p>
+
+      <p class="my-4">
+        La nueva forma de aprender sobre PPM
+        <span class="font-bold">ha llegado</span> y tienes que ser parte.
+      </p>
+      <p>
+        <span class="font-bold">PPM University</span> es la primera y única
+        <span class="font-bold">plataforma online</span> que redefine el
+        conocimiento PPM de nuestra compañía con contenido educativo profesional
+        hecho por expertos para que descubras el PPM que está en ti.
+      </p>
+
+      <a
+        [routerLink]="['/auth/register']"
+        fragment="form-wrapper"
+        class="button-grey mt-4 cursor-pointer self-center font-bold">
+        Quiero ser parte
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="bg-theme-grey text-center">
+  <div
+    class="mx-auto flex max-w-7xl flex-col flex-wrap gap-6 p-12 md:flex-nowrap md:items-center">
+    <h1 class="text-2xl font-bold">
+      Acercamos el área PPM a toda la operación
+    </h1>
+    <p>
+      Aprende a decodificar el lenguaje financiero y potencia tu conocimiento
+      para gestionar nuestros costos con una visión amplía,
+      <span class="font-bold">más allá de lo táctico.</span>
+    </p>
+    <p>
+      Desarrollamos una malla curricular
+      <span class="font-bold">útil, relevante y práctica</span> que despliega
+      rutas de aprendizaje según tus intereses y rol en la compañía. El momento
+      de sumarse es ahora.
+    </p>
+  </div>
+</section>
+
+<section class="p-6">
+  <div class="mx-auto flex max-w-7xl flex-col gap-4">
+    <h2 class="font-bold">Completa con el requisito y ven a ser parte</h2>
+    <p>
+      Para ser uno de los colaboradores seleccionados debes cumplir con el
+      siguiente requisito:
+    </p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <app-requirement></app-requirement>
+    </div>
+  </div>
+</section>
+
+@if (fields$ | async; as fields) {
+  <section
+    id="form-wrapper"
+    class="bg-theme-grey px-6 py-12">
+    <div
+      class="mx-auto flex max-w-3xl flex-col flex-wrap gap-6 md:flex-nowrap md:items-center bg-white rounded-xl p-6">
+      <div class="mx-auto flex w-3/4 flex-col gap-4 text-center">
+        <h2 class="text-lg font-bold">Da el primer paso</h2>
+
+        <p>
+          Tenemos nuestra
+          <span class="font-bold">
+            primera muestra y queremos que seas tú quien la ponga a prueba
+          </span>
+          , completa el formulario y llena todos los campos.
+        </p>
+
+        <p>¡Queremos que seas parte!</p>
+      </div>
+      <app-form
+        [fields]="fields"
+        [loading]="loading"
+        (submitForm)="signup($event)">
+      </app-form>
+    </div>
+  </section>
+}

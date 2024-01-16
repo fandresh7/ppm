@@ -1,0 +1,20 @@
+<div [formGroup]="form">
+  <label for="">{{ field.label }}</label>
+
+  @for (choice of field.choices; track choice.value) {
+    <div class="flex flex-row gap-2">
+      <input
+        [type]="field._type | inputType"
+        [name]="field.name"
+        [value]="choice.value"
+        [id]="choice.value"
+        (change)="onCheckboxGroupChange($event)"
+        (focus)="clearError(field.name)" />
+      <label
+        class="grow"
+        [for]="choice.value"
+        >{{ choice.label }}
+      </label>
+    </div>
+  }
+</div>

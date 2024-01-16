@@ -1,0 +1,43 @@
+<form
+  class="flex flex-col gap-4"
+  [formGroup]="form"
+  (ngSubmit)="submit()">
+  @for (field of fields; track field.name) {
+    <div>
+      @if (field._type === 'CheckBoxField') {
+        <app-checkbox-field [field]="field"></app-checkbox-field>
+      } @else if (field._type === 'CheckBoxGroupField') {
+        <app-checkbox-group-field [field]="field"></app-checkbox-group-field>
+      } @else if (field._type === 'PhoneField') {
+        <app-phone-field [field]="field"></app-phone-field>
+      } @else if (field._type === 'SelectField') {
+        <app-select-field [field]="field"></app-select-field>
+      } @else {
+        <app-default-field [field]="field"></app-default-field>
+      }
+
+      @if (field.help_text) {
+        <p class="text-sm">
+          {{ field.help_text }}
+        </p>
+      }
+
+      @if (isInvalidField(field.name)) {
+        <p class="text-sm text-theme-red">
+          {{ showError(field.name) }}
+        </p>
+      }
+    </div>
+
+    @if (field.confirm && showConfirmFields) {
+      <app-confirm-field [field]="field"></app-confirm-field>
+    }
+  }
+
+  <app-submit-button
+    customClasses="button block mx-auto"
+    [isLoading]="loading"
+    type="submit">
+    {{ buttonText }}
+  </app-submit-button>
+</form>

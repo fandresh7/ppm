@@ -3,3 +3,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .button {
+    @apply rounded-xl bg-theme-black text-white hover:bg-theme-black-90 transition-all duration-200 py-2.5 px-10 disabled:opacity-70 disabled:cursor-not-allowed 
+  }
+
+  .button-grey {
+    @apply rounded-xl bg-theme-grey hover:bg-theme-grey-dark transition-all duration-200 py-2.5 px-10 disabled:opacity-70 disabled:cursor-not-allowed
+  }
+
+  .input {
+    @apply rounded-3xl bg-theme-grey w-full text-sm py-2 px-4 focus:outline-none focus:border-theme-blue focus:ring-1
+  }
+}

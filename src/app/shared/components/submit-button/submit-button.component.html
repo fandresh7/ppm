@@ -1,0 +1,11 @@
+<button
+  [class]="customClasses"
+  [type]="type"
+  [disabled]="isLoading"
+  [ariaDisabled]="isLoading">
+  @if (isLoading) {
+    <span>Loading...</span>
+  } @else {
+    <ng-content></ng-content>
+  }
+</button>

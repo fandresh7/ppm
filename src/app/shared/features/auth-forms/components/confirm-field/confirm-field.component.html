@@ -1,0 +1,10 @@
+<div [formGroup]="form">
+  <label [for]="field.confirm">{{ field.confirm_label }}</label>
+  <input
+    class="input"
+    [type]="field._type | inputType"
+    [id]="field.confirm"
+    [formControlName]="field.confirm!"
+    [placeholder]="field.placeholder ?? ''"
+    (focus)="clearError(field.confirm!)" />
+</div>

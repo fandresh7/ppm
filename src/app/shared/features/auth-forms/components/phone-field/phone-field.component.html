@@ -1,0 +1,11 @@
+<div [formGroup]="form">
+  <label [for]="field.name">{{ field.label }}</label>
+  <input
+    class="input"
+    [formControlName]="field.name"
+    [name]="field.name"
+    [type]="field._type | inputType"
+    [id]="field.name"
+    (focus)="clearError(field.name)"
+    (change)="onPhoneboxChange($event)" />
+</div>

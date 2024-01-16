@@ -1,0 +1,11 @@
+<div [formGroup]="form">
+  <label [for]="field.name">{{ field.label }}</label>
+  <input
+    class="input"
+    [name]="field.name"
+    [formControlName]="field.name"
+    [id]="field.name"
+    [placeholder]="field.placeholder ?? ''"
+    [type]="field._type | inputType"
+    (focus)="clearError(field.name)" />
+</div>

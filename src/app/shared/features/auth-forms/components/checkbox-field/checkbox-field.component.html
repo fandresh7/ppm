@@ -1,0 +1,15 @@
+<div [formGroup]="form">
+  <input
+    class="input w-auto"
+    [formControlName]="field.name"
+    [name]="field.name"
+    [type]="field._type | inputType"
+    [id]="field.name"
+    (focus)="clearError(field.name)"
+    (change)="onCheckboxChange($event)" />
+  <label
+    class="ml-2"
+    [for]="field.name"
+    [innerHTML]="field.label">
+  </label>
+</div>

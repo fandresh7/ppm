@@ -1,0 +1,57 @@
+<div
+  class="h-screen grid grid-rows-[min-content,1fr] bg-theme-grey lg:grid-cols-2 lg:grid-rows-1">
+  <div
+    class="login-header rounded-b-3xl bg-theme-black px-10 py-12 text-theme-white md:px-24 lg:rounded-e-3xl lg:rounded-bl-none lg:py-20 2xl:px-52">
+    <img
+      class="w-full"
+      src="https://superlikers-themes.s3.amazonaws.com/ppmu/logos.png"
+      alt="PPM Logo" />
+    <p class="w-1/2 pt-14 text-lg font-bold leading-tight lg:w-2/3 lg:text-3xl">
+      Empieza tu recorrido y aprende con los mejores expertos
+    </p>
+    <p class="pt-8 text-sm lg:text-base xl:text-lg">
+      Descubre el mundo de PPM University tiene para ti y sé parte de la
+      herramienta de educación digital y consolida el conocimiento de PPM Supply
+      MAZ.
+    </p>
+  </div>
+  <div
+    class="flex flex-col gap-4 mx-auto w-full max-w-2xl self-center bg-white rounded-xl p-6">
+    <div>
+      <h1 class="text-center text-xl font-bold">Hola Aprendiz, bienvenido</h1>
+      <p class="text-center text-sm">Inicia tu sesión para continuar</p>
+    </div>
+
+    @if (errorMessage) {
+      <p class="text-sm text-theme-red mx-auto block">{{ errorMessage }}</p>
+    }
+
+    @if (fields$ | async; as fields) {
+      <app-form
+        [fields]="fields"
+        [showConfirmFields]="false"
+        buttonText="Iniciar Sesión"
+        [loading]="loading"
+        (submitForm)="login($event)">
+      </app-form>
+    }
+
+    <a
+      class="cursor-pointer text-center text-sm transition-all duration-200 hover:text-theme-black-60">
+      ¿Olvidaste tu contraseña?
+    </a>
+
+    <div
+      class="mt-4 flex w-full flex-col items-center gap-4 border-t-[1px] border-theme-black/30 pt-6">
+      <h2 class="text-center text-lg font-bold">¿Aún no tienes cuenta?</h2>
+      <p class="-mt-4 text-center text-sm">
+        Solicita tu ingreso haciendo clic en
+      </p>
+      <a
+        [routerLink]="['/auth/register']"
+        class="button">
+        Quiero ser parte
+      </a>
+    </div>
+  </div>
+</div>

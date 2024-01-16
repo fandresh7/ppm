@@ -1,0 +1,17 @@
+<div [formGroup]="form">
+  <label [for]="field.name">{{ field.label }}</label>
+  <select
+    class="input"
+    [name]="field.name"
+    [id]="field.name"
+    [formControlName]="field.name"
+    (focus)="clearError(field.name)">
+    @for (choice of field.choices; track field.name) {
+      <option
+        class="bg-white"
+        [value]="choice.value">
+        {{ choice.label }}
+      </option>
+    }
+  </select>
+</div>
