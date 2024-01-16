@@ -1,0 +1,50 @@
+<cdk-accordion-item
+  #accordionItem="cdkAccordionItem"
+  role="button"
+  [attr.id]="'accordion-header-' + course.id"
+  [attr.aria-expanded]="accordionItem.expanded"
+  [attr.aria-controls]="'accordion-body-' + course.id">
+  <div
+    class="rounded-xl"
+    [ngClass]="accordionItem.expanded ? 'bg-theme-grey-dark' : 'bg-white'">
+    <div
+      class="mb-4 grid grid-cols-[1fr_3fr_10px] items-center p-5 gap-4"
+      (click)="accordionItem.toggle()">
+      <p>{{ course.name }}</p>
+      <div
+        class="flex flex-grow gap-2 items-center justify-between ml-auto font-light text-sm w-full">
+        <p>Avance del curso:</p>
+        <app-progress-bar
+          class="grow"
+          [percentage]="getCoursePercentage(course)">
+        </app-progress-bar>
+        <p>{{ getCoursePercentage(course) | number: '1.0-0' }}%</p>
+      </div>
+      <img
+        class="h-2 w-2 transition-transform delay-100 duration-500"
+        [ngClass]="{
+          '-rotate-90': !accordionItem.expanded,
+          'rotate-90': accordionItem.expanded
+        }"
+        src="https://superlikers-themes.s3.amazonaws.com/ppmu/arrow-left.svg"
+        alt="arrow left" />
+    </div>
+  </div>
+
+  <div
+    class="overflow-hidden transition-all duration-700 ease-in-out"
+    [ngClass]="{
+      'max-h-0': !accordionItem.expanded,
+      'mb-4 max-h-[100rem]': accordionItem.expanded
+    }"
+    [attr.id]="'accordion-body-' + course.id"
+    [attr.aria-labelledby]="'accordion-header-' + course.id">
+    <div class="bg-white rounded-xl cursor-auto flex flex-col gap-4 p-6">
+      @for (lesson of lessons; track lesson.id) {
+        <app-lesson-state-card [lesson]="lesson"></app-lesson-state-card>
+      } @empty {
+        <p>No hay lecciones disponibles.</p>
+      }
+    </div>
+  </div>
+</cdk-accordion-item>

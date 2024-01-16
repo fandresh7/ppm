@@ -27,7 +27,8 @@
     "paths": {
       "@auth/*": ["app/auth/*"],
       "@shared/*": ["app/shared/*"],
-      "@superlikers/*": ["app/superlikers/*"]
+      "@superlikers/*": ["app/superlikers/*"],
+      "@courses/*": ["app/courses/*"]
     }
   },
   "angularCompilerOptions": {

@@ -1,0 +1,51 @@
+<div
+  class="rounded-xl"
+  [class]="active ? 'bg-theme-green/50' : 'bg-theme-grey'">
+  <a
+    [routerLink]="lesson.lessonUrl"
+    class="flex flex-wrap items-center gap-4 p-3 cursor-pointer">
+    <div
+      [class]="{
+        'bg-play-lesson-icon': !active,
+        'bg-play-lesson-icon-active': active
+      }"
+      class="h-8 w-8 cursor-pointer bg-center bg-no-repeat transition-all duration-300 hover:bg-play-lesson-icon-active"></div>
+
+    <div
+      [class]="{ 'text-white': active }"
+      class="flex grow flex-col gap-1">
+      <h4
+        class="relative font-bold max-w-[20ch]"
+        style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden">
+        {{ lesson.name }}
+      </h4>
+
+      @if (showStatusText) {
+        <p
+          class="bg-[4rem_4_rem] bg-green-check-icon bg-no-repeat pl-6 text-sm">
+          Finalizado
+        </p>
+      }
+    </div>
+
+    <div class="flex flex-wrap gap-2">
+      @if (showStatusBadge) {
+        <app-status-badge [status]="status"></app-status-badge>
+      }
+
+      <div class="flex gap-2">
+        <app-favorite-button
+          [lesson]="lesson"
+          (click)="preventRouteChange($event)"></app-favorite-button>
+        <app-download-button
+          [name]="lesson.name"
+          [file]="
+            lesson.VideoContent?.video ||
+            lesson.InfografiaContent?.infografia ||
+            ''
+          "
+          (click)="preventRouteChange($event)"></app-download-button>
+      </div>
+    </div>
+  </a>
+</div>

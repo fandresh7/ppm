@@ -1,0 +1,29 @@
+<article
+  [ngClass]="activeClasses"
+  class="bg-white rounded-xl flex w-full cursor-pointer flex-col gap-1 p-2 transition-opacity duration-150 md:p-4">
+  <img
+    class="w-full rounded-xl object-fill"
+    [src]="level.image"
+    [alt]="level.name" />
+
+  <div class="flex flex-row items-center justify-between">
+    <h3 class="font-bold">{{ level.name }}</h3>
+    <app-rounded-progress
+      [width]="50"
+      [strokeWidth]="7"
+      [percentage]="percentage">
+    </app-rounded-progress>
+  </div>
+
+  <div class="flex flex-row flex-wrap gap-2 text-sm text-theme-black-50">
+    <div class="grow bg-play-icon bg-1.2 bg-left bg-no-repeat pl-6">
+      <p>{{ level.courses?.length ?? 0 }} Cursos</p>
+    </div>
+    <div class="grow bg-lesson-icon bg-1.2 bg-left bg-no-repeat pl-6">
+      <p>{{ lessons.length }} lecciones</p>
+    </div>
+    <div class="grow bg-clock-icon bg-1.2 bg-left bg-no-repeat pl-6">
+      <p>{{ level.duration ?? '00:00' }} min</p>
+    </div>
+  </div>
+</article>

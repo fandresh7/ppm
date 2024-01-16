@@ -5,7 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs'
   providedIn: 'root'
 })
 export class SidebarService {
-  private sidebarSubject$ = new BehaviorSubject<boolean>(false)
+  private sidebarSubject$ = new BehaviorSubject<boolean>(true)
   sidebar$ = this.sidebarSubject$.asObservable()
 
   get sidebar(): Observable<boolean> {

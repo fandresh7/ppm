@@ -1,0 +1,38 @@
+<div class="relative flex w-full flex-col gap-2">
+  <h1 class="font-bold text-xl">¡Empieza a aprender con PPM U!</h1>
+  <swiper-container
+    #slider
+    class="relative h-full w-full px-4 py-2"
+    init="false">
+    @for (level of levels$ | async; track level.id) {
+      <swiper-slide>
+        <app-level-card
+          (click)="setActiveLevel(level)"
+          [isActive]="level.id === activeLevel?.id"
+          [level]="level">
+        </app-level-card>
+      </swiper-slide>
+    }
+  </swiper-container>
+
+  <div class="my-4 flex w-full items-center justify-between gap-2">
+    <h3>
+      <span class="font-bold">Cursos Disponibles</span>
+      Selecciona el curso que quieres ver y mira cada lección
+    </h3>
+    <a
+      class="cursor-pointer whitespace-nowrap text-theme-blue transition-colors duration-200 hover:text-theme-blue/75 hover:underline">
+      Ver más
+    </a>
+  </div>
+
+  @if (activeLevel !== null) {
+    <cdk-accordion>
+      @for (course of activeLevel.courses; track course.id) {
+        <app-accordion-item [course]="course"></app-accordion-item>
+      } @empty {
+        <p>No hay cursos disponibles.</p>
+      }
+    </cdk-accordion>
+  }
+</div>
