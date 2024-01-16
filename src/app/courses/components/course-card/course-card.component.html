@@ -1,0 +1,32 @@
+<div class="rounded-xl p-4 bg-white">
+  <a
+    [routerLink]="['/course', course.category]"
+    class="block cursor-pointer">
+    <div class="flex flex-col gap-2">
+      <img
+        class="w-full rounded-xl"
+        src="https://superlikers-themes.s3.amazonaws.com/PPMuniversity/vicbasico/as.png"
+        [alt]="course.name" />
+
+      <div class="flex items-center justify-between">
+        <h2 class="grow text-lg font-bold">{{ course.name }}</h2>
+        <app-rounded-progress
+          [width]="60"
+          [percentage]="percentage"
+          [strokeWidth]="8">
+        </app-rounded-progress>
+      </div>
+
+      <div class="flex gap-2 items-center">
+        <p
+          class="bg-lesson-icon bg-1.2 bg-left bg-no-repeat pl-6 text-theme-black-50">
+          {{ course.lessons?.length ?? 0 }} lecciones
+        </p>
+        <p
+          class="bg-clock-icon bg-1.2 bg-left bg-no-repeat pl-6 text-theme-black-50">
+          {{ course.duration ?? 0 }} min
+        </p>
+      </div>
+    </div>
+  </a>
+</div>
