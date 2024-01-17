@@ -1,0 +1,119 @@
+<section class="flex flex-col gap-4">
+  <app-breadcrumb
+    text="Cursos"
+    link="/courses">
+  </app-breadcrumb>
+
+  @if (lesson$ | async; as lesson) {
+    <div class="bg-white p-6 rounded-xl">
+      <header class="flex flex-row items-end gap-6 mb-10">
+        <img
+          class="w-40"
+          src="https://superlikers-themes.s3.amazonaws.com/ppmu/quiz-station-img.svg"
+          alt="quiz" />
+        <div>
+          <h2 class="font-bold">Quiz Station</h2>
+          <p>¡Aprendiz llegó el momento de probar lo aprendido!</p>
+        </div>
+      </header>
+
+      @if (data$ | async; as data) {
+        <div class="bg-theme-grey rounded-xl p-6">
+          <div
+            class="max-w-3xl mx-auto flex flex-col gap-4"
+            cdkDropListGroup>
+            <p>
+              Lee las opciones, arrastra y ubica cada una de las actividades de
+              la rutina mensual de ZBB para la función Supply Middle Americas.
+            </p>
+            <div
+              id="options"
+              cdkDropList
+              [cdkDropListData]="data.options"
+              (cdkDropListDropped)="onDrop($event)"
+              class="options flex flex-wrap gap-4 justify-center items-center min-w-full min-h-[3rem] border-[1px] p-1 border-theme-grey-dark rounded-xl">
+              @for (option of data.options; track option) {
+                <div
+                  cdkDrag
+                  class="cursor-move bg-white rounded-xl px-4 py-2 grow text-center max-w-fit">
+                  {{ option.value }}
+                </div>
+              }
+            </div>
+
+            <div class="overflow-x-auto">
+              <img
+                class="max-w-none w-[1000px]"
+                src="https://superlikers-themes.s3.amazonaws.com/ppmu/ruta_champions.png"
+                alt="champions" />
+              <div class="grid grid-cols-7 gap-1 mt-8 w-[1000px] py-2">
+                <div class="item relative">
+                  <app-champions-dropzone
+                    customClasses="border-theme-yellow"
+                    [dropzoneItems]="data.dropzones[0]"
+                    question="question1"
+                    (dropEvent)="onDrop($event)">
+                  </app-champions-dropzone>
+                </div>
+                <div class="item relative">
+                  <app-champions-dropzone
+                    customClasses="border-theme-yellow"
+                    [dropzoneItems]="data.dropzones[1]"
+                    question="question2"
+                    (dropEvent)="onDrop($event)">
+                  </app-champions-dropzone>
+                </div>
+                <div class="item relative">
+                  <app-champions-dropzone
+                    customClasses="border-theme-yellow"
+                    [dropzoneItems]="data.dropzones[2]"
+                    question="question3"
+                    (dropEvent)="onDrop($event)">
+                  </app-champions-dropzone>
+                </div>
+                <div class="item relative">
+                  <app-champions-dropzone
+                    customClasses="border-theme-green"
+                    [dropzoneItems]="data.dropzones[3]"
+                    question="question4"
+                    (dropEvent)="onDrop($event)">
+                  </app-champions-dropzone>
+                </div>
+                <div class="item relative">
+                  <app-champions-dropzone
+                    customClasses="border-theme-green"
+                    [dropzoneItems]="data.dropzones[4]"
+                    question="question5"
+                    (dropEvent)="onDrop($event)">
+                  </app-champions-dropzone>
+                </div>
+                <div class="item relative">
+                  <app-champions-dropzone
+                    customClasses="border-theme-blue"
+                    [dropzoneItems]="data.dropzones[5]"
+                    question="question6"
+                    (dropEvent)="onDrop($event)">
+                  </app-champions-dropzone>
+                </div>
+                <div class="item relative">
+                  <app-champions-dropzone
+                    customClasses="border-theme-blue"
+                    [dropzoneItems]="data.dropzones[6]"
+                    question="question7"
+                    (dropEvent)="onDrop($event)">
+                  </app-champions-dropzone>
+                </div>
+              </div>
+            </div>
+            <app-submit-button
+              class="mx-auto"
+              [isLoading]="false"
+              (click)="submit()">
+              Continuar
+            </app-submit-button>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</section>

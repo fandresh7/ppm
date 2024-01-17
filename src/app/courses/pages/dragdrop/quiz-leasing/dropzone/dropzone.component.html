@@ -1,0 +1,23 @@
+<div
+  cdkDropList
+  [cdkDropListData]="dropzoneItems"
+  (cdkDropListDropped)="onDrop($event)"
+  [cdkDropListEnterPredicate]="dropListEnterPredicate"
+  [id]="question"
+  [class]="customClasses"
+  class="group item relative z-10 rounded-lg border-theme-blue text-sm border-dashed border-[1px] bg-theme-grey p-2 text-center flex justify-center items-center w-[200px] min-h-[100px]">
+  @for (item of dropzoneItems; track item) {
+    <div
+      *ngFor="let item of dropzoneItems"
+      cdkDrag
+      class="relative cursor-move max-w-fit mx-auto option peer text-xs rounded-xl grow text-center text-theme-black"
+      style="text-wrap: balance">
+      {{ item.value }}
+    </div>
+  }
+  <p
+    class="text-theme-black peer-[.option]:hidden group-[.cdk-drop-list-dragging]:hidden"
+    style="text-wrap: balance">
+    Arrastra aquí el costo correcto
+  </p>
+</div>

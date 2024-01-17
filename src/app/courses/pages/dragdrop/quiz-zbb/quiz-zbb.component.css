@@ -1,0 +1,19 @@
+.item:before {
+  content: '';
+  display: block;
+  width: 1px;
+  left:50%;
+  border-style: dashed;
+  border-width: 1px;
+  position: absolute;
+}
+
+.item:nth-child(odd):before {
+  height: 50px;
+  top: -4rem;
+}
+
+.item:nth-child(even):before {
+  height: 113px;
+  top: -8rem;
+}

@@ -1,0 +1,128 @@
+<section class="flex flex-col gap-4">
+  <app-breadcrumb
+    text="Cursos"
+    link="/courses">
+  </app-breadcrumb>
+
+  @if (lesson$ | async; as lesson) {
+    <div class="bg-white p-6 rounded-xl">
+      <header class="flex flex-row items-end gap-6 mb-10">
+        <img
+          class="w-40"
+          src="https://superlikers-themes.s3.amazonaws.com/ppmu/quiz-station-img.svg"
+          alt="quiz" />
+        <div>
+          <h2 class="font-bold">Quiz Station</h2>
+          <p>¡Llegó el momento de poner a prueba tus conocimientos!</p>
+        </div>
+      </header>
+
+      @if (data$ | async; as data) {
+        <div class="bg-theme-grey rounded-xl p-6">
+          <div
+            class="max-w-4xl mx-auto flex flex-col gap-4"
+            cdkDropListGroup>
+            <p class="text-center">
+              Arrastra las opciones y completa el proceso de distribución
+              internacional de T1 con los costos de VLC en el caso de que seas
+              importador y se aplique el Incoterm Exworks.
+            </p>
+
+            <div
+              id="options"
+              cdkDropList
+              [cdkDropListData]="data.options"
+              (cdkDropListDropped)="onDrop($event)"
+              class="options flex flex-wrap gap-4 justify-center items-center min-w-full min-h-[3rem]">
+              @for (option of data.options; track option) {
+                <div
+                  cdkDrag
+                  [ngClass]="option.color"
+                  class="cursor-move rounded-xl px-4 py-2 grow text-center text-white max-w-fit">
+                  {{ option.value }}
+                </div>
+              }
+            </div>
+
+            <img
+              src="https://superlikers-themes.s3.amazonaws.com/ppmu/img-logistic.svg"
+              alt="logistica" />
+            <div class="grid grid-cols-[1fr_4fr] gap-2">
+              <p class="bg-theme-orange text-white text-center p-2 rounded-xl">
+                Exportador
+              </p>
+              <p class="bg-theme-blue text-white text-center p-2 rounded-xl">
+                Importador
+              </p>
+            </div>
+
+            <div class="grid grid-cols-5 gap-2">
+              <div></div>
+              <app-vcl-dropzone
+                [dropzoneItems]="data.dropzones[0]"
+                question="question1"
+                (dropEvent)="onDrop($event)">
+              </app-vcl-dropzone>
+              <app-vcl-dropzone
+                [dropzoneItems]="data.dropzones[1]"
+                question="question2"
+                (dropEvent)="onDrop($event)">
+              </app-vcl-dropzone>
+              <app-vcl-dropzone
+                [dropzoneItems]="data.dropzones[2]"
+                question="question3"
+                (dropEvent)="onDrop($event)">
+              </app-vcl-dropzone>
+              <app-vcl-dropzone
+                [dropzoneItems]="data.dropzones[3]"
+                question="question4"
+                (dropEvent)="onDrop($event)">
+              </app-vcl-dropzone>
+            </div>
+
+            <div class="relative h-[1px]">
+              <div
+                class="w-full border-dashed border-[1px] border-theme-black-50"></div>
+              <div class="grid grid-cols-5">
+                <div
+                  class="relative -top-2 w-4 h-4 rounded-full bg-theme-orange"></div>
+
+                @for (dropzone of data.dropzones; track dropzone) {
+                  @if (dropzone.length > 0) {
+                    <div
+                      class="justify-self-center relative -top-2 w-4 h-4 rounded-full bg-theme-blue"></div>
+                  }
+                }
+              </div>
+            </div>
+
+            <div class="grid grid-cols-5 gap-2 text-center text-sm">
+              <p class="bg-white p-3 rounded-xl">
+                El exportador dejará en el punto acordado los productos
+              </p>
+              <p class="bg-white p-3 rounded-xl">
+                El transporte será tercerizado hacía el puerto
+              </p>
+              <p class="bg-white p-3 rounded-xl">
+                Desde el puerto el barco llevará el producto al país destino
+              </p>
+              <p class="bg-white p-3 rounded-xl">
+                Se pagará las maniobras de descarga y los impuestos
+              </p>
+              <p class="bg-white p-3 rounded-xl">
+                Transporte propio lo llevará al Cross-Dock
+              </p>
+            </div>
+
+            <app-submit-button
+              class="mx-auto"
+              [isLoading]="false"
+              (click)="submit()">
+              Continuar
+            </app-submit-button>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</section>

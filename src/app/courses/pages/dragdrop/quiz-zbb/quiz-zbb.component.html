@@ -1,0 +1,157 @@
+<section class="flex flex-col gap-4">
+  <app-breadcrumb
+    text="Cursos"
+    link="/courses">
+  </app-breadcrumb>
+
+  @if (lesson$ | async; as lesson) {
+    <div class="bg-white rounded-xl p-6">
+      <header class="flex flex-row items-end gap-6 mb-10">
+        <img
+          class="w-40"
+          src="https://superlikers-themes.s3.amazonaws.com/ppmu/quiz-station-img.svg"
+          alt="quiz" />
+        <div>
+          <h2 class="font-bold">Quiz Station</h2>
+          <p>¡Aprendiz llegó el momento de probar lo aprendido!</p>
+        </div>
+      </header>
+
+      @if (data$ | async; as data) {
+        <div class="bg-theme-grey p-6 rounded-xl">
+          <div
+            class="max-w-4xl mx-auto flex flex-col gap-4"
+            cdkDropListGroup>
+            <p>
+              Lee las opciones, arrastra y ubica cada una de las actividades de
+              la rutina mensual de ZBB para la función Supply Middle Americas.
+            </p>
+            <div
+              id="options"
+              cdkDropList
+              [cdkDropListData]="data.options"
+              (cdkDropListDropped)="onDrop($event)"
+              class="options flex flex-wrap gap-4 justify-center items-center min-w-full min-h-[3rem] border-[1px] p-1 border-theme-grey-dark rounded-xl">
+              @for (option of data.options; track option) {
+                <div
+                  cdkDrag
+                  class="cursor-move bg-white rounded-xl px-4 py-2 grow text-center max-w-fit">
+                  {{ option.value }}
+                </div>
+              }
+            </div>
+            <div
+              class="relative overflow-x-auto text-white text-xs text-center whitespace-nowrap">
+              <div
+                class="w-[1000px] border-theme-green border-[1px] rounded-xl p-4 pt-[250px]">
+                <app-zbb-dropzone
+                  [dropzoneItems]="data.dropzones[0]"
+                  question="question1"
+                  customClasses="top-0 left-0 border-theme-green"
+                  (dropEvent)="onDrop($event)">
+                </app-zbb-dropzone>
+                <div
+                  class="border-theme-green flex flex-row justify-between items-center gap-1 bg-theme-green rounded-full p-4">
+                  <div
+                    class="item relative max-w-[80px] before:border-theme-blue">
+                    Working <br />
+                    <span class="font-bold">Day -2 y -1</span>
+                    <app-zbb-dropzone
+                      [dropzoneItems]="data.dropzones[1]"
+                      question="question2"
+                      (dropEvent)="onDrop($event)"
+                      customClasses="-top-20 -left-8 border-theme-blue">
+                    </app-zbb-dropzone>
+                  </div>
+                  <div
+                    class="item relative max-w-[80px] before:border-theme-blue">
+                    Working <br />
+                    <span class="font-bold">Day 3</span>
+                    <app-zbb-dropzone
+                      [dropzoneItems]="data.dropzones[2]"
+                      question="question3"
+                      (dropEvent)="onDrop($event)"
+                      customClasses="-top-40 -left-8 border-theme-blue">
+                    </app-zbb-dropzone>
+                  </div>
+                  <div
+                    class="item relative max-w-[80px] before:border-theme-orange">
+                    Working <br />
+                    <span class="font-bold">Day 5</span>
+                    <app-zbb-dropzone
+                      [dropzoneItems]="data.dropzones[3]"
+                      question="question4"
+                      (dropEvent)="onDrop($event)"
+                      customClasses="-top-20 -left-8 border-theme-orange">
+                    </app-zbb-dropzone>
+                  </div>
+                  <div
+                    class="item relative max-w-[80px] before:border-theme-blue">
+                    Working <br />
+                    <span class="font-bold">Day 6</span>
+                    <app-zbb-dropzone
+                      [dropzoneItems]="data.dropzones[4]"
+                      question="question5"
+                      (dropEvent)="onDrop($event)"
+                      customClasses="-top-40 -left-8 border-theme-blue">
+                    </app-zbb-dropzone>
+                  </div>
+                  <div
+                    class="item relative max-w-[80px] before:border-theme-blue">
+                    Working <br />
+                    <span class="font-bold">Day 7</span>
+                    <app-zbb-dropzone
+                      [dropzoneItems]="data.dropzones[5]"
+                      question="question6"
+                      (dropEvent)="onDrop($event)"
+                      customClasses="-top-20 -left-8 border-theme-blue">
+                    </app-zbb-dropzone>
+                  </div>
+                  <div
+                    class="item relative max-w-[80px] before:border-theme-red">
+                    Working <br />
+                    <span class="font-bold">Day 10</span>
+                    <app-zbb-dropzone
+                      [dropzoneItems]="data.dropzones[6]"
+                      question="question7"
+                      (dropEvent)="onDrop($event)"
+                      customClasses="-top-40 -left-8 border-theme-red">
+                    </app-zbb-dropzone>
+                  </div>
+                  <div
+                    class="item relative max-w-[80px] before:border-theme-red">
+                    Working <br />
+                    <span class="font-bold">Day 13</span>
+                    <app-zbb-dropzone
+                      [dropzoneItems]="data.dropzones[7]"
+                      question="question8"
+                      (dropEvent)="onDrop($event)"
+                      customClasses="-top-20 -left-8 border-theme-red">
+                    </app-zbb-dropzone>
+                  </div>
+                  <div
+                    class="item relative max-w-[80px] before:border-theme-orange">
+                    Working <br />
+                    <span class="font-bold">Day 14 y 15</span>
+                    <app-zbb-dropzone
+                      [dropzoneItems]="data.dropzones[8]"
+                      question="question9"
+                      (dropEvent)="onDrop($event)"
+                      customClasses="-top-40 -left-8 border-theme-orange">
+                    </app-zbb-dropzone>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <app-submit-button
+              class="mx-auto"
+              [isLoading]="false"
+              (click)="submit()">
+              Continuar
+            </app-submit-button>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</section>

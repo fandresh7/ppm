@@ -1,0 +1,121 @@
+<section class="flex flex-col gap-4">
+  <app-breadcrumb
+    text="Cursos"
+    link="/courses">
+  </app-breadcrumb>
+
+  @if (lesson$ | async; as lesson) {
+    <div class="bg-white rounded-xl p-6">
+      <header class="flex flex-row items-end gap-6 mb-10">
+        <img
+          class="w-40"
+          src="https://superlikers-themes.s3.amazonaws.com/ppmu/quiz-station-img.svg"
+          alt="quiz" />
+        <div>
+          <h2 class="font-bold">Quiz Station</h2>
+          <p>¡Llegó el momento de poner a prueba tus conocimientos!</p>
+        </div>
+      </header>
+
+      @if (data$ | async; as data) {
+        <div class="bg-theme-grey p-6 rounded-xl">
+          <div
+            class="max-w-[1000px] mx-auto flex flex-col gap-4"
+            cdkDropListGroup>
+            <p class="text-center w-full">
+              Lee las descripciones, arrastra y ubica cada una con la etapa
+              correspondiente al Ciclo de Champions.
+            </p>
+
+            <div
+              id="options"
+              cdkDropList
+              [cdkDropListData]="data.options"
+              (cdkDropListDropped)="onDrop($event)"
+              class="options flex flex-row flex-wrap gap-x-2 gap-y-4 justify-center min-h-[60px] text-sm">
+              @for (option of data.options; track option) {
+                <div
+                  cdkDrag
+                  [ngClass]="option.color"
+                  class="option relative cursor-move rounded-xl px-2 py-1 min-h-[100px] w-[200px] flex items-center text-center bg-theme-blue text-white before:">
+                  {{ option.value }}
+                </div>
+              }
+            </div>
+
+            <div class="relative overflow-x-auto">
+              <div class="w-[1300px]">
+                <img
+                  src="https://superlikers-themes.s3.amazonaws.com/ppmu/excel_quiz.png"
+                  alt="excel quiz" />
+                <div class="absolute top-[120px] left-[215px]">
+                  <app-leasing-dropzone
+                    [dropzoneItems]="data.dropzones[0]"
+                    question="question1"
+                    (dropEvent)="onDrop($event)">
+                  </app-leasing-dropzone>
+                </div>
+                <div class="absolute top-[240px] left-[190px]">
+                  <app-leasing-dropzone
+                    [dropzoneItems]="data.dropzones[1]"
+                    question="question2"
+                    (dropEvent)="onDrop($event)">
+                  </app-leasing-dropzone>
+                </div>
+                <div class="absolute top-[370px] left-[190px]">
+                  <app-leasing-dropzone
+                    [dropzoneItems]="data.dropzones[2]"
+                    question="question3"
+                    (dropEvent)="onDrop($event)">
+                  </app-leasing-dropzone>
+                </div>
+                <div class="absolute top-[280px] left-[420px]">
+                  <app-leasing-dropzone
+                    [dropzoneItems]="data.dropzones[3]"
+                    question="question4"
+                    (dropEvent)="onDrop($event)">
+                  </app-leasing-dropzone>
+                </div>
+                <div class="absolute top-[720px] left-[190px]">
+                  <app-leasing-dropzone
+                    [dropzoneItems]="data.dropzones[4]"
+                    question="question5"
+                    (dropEvent)="onDrop($event)">
+                  </app-leasing-dropzone>
+                </div>
+                <div class="absolute top-[720px] left-[450px]">
+                  <app-leasing-dropzone
+                    [dropzoneItems]="data.dropzones[5]"
+                    question="question6"
+                    (dropEvent)="onDrop($event)">
+                  </app-leasing-dropzone>
+                </div>
+                <div class="absolute top-[90px] left-[800px]">
+                  <app-leasing-dropzone
+                    [dropzoneItems]="data.dropzones[6]"
+                    question="question7"
+                    (dropEvent)="onDrop($event)">
+                  </app-leasing-dropzone>
+                </div>
+                <div class="absolute top-[440px] left-[800px]">
+                  <app-leasing-dropzone
+                    [dropzoneItems]="data.dropzones[7]"
+                    question="question8"
+                    (dropEvent)="onDrop($event)">
+                  </app-leasing-dropzone>
+                </div>
+              </div>
+            </div>
+
+            <app-submit-button
+              class="mx-auto"
+              [isLoading]="false"
+              (click)="submit()">
+              Continuar
+            </app-submit-button>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</section>

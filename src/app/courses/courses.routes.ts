@@ -5,6 +5,54 @@ import { CoursesComponent } from './pages/courses/courses.component'
 import { CourseComponent } from './pages/course/course.component'
 import { ForumComponent } from './pages/forum/forum.component'
 import { GlossaryComponent } from './pages/glossary/glossary.component'
+import { QuizCapexMazsiveComponent } from './pages/dragdrop/quiz-capex-mazsive/quiz-capex-mazsive.component'
+import { QuizChampionsEngInitialComponent } from './pages/dragdrop/quiz-champions-eng-initial/quiz-champions-eng-initial.component'
+import { QuizChampionsComponent } from './pages/dragdrop/quiz-champions/quiz-champions.component'
+import { QuizLeasingComponent } from './pages/dragdrop/quiz-leasing/quiz-leasing.component'
+import { QuizMonetizacionComponent } from './pages/dragdrop/quiz-monetizacion/quiz-monetizacion.component'
+import { QuizVclV2Component } from './pages/dragdrop/quiz-vcl-v2/quiz-vcl-v2.component'
+import { QuizVclComponent } from './pages/dragdrop/quiz-vcl/quiz-vcl.component'
+import { QuizZbbComponent } from './pages/dragdrop/quiz-zbb/quiz-zbb.component'
+
+const quicesRoutes: Routes = [
+  {
+    path: '',
+    children: [
+      {
+        path: 'quiz_vcl',
+        component: QuizVclComponent
+      },
+      {
+        path: 'quiz_vcl_v2',
+        component: QuizVclV2Component
+      },
+      {
+        path: 'quiz_capex_mazsive',
+        component: QuizCapexMazsiveComponent
+      },
+      {
+        path: 'quiz_champions_eng_initial',
+        component: QuizChampionsEngInitialComponent
+      },
+      {
+        path: 'quiz_leasing',
+        component: QuizLeasingComponent
+      },
+      {
+        path: 'quiz_champions',
+        component: QuizChampionsComponent
+      },
+      {
+        path: 'quiz_zzb',
+        component: QuizZbbComponent
+      },
+      {
+        path: 'quiz_monetizacion',
+        component: QuizMonetizacionComponent
+      }
+    ]
+  }
+]
 
 export const routes: Routes = [
   {
@@ -39,7 +87,8 @@ export const routes: Routes = [
       {
         path: 'glossary',
         component: GlossaryComponent
-      }
+      },
+      ...quicesRoutes
     ]
   }
 ]

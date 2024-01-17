@@ -1,0 +1,12 @@
+.item::before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  background-color: #F0F1F4;
+  bottom: -11px;
+  left: 15px;
+  border-top: #628DE8 dashed 1px;
+  border-left: #628DE8 dashed 1px;
+  transform: rotate(225deg);
+}

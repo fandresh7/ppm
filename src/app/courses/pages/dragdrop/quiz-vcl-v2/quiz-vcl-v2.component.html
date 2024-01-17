@@ -1,0 +1,173 @@
+<section class="flex flex-col gap-4">
+  <app-breadcrumb
+    text="Cursos"
+    link="/courses">
+  </app-breadcrumb>
+
+  @if (lesson$ | async; as lesson) {
+    <div class="bg-white rounded-xl p-6">
+      <header class="flex flex-row items-end gap-6 mb-10">
+        <img
+          class="w-40"
+          src="https://superlikers-themes.s3.amazonaws.com/ppmu/quiz-station-img.svg"
+          alt="quiz" />
+        <div>
+          <h2 class="font-bold">Quiz Station</h2>
+          <p>¡Llegó el momento de poner a prueba tus conocimientos!</p>
+        </div>
+      </header>
+
+      @if (data$ | async; as data) {
+        <div class="bg-theme-grey p-6 rounded-xl">
+          <div
+            class="max-w-4xl mx-auto flex flex-col gap-4"
+            cdkDropListGroup>
+            <p class="text-center w-full">
+              Lee las opciones, arrastra y completa los costos que intervienen
+              en cada una de las etapas del proceso de distribución de T2.
+            </p>
+
+            <div
+              id="options"
+              cdkDropList
+              [cdkDropListData]="data.options"
+              (cdkDropListDropped)="onDrop($event)"
+              class="options flex flex-wrap gap-4 justify-center items-center min-h-[3rem]">
+              @for (option of data.options; track option) {
+                <div
+                  cdkDrag
+                  [ngClass]="option.color"
+                  class="cursor-move rounded-xl px-4 py-2 grow text-center bg-white max-w-fit">
+                  {{ option.value }}
+                </div>
+              }
+            </div>
+
+            <img
+              class="w-full"
+              src="https://superlikers-themes.s3.amazonaws.com/ppmu/img-logistic.svg"
+              alt="logistica" />
+            <div class="flex flex-row gap-x-8 text-center">
+              <div
+                class="item relative grow flex flex-col gap-4 before:h-[400px] before:border-theme-orange">
+                <p class="bg-theme-orange text-white rounded-xl p-4 z-0">
+                  1° Etapa
+                </p>
+                <app-vcl-v2-dropzone
+                  class="z-0"
+                  customClasses="border-theme-orange"
+                  [dropzoneItems]="data.dropzones[0]"
+                  question="question1"
+                  (dropEvent)="onDrop($event)">
+                </app-vcl-v2-dropzone>
+                <app-vcl-v2-dropzone
+                  class="z-0"
+                  customClasses="border-theme-orange"
+                  [dropzoneItems]="data.dropzones[1]"
+                  question="question2"
+                  (dropEvent)="onDrop($event)">
+                </app-vcl-v2-dropzone>
+                <app-vcl-v2-dropzone
+                  class="z-0"
+                  customClasses="border-theme-orange"
+                  [dropzoneItems]="data.dropzones[2]"
+                  question="question3"
+                  (dropEvent)="onDrop($event)">
+                </app-vcl-v2-dropzone>
+                <app-vcl-v2-dropzone
+                  class="z-0"
+                  customClasses="border-theme-orange"
+                  [dropzoneItems]="data.dropzones[3]"
+                  question="question4"
+                  (dropEvent)="onDrop($event)">
+                </app-vcl-v2-dropzone>
+                <app-vcl-v2-dropzone
+                  class="z-0"
+                  customClasses="border-theme-orange"
+                  [dropzoneItems]="data.dropzones[4]"
+                  question="question5"
+                  (dropEvent)="onDrop($event)">
+                </app-vcl-v2-dropzone>
+              </div>
+              <div
+                class="item relative grow flex flex-col gap-4 before:h-[300px] before:border-theme-blue">
+                <p class="bg-theme-blue text-white rounded-xl p-4 z-0">
+                  2° Etapa
+                </p>
+                <app-vcl-v2-dropzone
+                  class="z-0"
+                  customClasses="border-theme-blue"
+                  [dropzoneItems]="data.dropzones[5]"
+                  question="question6"
+                  (dropEvent)="onDrop($event)">
+                </app-vcl-v2-dropzone>
+                <app-vcl-v2-dropzone
+                  class="z-0"
+                  customClasses="border-theme-blue"
+                  [dropzoneItems]="data.dropzones[6]"
+                  question="question7"
+                  (dropEvent)="onDrop($event)">
+                </app-vcl-v2-dropzone>
+                <app-vcl-v2-dropzone
+                  class="z-0"
+                  customClasses="border-theme-blue"
+                  [dropzoneItems]="data.dropzones[7]"
+                  question="question8"
+                  (dropEvent)="onDrop($event)">
+                </app-vcl-v2-dropzone>
+                <app-vcl-v2-dropzone
+                  class="z-0"
+                  customClasses="border-theme-blue"
+                  [dropzoneItems]="data.dropzones[8]"
+                  question="question9"
+                  (dropEvent)="onDrop($event)">
+                </app-vcl-v2-dropzone>
+              </div>
+              <div
+                class="item relative grow flex flex-col gap-4 before:h-[300px] before:border-theme-green">
+                <p class="bg-theme-green text-white rounded-xl p-4 z-0">
+                  3° Etapa
+                </p>
+                <app-vcl-v2-dropzone
+                  class="z-0"
+                  customClasses="border-theme-green"
+                  [dropzoneItems]="data.dropzones[9]"
+                  question="question10"
+                  (dropEvent)="onDrop($event)">
+                </app-vcl-v2-dropzone>
+                <app-vcl-v2-dropzone
+                  class="z-0"
+                  customClasses="border-theme-green"
+                  [dropzoneItems]="data.dropzones[10]"
+                  question="question11"
+                  (dropEvent)="onDrop($event)">
+                </app-vcl-v2-dropzone>
+                <app-vcl-v2-dropzone
+                  class="z-0"
+                  customClasses="border-theme-green"
+                  [dropzoneItems]="data.dropzones[11]"
+                  question="question12"
+                  (dropEvent)="onDrop($event)">
+                </app-vcl-v2-dropzone>
+                <app-vcl-v2-dropzone
+                  class="z-0"
+                  customClasses="border-theme-green"
+                  [dropzoneItems]="data.dropzones[12]"
+                  question="question13"
+                  (dropEvent)="onDrop($event)">
+                </app-vcl-v2-dropzone>
+              </div>
+            </div>
+
+            <app-submit-button
+              class="mx-auto"
+              [isLoading]="false"
+              (click)="submit()">
+              Continuar
+            </app-submit-button>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</section>

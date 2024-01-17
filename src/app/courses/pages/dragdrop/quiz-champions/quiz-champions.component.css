@@ -1,0 +1,74 @@
+.item:nth-child(1)::before {
+  right: 1rem;
+  content: '';
+  position: absolute;
+  top: -4rem;
+  height: 4rem;
+  border-left: 2px dashed #D8B52F;
+}
+
+.item:nth-child(2)::before {
+  right: 5rem;
+  content: '';
+  position: absolute;
+  top: -4rem;
+  height: 4rem;
+  border-left: 2px dashed #D8B52F;
+}
+
+.item:nth-child(3)::before {
+  content: '';
+  position: absolute;
+  background-image: url(https://superlikers-themes.s3.amazonaws.com/ppmu/3-ruta-champions.svg);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 10rem;
+  height: 8rem;
+  top: -6rem;
+  right: 3rem;
+}
+
+.item:nth-child(4)::before {
+  right: 1rem;
+  border-color: #19BEAD;
+  content: '';
+  position: absolute;
+  top: -4rem;
+  height: 4rem;
+  border-left-width: 2px;
+  border-left-style: dashed;
+}
+
+.item:nth-child(5)::before {
+  content: '';
+  position: absolute;
+  background: url(https://superlikers-themes.s3.amazonaws.com/ppmu/5-ruta-champions.svg) center/contain no-repeat;
+  width: 7rem;
+  height: 6rem;
+  border: none;
+  right: 0rem;
+  top: -5rem;
+}
+
+.item:nth-child(6)::before {
+  content: '';
+  position: absolute;
+  background: url(https://superlikers-themes.s3.amazonaws.com/ppmu/6-ruta-champions.svg)center/contain no-repeat;
+  width: 7rem;
+  height: 6rem;
+  border: none;
+  right: -1rem;
+  top: -5rem;
+}
+
+.item:nth-child(7)::before {
+  content: '';
+  position: absolute;
+  top: -4rem;
+  height: 4rem;
+  border-color: #628DE8;
+  border-left-width: 2px;
+  border-left-style: dashed;
+  left: 4rem;
+}

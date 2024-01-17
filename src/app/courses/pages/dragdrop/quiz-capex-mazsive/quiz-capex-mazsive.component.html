@@ -1,0 +1,123 @@
+<section class="flex flex-col gap-4">
+  <app-breadcrumb
+    text="Cursos"
+    link="/courses">
+  </app-breadcrumb>
+
+  @if (lesson$ | async; as lesson) {
+    <article class="bg-white rounded-xl p-6">
+      <header class="flex flex-row items-end gap-6 mb-10">
+        <img
+          class="w-40"
+          src="https://superlikers-themes.s3.amazonaws.com/ppmu/quiz-station-img.svg"
+          alt="quiz" />
+        <div>
+          <h2 class="font-bold">Quiz Station</h2>
+          <p>¡Llegó el momento de poner a prueba tus conocimientos!</p>
+        </div>
+      </header>
+
+      @if (data$ | async; as data) {
+        <div class="bg-theme-grey rounded-xl p-6">
+          <div
+            class="max-w-4xl mx-auto flex flex-col gap-4"
+            cdkDropListGroup>
+            <p class="text-center w-full">
+              Lee con atención las opciones, arrastra y ubicada cada uno de los
+              datos en el filtro o casilla correspondiente.
+            </p>
+
+            <div
+              id="options"
+              cdkDropList
+              [cdkDropListData]="data.options"
+              (cdkDropListDropped)="onDrop($event)"
+              class="options flex flex-wrap gap-4 justify-center items-center min-h-[3rem]">
+              @for (option of data.options; track option) {
+                <div
+                  cdkDrag
+                  class="cursor-move rounded-xl px-4 py-2 grow text-center bg-theme-red text-white max-w-fit">
+                  {{ option.value }}
+                </div>
+              }
+            </div>
+
+            <div class="overflow-x-auto block relative">
+              <img
+                class="block max-w-none w-[1500px]"
+                src="https://superlikers-themes.s3.amazonaws.com/ppmu/ApprovalStatus_v2.png"
+                alt="approval Status" />
+              <div class="absolute flex flex-row gap-4 top-[70px] left-20">
+                <div
+                  class="border-theme-black border-[1px] rounded-lg p-2 w-[230px]">
+                  <app-capex-mazsive-dropzone
+                    [dropzoneItems]="data.dropzones[0]"
+                    question="question1"
+                    (dropEvent)="onDrop($event)">
+                  </app-capex-mazsive-dropzone>
+                </div>
+                <div
+                  class="border-theme-black border-[1px] rounded-lg p-2 w-[230px]">
+                  <app-capex-mazsive-dropzone
+                    [dropzoneItems]="data.dropzones[1]"
+                    question="question2"
+                    (dropEvent)="onDrop($event)">
+                  </app-capex-mazsive-dropzone>
+                </div>
+                <div
+                  class="border-theme-black border-[1px] rounded-lg p-2 w-[230px]">
+                  <app-capex-mazsive-dropzone
+                    [dropzoneItems]="data.dropzones[2]"
+                    question="question3"
+                    (dropEvent)="onDrop($event)">
+                  </app-capex-mazsive-dropzone>
+                </div>
+                <div
+                  class="border-theme-black border-[1px] rounded-lg p-2 w-[230px]">
+                  <app-capex-mazsive-dropzone
+                    [dropzoneItems]="data.dropzones[3]"
+                    question="question4"
+                    (dropEvent)="onDrop($event)">
+                  </app-capex-mazsive-dropzone>
+                </div>
+                <button
+                  class="bg-theme-blue py-4 px-6 flex gap-2 items-center text-white rounded-xl hover:bg-theme-blue/90 transition-colors">
+                  <img
+                    class="w-4"
+                    src="https://superlikers-themes.s3.amazonaws.com/ppmu/checked.svg"
+                    alt="" />
+                  consultar
+                </button>
+              </div>
+
+              <div
+                class="absolute border-theme-black border-[1px] rounded-lg p-2 w-[180px] top-[400px] left-24">
+                <app-capex-mazsive-dropzone
+                  [dropzoneItems]="data.dropzones[4]"
+                  question="question5"
+                  (dropEvent)="onDrop($event)">
+                </app-capex-mazsive-dropzone>
+              </div>
+
+              <div
+                class="absolute border-theme-black border-[1px] rounded-lg p-2 w-[180px] top-[400px] left-[1300px]">
+                <app-capex-mazsive-dropzone
+                  [dropzoneItems]="data.dropzones[5]"
+                  question="question6"
+                  (dropEvent)="onDrop($event)">
+                </app-capex-mazsive-dropzone>
+              </div>
+            </div>
+
+            <app-submit-button
+              class="mx-auto"
+              [isLoading]="false"
+              (click)="submit()">
+              Continuar
+            </app-submit-button>
+          </div>
+        </div>
+      }
+    </article>
+  }
+</section>

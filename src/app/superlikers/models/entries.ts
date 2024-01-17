@@ -42,6 +42,6 @@ export interface EntriesParams {
 
 export interface SendExternalParams {
   event: string
-  properties: Record<string, string>
+  properties: Record<string, string | number>
   category?: string
 }
