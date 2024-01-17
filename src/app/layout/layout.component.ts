@@ -8,6 +8,7 @@ import { HeaderComponent } from './components/header/header.component'
 import { SidebarComponent } from './components/sidebar/sidebar.component'
 import { SidebarService } from './services/sidebar.service'
 import { CoursesService } from '@courses/services/courses.service'
+import { ParticipantService } from '@participant/services/participant.service'
 
 @Component({
   selector: 'app-layout',
@@ -19,11 +20,16 @@ import { CoursesService } from '@courses/services/courses.service'
 })
 export class LayoutComponent {
   coursesService = inject(CoursesService)
+  participantService = inject(ParticipantService)
 
   sidebar$: Observable<boolean>
 
   constructor(private sidebarService: SidebarService) {
     this.coursesService.loadLevels().subscribe()
+
+    this.participantService.loadParticipant().subscribe(participant => {
+      this.participantService.participant = participant.participation
+    })
 
     this.sidebar$ = this.sidebarService.sidebar
   }

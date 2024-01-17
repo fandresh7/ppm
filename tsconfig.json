@@ -27,6 +27,7 @@
     "paths": {
       "@auth/*": ["app/auth/*"],
       "@shared/*": ["app/shared/*"],
+      "@participant/*": ["app/participant/*"],
       "@superlikers/*": ["app/superlikers/*"],
       "@courses/*": ["app/courses/*"]
     }

@@ -1,0 +1,61 @@
+<form
+  class="container flex flex-col gap-4"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()">
+  <input
+    class="hidden"
+    type="file"
+    id="file"
+    (change)="onFileSelected($event)"
+    formControlName="avatar" />
+
+  <div class="flex flex-col justify-center items-center">
+    @if (imageUrl) {
+      <img
+        class="w-full mx-auto"
+        [src]="imageUrl"
+        alt="Selected Image" />
+    } @else {
+      <div class="border-dashed border-4 grid place-items-center w-full h-40">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="52"
+          height="52"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-upload-cloud">
+          <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242" />
+          <path d="M12 12v9" />
+          <path d="m16 16-4-4-4 4" />
+        </svg>
+      </div>
+    }
+
+    @if (isValidField('avatar')) {
+      <span class="text-sm text-theme-red">Debes subir una foto</span>
+    }
+
+    @if (form.get('avatar')?.hasError('customError')) {
+      <span class="text-sm text-theme-red">
+        {{ form.get('avatar')?.getError('customError') }}
+      </span>
+    }
+  </div>
+
+  <div class="flex flex-row gap-4">
+    <label
+      class="button bg-theme-orange hover:bg-theme-orange/90"
+      for="file">
+      Escoger Imagen
+    </label>
+    <app-submit-button
+      type="submit"
+      [isLoading]="loading">
+      Enviar
+    </app-submit-button>
+  </div>
+</form>

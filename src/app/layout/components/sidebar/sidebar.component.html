@@ -1,1 +1,37 @@
-<p>sidebar works!</p>
+<div class="mx-auto flex flex-col items-center gap-10 pt-4">
+  <app-avatar></app-avatar>
+
+  @if (participant$ | async; as participant) {
+    <h2 class="-mt-6 text-xl font-bold">
+      {{ participant['nombre-completo'] }}
+    </h2>
+  }
+  <nav>
+    <ul class="flex flex-col gap-4">
+      @for (item of navbarLinks; track item.name) {
+        <li class="text-lg">
+          <a
+            class="flex whitespace-nowrap items-center gap-4 rounded-2xl px-4 py-2 text-theme-black-50 transition-all duration-300 hover:bg-theme-grey hover:text-theme-black"
+            [routerLink]="item.path"
+            routerLinkActive="!text-white bg-theme-black-90 hover:!bg-theme-black"
+            [routerLinkActiveOptions]="{ exact: item.exact ?? false }">
+            <div
+              [ngClass]="backgroundImageClasses(item)"
+              class="h-6 w-6 bg-contain bg-no-repeat"></div>
+            {{ item.name }}
+          </a>
+        </li>
+      }
+
+      <li class="text-lg lg:mt-10">
+        <a
+          (click)="logout()"
+          class="flex items-center cursor-pointer gap-4 rounded-2xl px-4 py-2 text-theme-black-50 transition-all duration-300 hover:bg-theme-grey hover:text-theme-black">
+          <div
+            class="h-6 w-6 bg-logout-icon bg-contain bg-no-repeat hover:bg-logout-icon-active"></div>
+          Cerrar sesión
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>

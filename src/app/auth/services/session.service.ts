@@ -2,8 +2,12 @@ import { Injectable } from '@angular/core'
 
 import { defer, first } from 'rxjs'
 
-import { getLoginForm, login } from '@superlikers/api/session'
-import { signup, signupForm } from '@superlikers/api/registration'
+import { getLoginForm, login, logout } from '@superlikers/api/session'
+import {
+  signup,
+  signupForm,
+  updateParticipant
+} from '@superlikers/api/registration'
 import { SignupParams } from '@superlikers/models/registrations'
 import { LoginParams } from '@superlikers/models/session'
 
@@ -25,5 +29,13 @@ export class SessionService {
 
   signup(data: SignupParams) {
     return defer(() => signup(data)).pipe(first())
+  }
+
+  update(data: SignupParams) {
+    return defer(() => updateParticipant(data)).pipe(first())
+  }
+
+  logout() {
+    return defer(() => logout())
   }
 }
