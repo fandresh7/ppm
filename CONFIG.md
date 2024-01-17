@@ -34,7 +34,7 @@
    - `dbaeumer.vscode-eslint`
    - `esbenp.prettier-vscode`
 
-5. Update settings.json file:
+5. Update `settings.json` file:
 
    ```js
    "[html]": {
@@ -121,6 +121,23 @@
    ```js
    import { register } from "swiper/element/bundle";
    register();
+   ```
+
+### Install Intro.js (Optional)
+   This library is used to create custom tutorials
+
+1. Install Swiper:
+
+   ```
+   npm install intro.js --save
+   ```
+
+2. Add styles inside `angular.json` file:
+   ``` json
+   "styles": [
+      "node_modules/intro.js/introjs.css",
+      "src/styles.css"
+   ],
    ```
 
 ### Other Configurations
