@@ -1,0 +1,64 @@
+<div class="flex flex-col gap-2">
+  <header class="flex items-center gap-6">
+    <img
+      class="h-16 w-16 rounded-full"
+      [src]="comment.participant.avatar"
+      [alt]="comment.participant.name" />
+    <div class="grow">
+      <h4 class="font-bold">{{ comment.participant.name }}</h4>
+      <p class="text-sm text-theme-black-50">
+        <span>{{ comment.execute_date | date }}</span>
+      </p>
+    </div>
+  </header>
+
+  <div class="flex flex-col gap-2">
+    <p class="text-sm text-theme-black-90">
+      {{ comment.body }}
+    </p>
+  </div>
+
+  <footer
+    class="flex items-center justify-between"
+    *ngIf="showAdditionalButtons">
+    <button
+      class="button py-2"
+      (click)="toggleShowWriteCommentComponent()">
+      {{ showButtonText }}
+    </button>
+    <a
+      class="cursor-pointer text-sm text-theme-blue hover:underline"
+      (click)="toggleShowComments()"
+      >{{ showCommentsText }}</a
+    >
+  </footer>
+
+  @if (showWriteCommentComponent || showComments) {
+    <div
+      class="relative flex flex-col gap-1 pl-6 before:absolute before:left-4 before:top-0 before:ml-0 before:h-full before:border-l-2 before:border-theme-grey-dark">
+      <app-write-comment
+        *ngIf="showWriteCommentComponent"
+        [targetId]="comment._id"
+        (commentSent)="onCommentSent()">
+      </app-write-comment>
+
+      @if (showComments) {
+        <div class="ml-4 flex flex-col gap-4">
+          @if (loading) {
+            <p>Cargando...</p>
+          } @else {
+            <app-comment
+              *ngFor="let additionalComment of additionalComments"
+              [comment]="additionalComment"
+              [showAdditionalButtons]="false">
+            </app-comment>
+          }
+
+          @if (!loading && additionalComments.length === 0) {
+            <p>No hay más comentarios</p>
+          }
+        </div>
+      }
+    </div>
+  }
+</div>

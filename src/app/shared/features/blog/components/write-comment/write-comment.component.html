@@ -1,0 +1,39 @@
+<div
+  class="@container md:@container-normal flex gap-2 rounded-2xl bg-white p-4 lg:gap-4">
+  <img
+    class="h-16 w-16 rounded-full"
+    src="https://superlikers-themes.s3.amazonaws.com/ppmu/user-profile.png"
+    alt="" />
+  <div class="flex grow flex-col">
+    <form
+      [formGroup]="form"
+      (ngSubmit)="sendComment()"
+      class="flex grow flex-col gap-2 @md:flex-row @md:items-end @md:gap-4">
+      <div class="flex grow flex-col">
+        <textarea
+          formControlName="body"
+          class="input rounded-2xl text-sm"
+          placeholder="Añade tu pregunta, tema o comentario"
+          rows="3">
+        </textarea>
+      </div>
+      <app-submit-button
+        class="self-end"
+        [isLoading]="loading"
+        type="submit">
+        Enviar
+      </app-submit-button>
+    </form>
+    <div>
+      @if (isFormValid) {
+        <p class="text-sm text-theme-red">Debes escribir un comentario.</p>
+      }
+
+      @if (error) {
+        <p class="text-sm text-theme-red">
+          {{ error }}
+        </p>
+      }
+    </div>
+  </div>
+</div>

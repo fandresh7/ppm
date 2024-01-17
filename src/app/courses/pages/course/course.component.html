@@ -101,7 +101,7 @@
           }
 
           @if (content === 'comments') {
-            <div></div>
+            <app-blog [tags]="[data.course?.category ?? '']"></app-blog>
           }
 
           @if (content === 'resources') {

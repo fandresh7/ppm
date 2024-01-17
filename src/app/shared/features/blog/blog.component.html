@@ -1,0 +1,22 @@
+<div class="flex justify-between gap-2">
+  @if (blog$ | async; as blog) {
+    <div class="flex grow flex-col gap-4">
+      <app-write-comment
+        [targetId]="blog._id"
+        (commentSent)="commentSent()">
+      </app-write-comment>
+
+      @if (loading) {
+        <div>Cargando...</div>
+      } @else {
+        @if (comments$ | async; as comments) {
+          @for (comment of comments; track comment._id) {
+            <div class="bg-white rounded-xl p-4">
+              <app-comment [comment]="comment"></app-comment>
+            </div>
+          }
+        }
+      }
+    </div>
+  }
+</div>

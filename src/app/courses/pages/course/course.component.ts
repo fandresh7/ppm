@@ -12,6 +12,7 @@ import { InfografiaComponent } from '@courses/components/infografia/infografia.c
 import { LessonStateCardComponent } from '@courses/components/lesson-state-card/lesson-state-card.component'
 import { AsyncPipe } from '@angular/common'
 import { RoundedProgressComponent } from '@courses/components/rounded-progress/rounded-progress.component'
+import { BlogComponent } from '@shared/features/blog/blog.component'
 
 type ContentType = 'lessons' | 'comments' | 'resources'
 
@@ -30,7 +31,8 @@ interface PageData {
     VideoComponent,
     InfografiaComponent,
     LessonStateCardComponent,
-    RoundedProgressComponent
+    RoundedProgressComponent,
+    BlogComponent
   ],
   templateUrl: './course.component.html',
   styleUrl: './course.component.css'
