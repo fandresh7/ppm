@@ -1,0 +1,53 @@
+<app-breadcrumb
+  text="Certificados"
+  link="/home">
+</app-breadcrumb>
+
+<section
+  class="mt-10 bg-theme-orange rounded-lg p-4 md:p-10 flex flex-col md:flex-row gap-2 md:gap-6 items-center relative">
+  <img
+    class="w-1/3 min-w-[300px] max-w-md relative -top-16"
+    src="https://superlikers-themes.s3.amazonaws.com/ppmu/certificado-master.svg"
+    alt="" />
+  <div class="w-2/3 flex flex-col gap-4">
+    <h2 class="font-bold text-xl">Certificado master</h2>
+    <p class="max-w-3xl">
+      Recuerda que para obtener este certificado, debes conseguir todos los
+      certificados anteriores y así serás un verdadero MASTER.
+    </p>
+  </div>
+</section>
+
+<section class="mt-10">
+  <h2 class="font-bold text-lg">Certificados Obtenidos</h2>
+  <swiper-container
+    #completeCoursesSlide
+    init="false">
+    @for (
+      course of completeCourses$ | async;
+      track course.id;
+      let index = $index
+    ) {
+      <swiper-slide class="p-1">
+        <app-certificate-card [course]="course"></app-certificate-card>
+      </swiper-slide>
+    }
+  </swiper-container>
+</section>
+
+<section class="mt-10">
+  <h2 class="font-bold text-lg">Certificados en progreso</h2>
+  <swiper-container
+    #inProgressCoursesSlide
+    init="false">
+    @for (
+      course of inProgressCourses$ | async;
+      track course.id;
+      let index = $index
+    ) {
+      <swiper-slide class="p-1">
+        <app-certificate-card [course]="course"></app-certificate-card>
+      </swiper-slide>
+    }
+  </swiper-container>
+</section>

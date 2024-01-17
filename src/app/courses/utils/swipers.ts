@@ -10,6 +10,9 @@ const defaultOptions: SwiperOptions = {
       width: 20px !important;
       height: 20px !important;
       color: #000000 !important;
+      top: 0;
+      bottom: 0;
+      margin: auto;
     }
     
     .swiper-button-next {
@@ -48,4 +51,23 @@ export const testSliderOptions: SwiperOptions = {
   simulateTouch: true,
   spaceBetween: 30,
   navigation: false
+}
+
+export const certificateSliderOptions: SwiperOptions = {
+  ...defaultOptions,
+  spaceBetween: 5,
+  breakpoints: {
+    0: {
+      slidesPerView: 1
+    },
+    620: {
+      slidesPerView: 2
+    },
+    1060: {
+      slidesPerView: 3
+    },
+    1360: {
+      slidesPerView: 5
+    }
+  }
 }
