@@ -4,6 +4,7 @@ import { LayoutComponent } from 'app/layout/layout.component'
 import { CoursesComponent } from './pages/courses/courses.component'
 import { CourseComponent } from './pages/course/course.component'
 import { ForumComponent } from './pages/forum/forum.component'
+import { GlossaryComponent } from './pages/glossary/glossary.component'
 
 export const routes: Routes = [
   {
@@ -34,6 +35,10 @@ export const routes: Routes = [
       {
         path: 'forum',
         component: ForumComponent
+      },
+      {
+        path: 'glossary',
+        component: GlossaryComponent
       }
     ]
   }
