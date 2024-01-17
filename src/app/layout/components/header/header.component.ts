@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core'
+import { RouterModule } from '@angular/router'
 import { Observable } from 'rxjs'
 
 import { ParticipantService } from '@participant/services/participant.service'
@@ -12,6 +13,7 @@ import { SearchComponent } from '@courses/components/search/search.component'
   selector: 'app-header',
   standalone: true,
   imports: [
+    RouterModule,
     AvatarComponent,
     AsyncPipe,
     NotificationListComponent,

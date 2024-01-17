@@ -39,3 +39,13 @@ export const homeSliderOptions: SwiperOptions = {
     }
   }
 }
+
+export const testSliderOptions: SwiperOptions = {
+  ...defaultOptions,
+  autoHeight: false,
+  slidesPerView: 1,
+  allowTouchMove: true,
+  simulateTouch: true,
+  spaceBetween: 30,
+  navigation: false
+}

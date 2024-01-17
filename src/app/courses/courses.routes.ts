@@ -13,6 +13,7 @@ import { QuizMonetizacionComponent } from './pages/dragdrop/quiz-monetizacion/qu
 import { QuizVclV2Component } from './pages/dragdrop/quiz-vcl-v2/quiz-vcl-v2.component'
 import { QuizVclComponent } from './pages/dragdrop/quiz-vcl/quiz-vcl.component'
 import { QuizZbbComponent } from './pages/dragdrop/quiz-zbb/quiz-zbb.component'
+import { TestComponent } from './pages/test/test.component'
 
 const quicesRoutes: Routes = [
   {
@@ -87,6 +88,10 @@ export const routes: Routes = [
       {
         path: 'glossary',
         component: GlossaryComponent
+      },
+      {
+        path: 'test/:category',
+        component: TestComponent
       },
       ...quicesRoutes
     ]
