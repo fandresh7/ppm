@@ -1,0 +1,28 @@
+<div class="bg-white rounded-xl p-4 block cursor-pointer">
+  <div class="flex flex-col gap-2">
+    <img
+      class="w-full"
+      src="https://contenidospmm.s3.amazonaws.com/cursos/curso_4/posters/Thumbnail_Verticales_Unit1_Lesson5.2.png"
+      alt="" />
+    <h2 class="grow text-lg font-bold leading-5">
+      6. Botella: Variables de costos en la producción
+    </h2>
+    <p
+      class="bg-clock-icon bg-1.2 bg-left bg-no-repeat pl-6 text-theme-black-50">
+      11:34 min
+    </p>
+    <p><span class="font-bold">Curso: </span>IV. Operaciones Verticalizadas</p>
+    <div class="flex flex-row gap-2 self-end">
+      <app-favorite-button [lesson]="lesson"></app-favorite-button>
+
+      <app-download-button
+        [name]="lesson.name"
+        [file]="
+          lesson.VideoContent?.video ||
+          lesson.InfografiaContent?.infografia ||
+          ''
+        ">
+      </app-download-button>
+    </div>
+  </div>
+</div>

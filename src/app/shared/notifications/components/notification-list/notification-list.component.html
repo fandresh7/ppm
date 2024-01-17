@@ -1,0 +1,61 @@
+<button
+  class="relative flex h-10 w-10 items-center"
+  cdkOverlayOrigin
+  #notificationOverlay="cdkOverlayOrigin"
+  (click)="toggleDropdown()">
+  <span
+    class="absolute -right-1 -top-1 h-4 w-4 rounded-full bg-red-600 text-xs text-theme-white"
+    >1</span
+  >
+  <div
+    class="group/notification h-full w-full rounded-full bg-theme-grey-dark transition-all duration-500 hover:bg-theme-black">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 60 60">
+      <g
+        id="Grupo_6199"
+        data-name="Grupo 6199"
+        transform="translate(-1466 -110)">
+        <g
+          id="Top"
+          transform="translate(-833 80)">
+          <g id="ic">
+            <path
+              class="fill-theme-black group-hover/notification:fill-theme-white"
+              id="bell"
+              d="M25.017,19.276l-2.384-4.4V10.3a8.3,8.3,0,0,0-16.591,0v4.581l-2.384,4.4a1.31,1.31,0,0,0,1.153,1.933H9.556q-.02.218-.02.437a4.8,4.8,0,1,0,9.605,0c0-.147-.007-.293-.021-.437h4.745a1.31,1.31,0,0,0,1.152-1.933Zm-7.622,2.37a3.056,3.056,0,1,1-6.08-.437h6.048A3.063,3.063,0,0,1,17.394,21.646ZM5.545,19.463,7.79,15.319V10.3a6.549,6.549,0,1,1,13.1,0v5.024l2.244,4.144Z"
+              transform="translate(2314.662 45.775)"
+              opacity="0.5" />
+          </g>
+        </g>
+      </g>
+    </svg>
+  </div>
+</button>
+
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="notificationOverlay"
+  [cdkConnectedOverlayOpen]="isDropdownOpen"
+  cdkConnectedOverlayHasBackdrop
+  (backdropClick)="toggleDropdown()">
+  <div
+    class="max-h-96 w-full cursor-default overflow-y-auto rounded-lg bg-white p-4 text-sm text-theme-black drop-shadow-md transition-opacity duration-300 ease-in-out"
+    [class.opacity-100]="isDropdownOpen"
+    [class.opacity-0]="!isDropdownOpen">
+    <div class="flex h-full w-full flex-col">
+      <header class="flex justify-between">
+        <h2 class="m-0 text-lg font-bold">Notificaciones</h2>
+        <button class="text-theme-blue hover:underline">
+          Marcar todos como leído
+        </button>
+      </header>
+      <ul class="mt-2 flex flex-col gap-2">
+        <app-notification></app-notification>
+        <app-notification></app-notification>
+        <app-notification></app-notification>
+        <app-notification></app-notification>
+      </ul>
+    </div>
+  </div>
+</ng-template>
