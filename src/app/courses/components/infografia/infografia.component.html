@@ -1,0 +1,11 @@
+<div class="flex flex-col gap-4">
+  <ngx-extended-pdf-viewer
+    [src]="pdfUrl"
+    [useBrowserLocale]="true">
+  </ngx-extended-pdf-viewer>
+  <app-submit-button
+    [isLoading]="loading"
+    (click)="sendData()">
+    Marcar como leído
+  </app-submit-button>
+</div>

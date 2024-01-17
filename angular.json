@@ -22,9 +22,15 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              { 
+                "glob": "**/*", 
+                "input": "node_modules/ngx-extended-pdf-viewer/bleeding-edge/", 
+                "output": "/bleeding-edge/" 
+              }
             ],
             "styles": [
+              "node_modules/@videogular/ngx-videogular/fonts/videogular.css",
               "node_modules/intl-tel-input/build/css/intlTelInput.css",
               "src/styles.css"
             ],
