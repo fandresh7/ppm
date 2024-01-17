@@ -8,6 +8,7 @@ import { AvatarComponent } from '@participant/components/avatar/avatar.component
 import { AsyncPipe } from '@angular/common'
 import { NotificationListComponent } from '@shared/notifications/components/notification-list/notification-list.component'
 import { SearchComponent } from '@courses/components/search/search.component'
+import { TutorialButtonComponent } from '@shared/tutorial/components/tutorial-button/tutorial-button.component'
 
 @Component({
   selector: 'app-header',
@@ -17,7 +18,8 @@ import { SearchComponent } from '@courses/components/search/search.component'
     AvatarComponent,
     AsyncPipe,
     NotificationListComponent,
-    SearchComponent
+    SearchComponent,
+    TutorialButtonComponent
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'

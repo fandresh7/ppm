@@ -14,6 +14,7 @@ interface NavbarLink {
   icon: string
   iconActive: string
   name: string
+  id?: string
   exact?: boolean
 }
 
@@ -59,6 +60,7 @@ export class SidebarComponent {
       path: '/',
       icon: 'bg-home-icon',
       iconActive: 'bg-home-icon-active',
+      id: 'sidebar_intro_2',
       name: 'Home',
       exact: true
     },
@@ -72,12 +74,14 @@ export class SidebarComponent {
       path: '/courses',
       icon: 'bg-courses-icon',
       iconActive: 'bg-courses-icon-active',
+      id: 'sidebar_intro_3',
       name: 'Cursos'
     },
     {
       path: '/certificates',
       icon: 'bg-certificates-icon',
       iconActive: 'bg-certificates-icon-active',
+      id: 'sidebar_intro_4',
       name: 'Certificados'
     },
     {
@@ -90,6 +94,7 @@ export class SidebarComponent {
       path: '/forum',
       icon: 'bg-forum-icon',
       iconActive: 'bg-forum-icon-active',
+      id: 'sidebar_intro_5',
       name: 'Forum'
     }
   ]

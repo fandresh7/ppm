@@ -11,6 +11,7 @@
       @for (item of navbarLinks; track item.name) {
         <li class="text-lg">
           <a
+            [id]="item.id"
             class="flex whitespace-nowrap items-center gap-4 rounded-2xl px-4 py-2 text-theme-black-50 transition-all duration-300 hover:bg-theme-grey hover:text-theme-black"
             [routerLink]="item.path"
             routerLinkActive="!text-white bg-theme-black-90 hover:!bg-theme-black"
