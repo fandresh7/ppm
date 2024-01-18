@@ -6,6 +6,7 @@ import { Lesson, LessonStatus } from '@courses/logic/models/lessons'
 import { StatusBadgeComponent } from '../status-badge/status-badge.component'
 import { DownloadButtonComponent } from '../download-button/download-button.component'
 import { FavoriteButtonComponent } from '../favorite-button/favorite-button.component'
+import { TooltipDirective } from '@courses/directives/tooltip/tooltip.directive'
 
 @Component({
   selector: 'app-lesson-state-card',
@@ -14,7 +15,8 @@ import { FavoriteButtonComponent } from '../favorite-button/favorite-button.comp
     RouterModule,
     StatusBadgeComponent,
     DownloadButtonComponent,
-    FavoriteButtonComponent
+    FavoriteButtonComponent,
+    TooltipDirective
   ],
   templateUrl: './lesson-state-card.component.html',
   styleUrl: './lesson-state-card.component.css'
