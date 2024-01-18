@@ -1,7 +1,7 @@
 import { AsyncPipe, CommonModule } from '@angular/common'
 import { Component, inject } from '@angular/core'
 import { FormBuilder } from '@angular/forms'
-import { RouterLink } from '@angular/router'
+import { Router, RouterLink } from '@angular/router'
 
 import { Observable, tap } from 'rxjs'
 
@@ -18,6 +18,7 @@ import { FormService } from '@shared/features/auth-forms/services/form.service'
   styleUrl: './login-page.component.css'
 })
 export class LoginPageComponent {
+  router = inject(Router)
   fb = inject(FormBuilder)
   sessionService = inject(SessionService)
   formService = inject(FormService)
@@ -45,12 +46,12 @@ export class LoginPageComponent {
       this.loading = false
 
       if (state === 'success') {
-        console.log('redirect to home')
+        this.router.navigate(['/'])
         return
       }
 
       if (code_error === 140) {
-        console.log('redirect to verify email')
+        this.router.navigate(['/complete_signup'])
         return
       } else {
         this.errorMessage = message

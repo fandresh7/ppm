@@ -1,7 +1,7 @@
 import { AsyncPipe } from '@angular/common'
 import { Component, inject } from '@angular/core'
 import { FormBuilder } from '@angular/forms'
-import { RouterLink } from '@angular/router'
+import { Router, RouterLink } from '@angular/router'
 
 import { Observable, map, tap } from 'rxjs'
 
@@ -19,6 +19,7 @@ import { Field } from '@superlikers/models/inputs'
   styleUrl: './register-page.component.css'
 })
 export class RegisterPageComponent {
+  router = inject(Router)
   fb = inject(FormBuilder)
   sessionService = inject(SessionService)
   formService = inject(FormService)
@@ -29,13 +30,7 @@ export class RegisterPageComponent {
   constructor() {
     this.fields$ = this.sessionService.signupForm().pipe(
       map(fields => {
-        const filteredFields = fields.filter(
-          field =>
-            field.is_public &&
-            !field.hidden_field &&
-            field._type !== 'HiddenField'
-        )
-
+        const filteredFields = this.formService.getFilteredFields(fields)
         return filteredFields
       }),
       tap(fields => this.formService.initializeForm(fields))
@@ -52,7 +47,7 @@ export class RegisterPageComponent {
       if (response.state === 'error') {
         this.formService.showErrors(response.errors ?? {})
       } else {
-        console.log('go to home')
+        this.router.navigate(['/'])
       }
     })
   }

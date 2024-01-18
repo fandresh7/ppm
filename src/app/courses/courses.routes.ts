@@ -15,6 +15,7 @@ import { QuizVclComponent } from './pages/dragdrop/quiz-vcl/quiz-vcl.component'
 import { QuizZbbComponent } from './pages/dragdrop/quiz-zbb/quiz-zbb.component'
 import { TestComponent } from './pages/test/test.component'
 import { CertificatesComponent } from './pages/certificates/certificates.component'
+import { requirementsGuard } from '@auth/guards/requirements/requirements.guard'
 
 const quicesRoutes: Routes = [
   {
@@ -60,6 +61,7 @@ export const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
+    canActivate: [requirementsGuard],
     children: [
       {
         path: '',

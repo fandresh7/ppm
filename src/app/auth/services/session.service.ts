@@ -2,7 +2,13 @@ import { Injectable } from '@angular/core'
 
 import { defer, first } from 'rxjs'
 
-import { getLoginForm, login, logout } from '@superlikers/api/session'
+import {
+  checkRequirements,
+  getLoginForm,
+  login,
+  logout
+} from '@superlikers/api/session'
+
 import {
   signup,
   signupForm,
@@ -37,5 +43,9 @@ export class SessionService {
 
   logout() {
     return defer(() => logout())
+  }
+
+  requirements() {
+    return defer(() => checkRequirements())
   }
 }

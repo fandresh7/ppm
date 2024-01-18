@@ -1,0 +1,29 @@
+<div class="relative w-full h-screen bg-theme-black-90 overflow-hidden lg:flex">
+  <img
+    class="top-0 left-0 w-32 h-32 lg:hidden"
+    src="https://superlikers-themes.s3.amazonaws.com/ppmu/login-logo.svg"
+    alt="" />
+  <img
+    class="absolute top-0 left-0 w-full lg:hidden"
+    src="https://superlikers-themes.s3.amazonaws.com/ppmu/login-mb.svg"
+    alt="" />
+  <img
+    class="absolute top-0 left-0 hidden lg:block"
+    src="https://superlikers-themes.s3.amazonaws.com/ppmu/login.svg"
+    alt="" />
+
+  @if (fields$ | async; as fields) {
+    <section
+      class="relative rounded-xl bg-white max-w-md h-4/5 z-20 m-auto lg:ml-auto lg:mr-28 lg:max-w-lg">
+      <div class="flex flex-col gap-2 items-center h-full overflow-auto p-4">
+        <h1 class="font-bold text-xl">Hola Aprendiz, bienvenido</h1>
+        <p class="mb-2">Completa tus datos y continua</p>
+        <app-form
+          [fields]="fields"
+          [loading]="isLoading"
+          (submitForm)="update($event)">
+        </app-form>
+      </div>
+    </section>
+  }
+</div>

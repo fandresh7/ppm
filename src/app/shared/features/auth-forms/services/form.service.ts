@@ -75,6 +75,14 @@ export class FormService {
     })
   }
 
+  getFilteredFields(fields: Field[]) {
+    return fields.filter(field => {
+      return (
+        field.is_public && !field.hidden_field && field._type !== 'HiddenField'
+      )
+    })
+  }
+
   setFormValues(data: Participant) {
     Object.entries(data).forEach(([key, value]) => {
       const control = this.form.get(key)
