@@ -113,11 +113,11 @@ export class VideoComponent implements OnDestroy, OnChanges {
 
     const finish = currentTime >= this.api.duration * 0.9
 
-    const properties = {
+    const properties: Record<string, string | number> = {
       time: this.api.currentTime,
       finish: finish.toString(),
       duration,
-      course: this.lesson.courseName,
+      course: this.lesson.courseName ?? '',
       lesson: this.lesson?.name,
       type: LessonType.Video
     }
@@ -129,11 +129,9 @@ export class VideoComponent implements OnDestroy, OnChanges {
       category: this.lesson?.category
     }
 
-    console.log({ params })
-
-    // sendExternal(params).then(response => {
-    //   if (response !== 'success') return
-    //   if (finish) this.hasFinish = true
-    // })
+    sendExternal(params).then(response => {
+      if (response !== 'success') return
+      if (finish) this.hasFinish = true
+    })
   }
 }
