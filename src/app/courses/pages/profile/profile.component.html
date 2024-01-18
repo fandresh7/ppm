@@ -1,0 +1,42 @@
+<div class="flex flex-col gap-4">
+  @if (participant$ | async; as participant) {
+    <div class="bg-white rounded-xl p-6">
+      <div class="flex flex-col justify-start items-center gap-4">
+        <app-avatar></app-avatar>
+
+        <h1 class="font-bold text-2xl">{{ participant['nombre-completo'] }}</h1>
+        <div
+          class="bg-theme-grey p-4 flex flex-col justify-start gap-2 rounded-xl w-full">
+          <p>Rol</p>
+          <p class="font-bold">{{ participant.cargo }}</p>
+        </div>
+        <div
+          class="bg-theme-grey p-4 flex flex-col justify-start gap-2 rounded-xl w-full">
+          <p>VP</p>
+          <p class="font-bold">{{ participant.vp }}</p>
+        </div>
+        <div
+          class="bg-theme-grey p-4 flex flex-col justify-start gap-2 rounded-xl w-full">
+          <p>ZBS</p>
+          <p class="font-bold">{{ participant.zbs }}</p>
+        </div>
+        <a class="button">Editar perfil</a>
+      </div>
+    </div>
+  }
+
+  <section class="mt-10">
+    <h2 class="font-bold text-lg">Certificados Obtenidos</h2>
+    <swiper-container
+      #completeCoursesSlide
+      init="false">
+      @for (course of completeCourses$ | async; track course.id) {
+        <swiper-slide class="p-1">
+          <app-certificate-card [course]="course"></app-certificate-card>
+        </swiper-slide>
+      } @empty {
+        <p class="mt-10">No hay cursos terminados aún.</p>
+      }
+    </swiper-container>
+  </section>
+</div>

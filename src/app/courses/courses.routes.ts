@@ -16,6 +16,7 @@ import { QuizZbbComponent } from './pages/dragdrop/quiz-zbb/quiz-zbb.component'
 import { TestComponent } from './pages/test/test.component'
 import { CertificatesComponent } from './pages/certificates/certificates.component'
 import { requirementsGuard } from '@auth/guards/requirements/requirements.guard'
+import { ProfileComponent } from './pages/profile/profile.component'
 
 const quicesRoutes: Routes = [
   {
@@ -99,6 +100,10 @@ export const routes: Routes = [
       {
         path: 'test/:category',
         component: TestComponent
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent
       },
       ...quicesRoutes
     ]
