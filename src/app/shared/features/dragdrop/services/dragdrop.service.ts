@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core'
 
 import { CdkDragDrop, transferArrayItem } from '@angular/cdk/drag-drop'
-import { Observable, map } from 'rxjs'
+import { Observable, first, map } from 'rxjs'
 
 import { CustomData } from '@courses/logic/dragdrop'
 import { DragDropQuestion } from '@courses/logic/models/dragdrop'
@@ -136,25 +136,26 @@ export class DragdropService {
 
     await Promise.all([dragdropData, resumeData])
 
-    if (validation) {
-      this.messagesService.showDragdropSuccessMessage().then(() => {
-        this.router.navigate(nextLessonUrl ?? ['/home'])
-      })
-    } else {
-      this.messagesService.showDragdropWrongMessage().then(result => {
-        if (result.isConfirmed) {
+    this.coursesService.updateLesson(lesson).subscribe(() => {
+      if (validation) {
+        this.messagesService.showDragdropSuccessMessage().then(() => {
           this.router.navigate(nextLessonUrl ?? ['/home'])
-        }
-      })
-    }
+        })
+      } else {
+        this.messagesService.showDragdropWrongMessage().then(result => {
+          if (result.isConfirmed) {
+            this.router.navigate(nextLessonUrl ?? ['/home'])
+          }
+        })
+      }
+    })
   }
 
   submit() {
     this.lesson$
       .pipe(
-        map(lesson => {
-          this.sendData(lesson, this.answers)
-        })
+        first(),
+        map(lesson => this.sendData(lesson, this.answers))
       )
       .subscribe()
   }

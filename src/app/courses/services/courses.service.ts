@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 
-import { BehaviorSubject, defer, tap, map } from 'rxjs'
+import { BehaviorSubject, defer, tap, map, first } from 'rxjs'
 
 import {
   getAllCourses,
@@ -162,6 +162,7 @@ export class CoursesService {
     const levels = this.levels
 
     return defer(() => getLessonsData([lesson], lesson.type)).pipe(
+      first(),
       map(lessons => {
         const updatedLesson = lessons[0]
         const updatedlevels = this.updateLevels(levels, updatedLesson)
