@@ -101,7 +101,10 @@ export class VideoComponent implements OnDestroy, OnChanges {
 
   updateLesson() {
     if (!this.lesson) return
-    this.coursesService.updateLesson(this.lesson).subscribe()
+    this.coursesService.updateLesson(this.lesson).subscribe(() => {
+      const nextUrl = this.lesson?.nextLessonUrl ?? ['/home']
+      this.router.navigate(nextUrl)
+    })
   }
 
   sendTrackingExternal() {
