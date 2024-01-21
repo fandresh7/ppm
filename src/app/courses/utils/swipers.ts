@@ -45,10 +45,8 @@ export const homeSliderOptions: SwiperOptions = {
 
 export const testSliderOptions: SwiperOptions = {
   ...defaultOptions,
-  autoHeight: false,
+  autoHeight: true,
   slidesPerView: 1,
-  allowTouchMove: true,
-  simulateTouch: true,
   spaceBetween: 30,
   navigation: false
 }

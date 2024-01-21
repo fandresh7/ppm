@@ -1,8 +1,10 @@
 import {
   Component,
+  EventEmitter,
   Input,
   OnChanges,
   OnDestroy,
+  Output,
   SimpleChanges,
   inject
 } from '@angular/core'
@@ -39,6 +41,8 @@ export class VideoComponent implements OnDestroy, OnChanges {
   @Input() lesson: Lesson | null = null
   @Input() attempt = false
 
+  @Output() hasFinishEmiter = new EventEmitter<boolean>()
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private intervalId!: any
 
@@ -68,6 +72,7 @@ export class VideoComponent implements OnDestroy, OnChanges {
     const video = this.attempt
       ? this.lesson?.attempt?.video
       : this.lesson?.VideoContent?.video
+
     this.api.getDefaultMedia().elem.src = video
   }
 
@@ -88,13 +93,20 @@ export class VideoComponent implements OnDestroy, OnChanges {
       this.updateLesson()
     }
 
+    // At the end of the video, send External to redeem another attempt
     if (this.hasFinish && this.attempt) {
-      sendExternal({
+      const params = {
         event: 'attempts',
-        properties: { name: this.lesson?.courseName ?? '' }
-      }).then(response => {
+        properties: {
+          name: this.lesson?.courseName ?? ''
+        },
+        category: this.lesson?.category ?? ''
+      }
+
+      sendExternal(params).then(response => {
         if (response !== 'success') return
         this.updateLesson()
+        this.emitHasFinishEmiter()
       })
     }
   }
@@ -102,6 +114,8 @@ export class VideoComponent implements OnDestroy, OnChanges {
   updateLesson() {
     if (!this.lesson) return
     this.coursesService.updateLesson(this.lesson).subscribe(() => {
+      if (this.attempt) return
+
       const nextUrl = this.lesson?.nextLessonUrl ?? ['/home']
       this.router.navigate(nextUrl)
     })
@@ -136,5 +150,9 @@ export class VideoComponent implements OnDestroy, OnChanges {
       if (response !== 'success') return
       if (finish) this.hasFinish = true
     })
+  }
+
+  emitHasFinishEmiter() {
+    this.hasFinishEmiter.emit(true)
   }
 }

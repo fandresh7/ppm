@@ -12,6 +12,7 @@ import { Lesson, LessonStatus } from './models/lessons'
 import { getExternals, sendExternal } from '@superlikers/api/entries'
 
 const ALLOWED_PERCENTAGE = 0.8
+const ALLOWED_ATTEMPTS = 3
 
 const validateQuestion = (question: Question, userAnswer: string): boolean => {
   const type = question.type
@@ -61,7 +62,7 @@ const getQuestions = (questions: Question[], userAnswers: UserAnswers) => {
   return correctQuestions
 }
 
-export const redeemAttempt = async (lesson: Lesson) => {
+export const redeemLessonAttempt = async (lesson: Lesson) => {
   const response = await sendExternal({
     event: 'attempts',
     properties: { name: lesson.name },
@@ -72,7 +73,6 @@ export const redeemAttempt = async (lesson: Lesson) => {
 }
 
 export const validateAttempts = (attempts: External<Attempt>[]) => {
-  const ALLOWED_ATTEMPTS = 3
   return attempts.length < ALLOWED_ATTEMPTS
 }
 

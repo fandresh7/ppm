@@ -49,8 +49,7 @@ export class SidebarComponent {
   }
 
   logout() {
-    this.sessionService.logout().subscribe(response => {
-      console.log({ response })
+    this.sessionService.logout().subscribe(() => {
       this.router.navigate(['/auth', 'login'])
     })
   }

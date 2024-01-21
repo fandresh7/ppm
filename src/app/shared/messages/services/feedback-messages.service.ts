@@ -55,8 +55,8 @@ export class FeedbackMessagesService {
       html: '<p>Aprendiz ahora debes ver el siguiente video, para ganar un nuevo intento.</p>',
       showCancelButton: true,
       showConfirmButton: true,
-      cancelButtonText: 'Repasar Contenido',
-      confirmButtonText: 'Ver Video'
+      confirmButtonText: 'Repasar Contenido',
+      cancelButtonText: 'Ver Video'
     })
   }
 

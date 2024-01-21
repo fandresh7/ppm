@@ -1,11 +1,11 @@
 import { COURSES } from './data/courses'
 import { LEVELS } from './data/levels'
 import { getDuration } from './helpers/courses'
-import { getLocalStorageData } from './helpers/localStorage'
 import { Course } from './models/courses'
 import { Lesson } from './models/lessons'
 import { Level } from './models/levels'
 import { getLessons } from './lessons'
+import { getLocalStorageData } from './helpers/localStorage'
 
 export const getCourse = async (category: string) => {
   const course = COURSES.find(course => course.category === category)

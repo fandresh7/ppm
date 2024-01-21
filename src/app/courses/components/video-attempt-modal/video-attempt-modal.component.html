@@ -1,10 +1,5 @@
 <app-video
   [lesson]="data.lesson"
-  [attempt]="true">
+  [attempt]="true"
+  (hasFinishEmiter)="closeModal()">
 </app-video>
-
-<button
-  class="button block mt-6 mx-auto"
-  (click)="dialogRef.close()">
-  Realizar Test
-</button>

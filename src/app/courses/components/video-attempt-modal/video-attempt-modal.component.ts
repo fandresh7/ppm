@@ -15,4 +15,8 @@ export class VideoAttemptModalComponent {
     public dialogRef: DialogRef<string>,
     @Inject(DIALOG_DATA) public data: { lesson: Lesson }
   ) {}
+
+  closeModal() {
+    this.dialogRef.close()
+  }
 }

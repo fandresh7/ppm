@@ -166,6 +166,7 @@ export class CoursesService {
       map(lessons => {
         const updatedLesson = lessons[0]
         const updatedlevels = this.updateLevels(levels, updatedLesson)
+        localStorage.setItem('levels', JSON.stringify(updatedlevels))
 
         this.levels = updatedlevels
         return updatedLesson
