@@ -107,6 +107,8 @@ export class TestComponent implements OnInit {
         this.router.navigate(nextLessonUrl ?? ['/home'])
       })
     }
+
+    this.startTest(lesson)
   }
 
   validateTest(lesson: Lesson) {
@@ -119,13 +121,7 @@ export class TestComponent implements OnInit {
     const canResponse = canResponseTest(lesson)
 
     if (canResponse) {
-      const questionsSlides = lesson?.TestContent?.amountQuestions ?? 0
-      this.totalSlides = questionsSlides + 1
-      this.questions = lesson?.TestContent?.questions ?? []
-
-      this.assignFieldsToForm()
-      this.initializeSlide()
-
+      this.startTest(lesson)
       return
     }
 
@@ -191,6 +187,15 @@ export class TestComponent implements OnInit {
 
       this.coursesService.updateLesson(lesson).subscribe()
     })
+  }
+
+  startTest(lesson: Lesson) {
+    const questionsSlides = lesson?.TestContent?.amountQuestions ?? 0
+    this.totalSlides = questionsSlides + 1
+    this.questions = lesson?.TestContent?.questions ?? []
+
+    this.assignFieldsToForm()
+    this.initializeSlide()
   }
 
   assignFieldsToForm() {
