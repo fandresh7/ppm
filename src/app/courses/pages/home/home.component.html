@@ -1,17 +1,33 @@
 <div class="relative flex w-full flex-col gap-2">
   <h1 class="font-bold text-xl">¡Empieza a aprender con PPM U!</h1>
+
   <swiper-container
     #slider
     class="relative h-full w-full px-4 py-2"
     init="false">
-    @for (level of levels$ | async; track level.id) {
-      <swiper-slide>
-        <app-level-card
-          (click)="setActiveLevel(level)"
-          [isActive]="level.id === activeLevel?.id"
-          [level]="level">
-        </app-level-card>
-      </swiper-slide>
+    @if (levels$ | async; as levels) {
+      @for (level of levels; track level.id) {
+        <swiper-slide>
+          <app-level-card
+            (click)="setActiveLevel(level)"
+            [isActive]="level.id === activeLevel?.id"
+            [level]="level">
+          </app-level-card>
+        </swiper-slide>
+      } @empty {
+        <swiper-slide>
+          <div
+            class="animate-pulse bg-theme-grey-dark rounded-xl w-[350px] h-[300px]"></div>
+        </swiper-slide>
+        <swiper-slide>
+          <div
+            class="animate-pulse bg-theme-grey-dark rounded-xl w-[350px] h-[300px]"></div>
+        </swiper-slide>
+        <swiper-slide>
+          <div
+            class="animate-pulse bg-theme-grey-dark rounded-xl w-[350px] h-[300px]"></div>
+        </swiper-slide>
+      }
     }
   </swiper-container>
 
@@ -34,5 +50,14 @@
         <p>No hay cursos disponibles.</p>
       }
     </cdk-accordion>
+  } @else {
+    <div
+      class="animate-pulse bg-theme-grey-dark rounded-xl w-[full] h-[100px]"></div>
+    <div
+      class="animate-pulse bg-theme-grey-dark rounded-xl w-[full] h-[100px]"></div>
+    <div
+      class="animate-pulse bg-theme-grey-dark rounded-xl w-[full] h-[100px]"></div>
+    <div
+      class="animate-pulse bg-theme-grey-dark rounded-xl w-[full] h-[100px]"></div>
   }
 </div>

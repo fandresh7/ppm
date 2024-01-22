@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 
-import { BehaviorSubject, defer, tap, map, first } from 'rxjs'
+import { BehaviorSubject, defer, tap, map, first, startWith } from 'rxjs'
 
 import {
   getAllCourses,
@@ -30,6 +30,7 @@ export class CoursesService {
 
   loadLevels() {
     return defer(() => getLevels()).pipe(
+      startWith([]),
       tap(levels => {
         this.levels = levels
       })

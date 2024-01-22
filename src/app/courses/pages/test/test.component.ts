@@ -86,6 +86,7 @@ export class TestComponent implements OnInit {
     this.lesson$ = this.coursesService.getLesson(lessonCategory).pipe(
       tap(lesson => {
         if (!lesson) return
+        console.log('here')
 
         if (lesson.initial) {
           this.validateInitialTest(lesson)

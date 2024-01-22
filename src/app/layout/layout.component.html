@@ -9,7 +9,7 @@
   </header>
 
   <main
-    class="content transition-all duration-700 block overflow-y-scroll rounded-t-3xl bg-theme-grey py-10 px-6 max-w-full lg:z-30"
+    class="content transition-all duration-700 block overflow-y-auto rounded-t-3xl bg-theme-grey py-10 px-6 max-w-full lg:z-30"
     [ngClass]="{
       'md:mx-auto md:w-11/12': sidebar$ | async
     }">
@@ -17,7 +17,7 @@
   </main>
 
   <aside
-    class="sidebar bg-white z-40 transition-[width] duration-300 ease-[ease-out] fixed md:relative block w-60 max-w-full right-0 h-full overflow-y-scroll group-[.sidebar-hidden]:w-0">
+    class="sidebar bg-white z-40 transition-[width] duration-300 ease-[ease-out] fixed md:relative block w-60 max-w-full right-0 h-full overflow-y-auto group-[.sidebar-hidden]:w-0">
     <app-sidebar></app-sidebar>
   </aside>
 

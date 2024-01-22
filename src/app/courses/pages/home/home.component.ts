@@ -2,6 +2,7 @@ import {
   CUSTOM_ELEMENTS_SCHEMA,
   Component,
   ElementRef,
+  OnInit,
   ViewChild,
   inject
 } from '@angular/core'
@@ -25,7 +26,7 @@ import { AccordionItemComponent } from '@courses/components/accordion-item/accor
   styleUrl: './home.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   router = inject(Router)
   coursesService = inject(CoursesService)
 
@@ -39,11 +40,13 @@ export class HomeComponent {
     this.levels$ = this.coursesService.levels$.pipe(
       tap(levels => {
         if (levels.length === 0) return
-
         this.setActiveLevel(levels[0])
-        this.initializeSlider()
       })
     )
+  }
+
+  ngOnInit() {
+    this.initializeSlider()
   }
 
   setActiveLevel(level: Level) {
