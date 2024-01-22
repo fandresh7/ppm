@@ -1,5 +1,10 @@
 # Project Installations Guide
 
+### Recommended Installations
+
+1. Node 18+ [Docs](https://nodejs.org/en/download/)
+2. npm install -g @angular/cli [Docs](https://angular.io/guide/setup-local)
+
 ### Create a new project
 
 1. Create a new project using angular 17
