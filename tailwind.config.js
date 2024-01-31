@@ -26,7 +26,7 @@ module.exports = {
       gridTemplateColumns: {
         auto: 'repeat(auto-fit, minmax(2rem, 1fr))',
         auto2: 'repeat(auto-fill, minmax(350px, 1fr))',
-        memory: 'repeat(auto-fill, minmax(90px, 1fr))'
+        memory: 'repeat(auto-fill, minmax(180px, 1fr))'
       },
       backgroundImage: {
         'sidebar-button-close': 'url(/assets/icons/close-sidebar.svg)',

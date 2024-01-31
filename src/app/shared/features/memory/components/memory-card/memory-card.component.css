@@ -1,0 +1,30 @@
+.card {
+  transform-style: preserve-3d;
+  transition: transform .3s;
+  
+  background-position: center;
+  background-size: 4rem;
+  background-repeat: no-repeat;
+  background-image: url(https://superlikers-themes.s3.amazonaws.com/ppmu/flip-card-logo.svg);
+}
+
+.card.flipped {
+  background: #e7d6ec;
+  cursor: default;
+  transform: rotateY(180deg);
+}
+
+.card.flipped .content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotateY(180deg);
+}
+
+.card.match {
+  background: #d7e9ca;
+}
+
+.card.nomatch {
+  background: #fcbdd9;
+}

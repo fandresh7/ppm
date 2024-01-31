@@ -1,0 +1,48 @@
+<section class="flex flex-col gap-4">
+  <app-breadcrumb
+    text="Cursos"
+    link="/courses">
+  </app-breadcrumb>
+
+  @if (lesson$ | async; as lesson) {
+    <article class="bg-white rounded-xl p-6">
+      <header class="flex flex-row items-end gap-6 mb-10">
+        <img
+          class="w-40"
+          src="https://superlikers-themes.s3.amazonaws.com/ppmu/quiz-station-img.svg"
+          alt="quiz" />
+        <div>
+          <h2 class="font-bold">Quiz Station</h2>
+          <p>¡Llegó el momento de poner a prueba tus conocimientos!</p>
+        </div>
+      </header>
+
+      <div
+        class="flex flex-col md:flex-row gap-4 bg-theme-grey-dark rounded-lg p-4 text-center">
+        <div class="flex flex-col gap-4">
+          <p>Da clic sobre los cuadros y encuentra las parejas correctas.</p>
+          <div class="bg-white rounded-xl p-4 flex flex-col gap-4">
+            <p>Observa el siguiente ejemplo y avanza</p>
+            <img
+              class="block md:hidden w-4/5 mx-auto"
+              src="https://superlikers-themes.s3.amazonaws.com/ppmu/icon-quiz-verticales-mb.svg"
+              alt="example" />
+            <img
+              class="hidden md:block w-4/5 mx-auto"
+              src="https://superlikers-themes.s3.amazonaws.com/ppmu/icon-quiz-verticales.svg"
+              alt="example" />
+          </div>
+        </div>
+
+        <div
+          class="grid grid-cols-memory gap-4 w-full bg-theme-orange rounded-xl p-4">
+          @if (cards$ | async; as cards) {
+            @for (card of cards; track card.id) {
+              <app-memory-card [card]="card"></app-memory-card>
+            }
+          }
+        </div>
+      </div>
+    </article>
+  }
+</section>

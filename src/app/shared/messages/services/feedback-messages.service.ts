@@ -98,4 +98,15 @@ export class FeedbackMessagesService {
       html: `<p>Aceptaste el reto y descubriste nuevas habilidades en el área PPM. Avanza a la siguiente lección y sigamos construyendo conocimiento juntos.</p>`
     })
   }
+
+  showMemorySuccessMessage(oportunities: number) {
+    return this.messageSwal.fire({
+      showConfirmButton: true,
+      confirmButtonText: 'Continuar',
+      imageUrl:
+        'https://superlikers-themes.s3.amazonaws.com/ppmu/quiz-increible.svg',
+      title: 'Felicitaciones!',
+      html: `<p>Lo has terminado en ${oportunities} intentos.</p>`
+    })
+  }
 }

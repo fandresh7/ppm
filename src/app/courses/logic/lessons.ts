@@ -13,6 +13,7 @@ import { getStatus } from './helpers/courses'
 import { getLocalStorageData } from './helpers/localStorage'
 import { getExternals } from '@superlikers/api/entries'
 import { getGoals } from '@superlikers/api/goals'
+import { getMemory } from './memory'
 
 export const getVideoLessonsData = async (lessons: Lesson[]) => {
   const categories = lessons.map(lesson => lesson.category)
@@ -100,7 +101,16 @@ export const getDragDropLessonsData = async (lessons: Lesson[]) => {
 }
 
 export const getMemoryLessonsData = async (lessons: Lesson[]) => {
-  return lessons
+  const memoryPromises = lessons.map(lesson => getMemory(lesson.category))
+  const memories = await Promise.all(memoryPromises)
+
+  const data = lessons.map(lesson => {
+    const memory = memories.find(memory => memory?.category === lesson.category)
+
+    return { ...lesson, MemoryContent: memory } as Lesson
+  })
+
+  return data
 }
 
 export const getLessonUrl = (course: Course, lesson: Lesson | undefined) => {
@@ -113,7 +123,7 @@ export const getLessonUrl = (course: Course, lesson: Lesson | undefined) => {
     [LessonType.Video]: ['/course', courseCategory, category],
     [LessonType.Infografia]: ['/course', courseCategory, category],
     [LessonType.Dragdrop]: ['/', category],
-    [LessonType.Memory]: ['/', category],
+    [LessonType.Memory]: ['/memory', category],
     [LessonType.Test]: ['/test', category]
   }
 
@@ -147,6 +157,9 @@ export const getLessons = async (course: Course) => {
   const dragdropLessons = lessons.filter(
     lesson => lesson.type === LessonType.Dragdrop
   )
+  const memoryLessons = lessons.filter(
+    lesson => lesson.type === LessonType.Memory
+  )
 
   const videoLessonsPromises = getLessonsData(videoLessons, LessonType.Video)
   const infografiaLessonsPromises = getLessonsData(
@@ -158,12 +171,14 @@ export const getLessons = async (course: Course) => {
     dragdropLessons,
     LessonType.Dragdrop
   )
+  const memoryLessonsPromises = getLessonsData(memoryLessons, LessonType.Memory)
 
   const response = await Promise.all([
     videoLessonsPromises,
     infografiaLessonsPromises,
     testsLessonsPromises,
-    dragdropLessonsPromises
+    dragdropLessonsPromises,
+    memoryLessonsPromises
   ])
   const lessonsResponse = response.flat()
 

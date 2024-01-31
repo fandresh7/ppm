@@ -11,68 +11,68 @@ export const MEMORIES: MemoryLesson[] = [
       {
         id: 1,
         value: 'A',
-        contentHtml: '<p class="front">Materia prima</p>'
+        contentHtml: '<p>Materia prima</p>'
       },
       {
         id: 2,
         value: 'A',
         contentHtml:
-          '<img class="front" src="https://superlikers-themes.s3.amazonaws.com/ppmu/drag/v2/flip-1.png"></img>'
+          '<img class="w-full h-[60%] mx-auto" src="https://superlikers-themes.s3.amazonaws.com/ppmu/drag/v2/flip-1.png"></img>'
       },
       {
         id: 3,
         value: 'B',
-        contentHtml: '<p class="front">Paletización</p>'
+        contentHtml: '<p>Paletización</p>'
       },
       {
         id: 4,
         value: 'B',
         contentHtml:
-          '<img class="front" src="https://superlikers-themes.s3.amazonaws.com/ppmu/drag/v2/flip-5.png"></img>'
+          '<img class="w-full h-[60%] mx-auto" src="https://superlikers-themes.s3.amazonaws.com/ppmu/drag/v2/flip-5.png"></img>'
       },
       {
         id: 5,
         value: 'C',
-        contentHtml: '<p class="front">Decorado</p>'
+        contentHtml: '<p>Decorado</p>'
       },
       {
         id: 6,
         value: 'C',
         contentHtml:
-          '<img class="front" src="https://superlikers-themes.s3.amazonaws.com/ppmu/drag/v2/flip-9.png"></img>'
+          '<img class="w-full h-[60%] mx-auto" src="https://superlikers-themes.s3.amazonaws.com/ppmu/drag/v2/flip-9.png"></img>'
       },
       {
         id: 7,
         value: 'D',
-        contentHtml: '<p class="front">Proceo de fundición</p>'
+        contentHtml: '<p>Proceo de fundición</p>'
       },
       {
         id: 8,
         value: 'D',
         contentHtml:
-          '<img class="front" src="https://superlikers-themes.s3.amazonaws.com/ppmu/drag/v2/flip-7.png"></img>'
+          '<img class="w-full h-[60%] mx-auto" src="https://superlikers-themes.s3.amazonaws.com/ppmu/drag/v2/flip-7.png"></img>'
       },
       {
         id: 9,
         value: 'E',
-        contentHtml: '<p class="front">Formulación</p>'
+        contentHtml: '<p>Formulación</p>'
       },
       {
         id: 10,
         value: 'E',
         contentHtml:
-          '<img class="front" src="https://superlikers-themes.s3.amazonaws.com/ppmu/drag/v2/flip-3.png"></img>'
+          '<img class="w-full h-[60%] mx-auto" src="https://superlikers-themes.s3.amazonaws.com/ppmu/drag/v2/flip-3.png"></img>'
       },
       {
         id: 11,
         value: 'F',
-        contentHtml: '<p class="front">Moldes de formado</p>'
+        contentHtml: '<p>Moldes de formado</p>'
       },
       {
         id: 12,
         value: 'F',
         contentHtml:
-          '<img class="front" src="https://superlikers-themes.s3.amazonaws.com/ppmu/drag/v2/flip-12.png"></img>'
+          '<img class="w-full h-[60%] mx-auto" src="https://superlikers-themes.s3.amazonaws.com/ppmu/drag/v2/flip-12.png"></img>'
       }
     ]
   }

@@ -17,5 +17,5 @@ export interface MemoryCard {
   value: string
   contentHtml: SafeHtml
   flipped?: boolean
-  check?: boolean
+  match?: boolean
 }
