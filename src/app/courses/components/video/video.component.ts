@@ -17,7 +17,7 @@ import { VgBufferingModule } from '@videogular/ngx-videogular/buffering'
 
 import { Lesson, LessonType } from '@courses/logic/models/lessons'
 import { sendExternal } from '@superlikers/api/entries'
-import { CoursesService } from '@courses/services/courses.service'
+import { CoursesService } from '@courses/services/courses.store'
 
 @Component({
   selector: 'app-video',

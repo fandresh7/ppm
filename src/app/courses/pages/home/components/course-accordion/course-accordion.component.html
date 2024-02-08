@@ -1,0 +1,21 @@
+@if (data$ | async; as data) {
+  @if (data.loading) {
+    <div class="flex flex-col gap-4">
+      <app-loading-accordion-item></app-loading-accordion-item>
+      <app-loading-accordion-item></app-loading-accordion-item>
+      <app-loading-accordion-item></app-loading-accordion-item>
+      <app-loading-accordion-item></app-loading-accordion-item>
+      <app-loading-accordion-item></app-loading-accordion-item>
+      <app-loading-accordion-item></app-loading-accordion-item>
+      <app-loading-accordion-item></app-loading-accordion-item>
+    </div>
+  } @else {
+    <cdk-accordion>
+      @for (course of data.activeLevel?.courses; track course.id) {
+        <app-accordion-item [course]="course"></app-accordion-item>
+      } @empty {
+        <p>No hay cursos disponibles.</p>
+      }
+    </cdk-accordion>
+  }
+}

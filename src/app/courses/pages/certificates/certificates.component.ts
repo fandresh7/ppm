@@ -2,18 +2,21 @@ import {
   CUSTOM_ELEMENTS_SCHEMA,
   Component,
   ElementRef,
+  OnInit,
   ViewChild,
   inject
 } from '@angular/core'
 import { AsyncPipe } from '@angular/common'
 
-import { Observable, tap } from 'rxjs'
+import { Observable, combineLatest, map } from 'rxjs'
+import Swiper from 'swiper'
 
 import { Course } from '@courses/logic/models/courses'
-import { CoursesService } from '@courses/services/courses.service'
 import { BreadcrumbComponent } from '@courses/components/breadcrumb/breadcrumb.component'
 import { certificateSliderOptions } from '@courses/utils/swipers'
 import { CertificateCardComponent } from '@courses/components/certificate-card/certificate-card.component'
+import { LevelsStore } from '@courses/store/levels.store'
+import { LoadingService } from '@shared/loading/loading.service'
 
 @Component({
   selector: 'app-certificates',
@@ -23,29 +26,43 @@ import { CertificateCardComponent } from '@courses/components/certificate-card/c
   styleUrl: './certificates.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class CertificatesComponent {
-  coursesService = inject(CoursesService)
+export class CertificatesComponent implements OnInit {
+  levelsStore = inject(LevelsStore)
+  loadingService = inject(LoadingService)
 
-  completeCourses$!: Observable<Course[]>
-  inProgressCourses$!: Observable<Course[]>
-
+  completeCoursesSwiperInstance!: Swiper
   @ViewChild('completeCoursesSlide', { static: true })
   completeCoursesSlide!: ElementRef
+
+  inProgressCoursesSwiperInstance!: Swiper
   @ViewChild('inProgressCoursesSlide', { static: true })
   inProgressCoursesSlide!: ElementRef
 
-  constructor() {
-    this.completeCourses$ = this.coursesService
-      .getCompleteCourses()
-      .pipe(tap(() => this.initializeCompleteCoursesSlide()))
+  data$!: Observable<{
+    completeCourses: Course[]
+    inProgressCourses: Course[]
+    loading: boolean
+  }>
 
-    this.inProgressCourses$ = this.coursesService
-      .getInProgressCourses()
-      .pipe(tap(() => this.initializeInProgressCoursesSlide()))
+  constructor() {
+    this.data$ = combineLatest([
+      this.levelsStore.getCompleteCourses(),
+      this.levelsStore.getInProgressCourses(),
+      this.loadingService.loading$
+    ]).pipe(
+      map(([completeCourses, inProgressCourses, loading]) => {
+        return { completeCourses, inProgressCourses, loading }
+      })
+    )
+  }
+
+  ngOnInit() {
+    this.initializeCompleteCoursesSlide()
+    this.initializeInProgressCoursesSlide()
   }
 
   initializeCompleteCoursesSlide() {
-    Object.assign(
+    this.completeCoursesSwiperInstance = Object.assign(
       this.completeCoursesSlide.nativeElement,
       certificateSliderOptions
     )
@@ -54,7 +71,7 @@ export class CertificatesComponent {
   }
 
   initializeInProgressCoursesSlide() {
-    Object.assign(
+    this.inProgressCoursesSwiperInstance = Object.assign(
       this.inProgressCoursesSlide.nativeElement,
       certificateSliderOptions
     )

@@ -11,7 +11,8 @@ export class FeedbackMessagesService {
     allowEscapeKey: false,
     customClass: {
       confirmButton: 'button',
-      cancelButton: 'button-grey ml-4'
+      cancelButton: 'button-grey ml-4',
+      denyButton: 'button-grey ml-4'
     },
     buttonsStyling: false
   })
@@ -53,10 +54,10 @@ export class FeedbackMessagesService {
       imageUrl:
         'https://superlikers-themes.s3.amazonaws.com/ppmu/test_intento.png',
       html: '<p>Aprendiz ahora debes ver el siguiente video, para ganar un nuevo intento.</p>',
-      showCancelButton: true,
       showConfirmButton: true,
-      confirmButtonText: 'Repasar Contenido',
-      cancelButtonText: 'Ver Video'
+      showDenyButton: true,
+      denyButtonText: 'Repasar Contenido',
+      confirmButtonText: 'Ver Video'
     })
   }
 

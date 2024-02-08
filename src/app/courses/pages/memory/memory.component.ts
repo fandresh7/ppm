@@ -7,9 +7,9 @@ import { Observable, switchMap, tap, withLatestFrom } from 'rxjs'
 import { MemoryCard } from '@courses/logic/models/memory'
 import { MemoryService } from '@shared/features/memory/services/memory.service'
 import { MemoryCardComponent } from '@shared/features/memory/components/memory-card/memory-card.component'
-import { CoursesService } from '@courses/services/courses.service'
 import { Lesson } from '@courses/logic/models/lessons'
 import { BreadcrumbComponent } from '@courses/components/breadcrumb/breadcrumb.component'
+import { LevelsStore } from '@courses/store/levels.store'
 
 @Component({
   selector: 'app-memory',
@@ -27,7 +27,7 @@ import { BreadcrumbComponent } from '@courses/components/breadcrumb/breadcrumb.c
 export class MemoryComponent {
   route = inject(ActivatedRoute)
   memoryService = inject(MemoryService)
-  coursesService = inject(CoursesService)
+  levelsStore = inject(LevelsStore)
 
   lesson$!: Observable<Lesson>
   cards$!: Observable<MemoryCard[]>
@@ -38,7 +38,7 @@ export class MemoryComponent {
     this.lesson$ = this.route.params.pipe(
       switchMap(params => {
         const category = params['category']
-        return this.coursesService.getLesson(category)
+        return this.levelsStore.getLesson(category)
       }),
       tap(lesson => {
         const cards = lesson?.MemoryContent?.cards ?? []

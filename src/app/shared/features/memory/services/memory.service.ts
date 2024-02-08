@@ -1,11 +1,11 @@
 import { Injectable, inject } from '@angular/core'
 import { Router } from '@angular/router'
 
-import { BehaviorSubject, Observable, filter, first, map } from 'rxjs'
+import { BehaviorSubject, filter, first, map } from 'rxjs'
 
 import { Lesson } from '@courses/logic/models/lessons'
 import { MemoryCard } from '@courses/logic/models/memory'
-import { CoursesService } from '@courses/services/courses.service'
+import { CoursesService } from '@courses/services/courses.store'
 import { FeedbackMessagesService } from '@shared/messages/services/feedback-messages.service'
 import { sendExternal } from '@superlikers/api/entries'
 
@@ -27,7 +27,6 @@ export class MemoryService {
     first()
   )
 
-  lesson$!: Observable<Lesson>
   opportunities = 0
 
   loadCards(cards: MemoryCard[]) {

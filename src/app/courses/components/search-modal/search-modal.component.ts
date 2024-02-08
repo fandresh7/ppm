@@ -2,7 +2,7 @@ import { AsyncPipe } from '@angular/common'
 import { Component, OnInit, inject } from '@angular/core'
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms'
 import { Lesson } from '@courses/logic/models/lessons'
-import { CoursesService } from '@courses/services/courses.service'
+import { CoursesService } from '@courses/services/courses.store'
 import { Observable, debounceTime, tap } from 'rxjs'
 import { LessonCardComponent } from '../lesson-card/lesson-card.component'
 

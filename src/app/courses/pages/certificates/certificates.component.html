@@ -23,14 +23,18 @@
   <swiper-container
     #completeCoursesSlide
     init="false">
-    @for (
-      course of completeCourses$ | async;
-      track course.id;
-      let index = $index
-    ) {
-      <swiper-slide class="p-1">
-        <app-certificate-card [course]="course"></app-certificate-card>
-      </swiper-slide>
+    @if (data$ | async; as data) {
+      @if (data.loading) {
+        <p>loading</p>
+      } @else {
+        @for (course of data.completeCourses; track course.id) {
+          <swiper-slide class="p-1">
+            <app-certificate-card [course]="course"></app-certificate-card>
+          </swiper-slide>
+        } @empty {
+          <p>No hay cursos terminados.</p>
+        }
+      }
     }
   </swiper-container>
 </section>
@@ -40,14 +44,18 @@
   <swiper-container
     #inProgressCoursesSlide
     init="false">
-    @for (
-      course of inProgressCourses$ | async;
-      track course.id;
-      let index = $index
-    ) {
-      <swiper-slide class="p-1">
-        <app-certificate-card [course]="course"></app-certificate-card>
-      </swiper-slide>
+    @if (data$ | async; as data) {
+      @if (data.loading) {
+        <p>Loading</p>
+      } @else {
+        @for (course of data.inProgressCourses; track course.id) {
+          <swiper-slide class="p-1">
+            <app-certificate-card [course]="course"></app-certificate-card>
+          </swiper-slide>
+        } @empty {
+          <p>Has terminado todos los cursos.</p>
+        }
+      }
     }
   </swiper-container>
 </section>

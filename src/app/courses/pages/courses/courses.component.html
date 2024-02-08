@@ -4,9 +4,15 @@
 </app-breadcrumb>
 
 <section class="grid mt-10 grid-cols-auto2 gap-4">
-  @for (course of courses$ | async; track course.id) {
-    <app-course-card [course]="course"></app-course-card>
-  } @empty {
-    <p>No hay cursos disponibles.</p>
+  @if (data$ | async; as data) {
+    @if (data.loading) {
+      <p>Loading</p>
+    } @else {
+      @for (course of data.courses; track course.id) {
+        <app-course-card [course]="course"></app-course-card>
+      } @empty {
+        <p>No hay cursos disponibles.</p>
+      }
+    }
   }
 </section>

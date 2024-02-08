@@ -5,6 +5,7 @@ import { Course } from './models/courses'
 import { Lesson } from './models/lessons'
 import { Level } from './models/levels'
 import { getLessons } from './lessons'
+import { getLocalStorageData } from './helpers/localStorage'
 
 export const getCourse = async (category: string) => {
   const course = COURSES.find(course => course.category === category)
@@ -53,10 +54,14 @@ export const getLevel = async (id: string) => {
 }
 
 export const getLevels = async () => {
+  const lsLevels = getLocalStorageData<Level>('levels')
+  if (lsLevels && lsLevels.length > 0) return lsLevels
+
   const levelsPromises = LEVELS.map(level => getLevel(level.id))
   const levels = await Promise.all(levelsPromises)
 
   const filteredLevels = levels.filter(level => level) as Level[]
 
+  localStorage.setItem('levels', JSON.stringify(filteredLevels))
   return filteredLevels
 }

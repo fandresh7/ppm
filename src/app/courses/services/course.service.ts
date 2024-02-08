@@ -4,13 +4,13 @@ import { BehaviorSubject, map, of, tap } from 'rxjs'
 import { Lesson, LessonStatus } from '@courses/logic/models/lessons'
 import { Course } from '@courses/logic/models/courses'
 import { getPercentage } from '@courses/logic/helpers/courses'
-import { CoursesService } from './courses.service'
+import { LevelsStore } from '@courses/store/levels.store'
 
 @Injectable({
   providedIn: 'root'
 })
 export class CourseService {
-  coursesService = inject(CoursesService)
+  levelsStore = inject(LevelsStore)
 
   private lessonSubject$ = new BehaviorSubject<Lesson>({} as Lesson)
   lesson$ = this.lessonSubject$.asObservable()
@@ -31,7 +31,7 @@ export class CourseService {
   loadCourse(category?: string) {
     if (!category) return of(null)
 
-    return this.coursesService.getCourse(category).pipe(
+    return this.levelsStore.getCourse(category).pipe(
       tap(course => {
         this.courseSubject$.next(course)
       })
@@ -39,7 +39,7 @@ export class CourseService {
   }
 
   loadLessons(category: string) {
-    return this.coursesService.getCourse(category).pipe(
+    return this.levelsStore.getCourse(category).pipe(
       map(course => {
         const lessons = this.getCourseLessons(course?.lessons ?? [])
 
@@ -67,7 +67,7 @@ export class CourseService {
   loadLesson(category?: string) {
     if (!category) return of(null)
 
-    return this.coursesService.getLesson(category).pipe(
+    return this.levelsStore.getLesson(category).pipe(
       tap(lesson => {
         this.lessonSubject$.next(lesson)
       })

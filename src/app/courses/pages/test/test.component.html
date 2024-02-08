@@ -1,100 +1,71 @@
 <div class="bg-white rounded-xl p-6 md:py-16 md:px-28">
   <form [formGroup]="form">
     <swiper-container
-      class="transition-all"
-      #formSlide
+      #slider
       (slideChange)="onSwiperChange()"
       init="false">
-      @if (lesson$ | async; as lesson) {
-        <swiper-slide>
-          <div class="flex flex-col items-start gap-10 md:flex-row md:gap-4">
-            <img
-              class="mx-auto w-1/2 max-w-xs md:w-1/3"
-              [src]="lesson.TestContent?.image"
-              [alt]="lesson.TestContent?.title" />
-            <div class="flex flex-col gap-8">
-              <h1 class="text-xl font-bold">{{ lesson.TestContent?.title }}</h1>
-              <p>{{ lesson.TestContent?.description }}</p>
-              <p class="rounded-xl bg-theme-blue/70 p-3">
-                {{ lesson.TestContent?.initialMessage }}
-              </p>
-              <app-submit-button
-                class="self-start"
-                (click)="nextSlide()">
-                Comienza ahora
-              </app-submit-button>
-            </div>
-          </div>
-        </swiper-slide>
-        @for (
-          question of questions;
-          track question;
-          let questionIndex = $index
-        ) {
+      @if (data$ | async; as data) {
+        @if (data.loading) {
           <swiper-slide>
-            <div class="flex flex-col gap-4 pr-4">
-              <div [innerHTML]="question.label"></div>
-              <div class="flex flex-col gap-4">
-                @for (
-                  option of question.options;
-                  track option;
-                  let optionIndex = $index
-                ) {
-                  <div class="flex gap-2">
-                    @if (question.type === 'radio') {
-                      <input
-                        [type]="question.type"
-                        [name]="question.name"
-                        [value]="option.text"
-                        [id]="question.name + optionIndex"
-                        (change)="
-                          form.controls[question.name].setValue(option.text)
-                        "
-                        [formControlName]="question.name" />
-                      <label [for]="question.name + optionIndex">
-                        {{ option.text }}
-                      </label>
-                    }
-
-                    @if (question.type === 'checkbox') {
-                      <input
-                        [name]="question.name"
-                        [value]="option.text"
-                        [type]="question.type"
-                        [id]="question.name + optionIndex"
-                        [formArrayName]="question.name"
-                        (change)="onCheckboxChange($event)" />
-                      <label [for]="question.name + optionIndex">
-                        {{ option.text }}
-                      </label>
-                    }
-                  </div>
-                }
+            <p>Loading</p>
+          </swiper-slide>
+        } @else {
+          <swiper-slide>
+            <div class="flex flex-col items-start gap-10 md:flex-row md:gap-4">
+              <img
+                class="mx-auto w-1/2 max-w-xs md:w-1/3"
+                [src]="data.lesson.TestContent?.image"
+                [alt]="data.lesson.TestContent?.title" />
+              <div class="flex flex-col gap-8">
+                <h1 class="text-xl font-bold">
+                  {{ data.lesson.TestContent?.title }}
+                </h1>
+                <p>{{ data.lesson.TestContent?.description }}</p>
+                <p class="rounded-xl bg-theme-blue/70 p-3">
+                  {{ data.lesson.TestContent?.initialMessage }}
+                </p>
+                <app-submit-button
+                  class="self-start"
+                  (click)="nextSlide()">
+                  Comienza ahora
+                </app-submit-button>
               </div>
-              <div class="flex items-center justify-between">
+            </div>
+          </swiper-slide>
+          @for (
+            question of data.lesson.TestContent?.questions;
+            track question;
+            let i = $index
+          ) {
+            <swiper-slide>
+              @if (question.type === 'radio') {
+                <app-radio [question]="question"></app-radio>
+              } @else if (question.type === 'checkbox') {
+                <app-checkbox-group [question]="question"></app-checkbox-group>
+              }
+
+              <div class="flex items-center justify-between mt-6">
                 <app-submit-button
                   customClass="button-grey"
                   (click)="previousSlide()">
                   Anterior
                 </app-submit-button>
 
-                @if (questions.length - 1 !== questionIndex) {
+                @if (showSubmitButton(data.lesson, i)) {
+                  <app-submit-button
+                    [isLoading]="submitLoading"
+                    type="submit"
+                    (click)="onSubmit(data.lesson)">
+                    Enviar
+                  </app-submit-button>
+                } @else {
                   <app-submit-button (click)="nextSlide()">
                     Siguiente
                   </app-submit-button>
                 }
-
-                @if (questions.length - 1 === questionIndex) {
-                  <app-submit-button
-                    [isLoading]="loading"
-                    type="submit"
-                    (click)="onSubmit(lesson)">
-                    Enviar
-                  </app-submit-button>
-                }
               </div>
-            </div>
-          </swiper-slide>
+            </swiper-slide>
+          }
         }
       }
     </swiper-container>

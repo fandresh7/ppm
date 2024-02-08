@@ -12,7 +12,7 @@ import { pdfDefaultOptions } from 'ngx-extended-pdf-viewer'
 
 import { Lesson } from '@courses/logic/models/lessons'
 import { sendExternal } from '@superlikers/api/entries'
-import { CoursesService } from '@courses/services/courses.service'
+import { CoursesService } from '@courses/services/courses.store'
 import { SubmitButtonComponent } from '@shared/components/submit-button/submit-button.component'
 
 @Component({

@@ -13,10 +13,12 @@ import { LessonStateCardComponent } from '@courses/components/lesson-state-card/
 import { AsyncPipe } from '@angular/common'
 import { RoundedProgressComponent } from '@courses/components/rounded-progress/rounded-progress.component'
 import { BlogComponent } from '@shared/features/blog/blog.component'
+import { LoadingService } from '@shared/loading/loading.service'
 
 type ContentType = 'lessons' | 'comments' | 'resources'
 
 interface PageData {
+  loading: boolean
   course: Course | null
   lessons: Lesson[]
   lesson: Lesson | null
@@ -40,7 +42,9 @@ interface PageData {
 export class CourseComponent {
   route = inject(ActivatedRoute)
   router = inject(Router)
+
   courseService = inject(CourseService)
+  loadingService = inject(LoadingService)
 
   data$: Observable<PageData>
 
@@ -54,13 +58,14 @@ export class CourseComponent {
   getPageData() {
     return this.route.params.pipe(
       switchMap(params => {
+        const loading$ = this.loadingService.loading$
         const course$ = this.courseService.loadCourse(params['category'])
         const lessons$ = this.courseService.loadLessons(params['category'])
         const lesson$ = this.courseService.loadLesson(params['lesson'])
 
-        return combineLatest([course$, lessons$, lesson$]).pipe(
-          map(([course, lessons, lesson]) => {
-            return { course, lessons, lesson }
+        return combineLatest([loading$, course$, lessons$, lesson$]).pipe(
+          map(([loading, course, lessons, lesson]) => {
+            return { loading, course, lessons, lesson }
           })
         )
       })

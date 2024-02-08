@@ -1,5 +1,6 @@
 <article
-  [ngClass]="activeClasses"
+  [ngClass]="getActiveClasses() | async"
+  (click)="setActiveLevel(level)"
   class="bg-white rounded-xl flex w-full cursor-pointer flex-col gap-1 p-2 transition-opacity duration-150 md:p-4">
   <img
     class="w-full rounded-xl object-fill"

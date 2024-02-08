@@ -1,64 +1,20 @@
-import {
-  CUSTOM_ELEMENTS_SCHEMA,
-  Component,
-  ElementRef,
-  OnInit,
-  ViewChild,
-  inject
-} from '@angular/core'
-import { Router } from '@angular/router'
+import { Component } from '@angular/core'
 import { AsyncPipe } from '@angular/common'
 
-import Swiper from 'swiper'
-import { Observable, tap } from 'rxjs'
-
-import { CoursesService } from '@courses/services/courses.service'
-import { homeSliderOptions } from '@courses/utils/swipers'
-import { Level } from '@courses/logic/models/levels'
-import { LevelCardComponent } from '@courses/components/level-card/level-card.component'
 import { AccordionItemComponent } from '@courses/components/accordion-item/accordion-item.component'
+import { SliderComponent } from './components/slider/slider.component'
+import { CourseAccordionComponent } from './components/course-accordion/course-accordion.component'
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [AccordionItemComponent, AsyncPipe, LevelCardComponent],
+  imports: [
+    AccordionItemComponent,
+    AsyncPipe,
+    SliderComponent,
+    CourseAccordionComponent
+  ],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  styleUrl: './home.component.css'
 })
-export class HomeComponent implements OnInit {
-  router = inject(Router)
-  coursesService = inject(CoursesService)
-
-  @ViewChild('slider', { static: true }) slider!: ElementRef
-  swiperInstance!: Swiper
-
-  levels$: Observable<Level[]>
-  activeLevel: Level | null = null
-
-  constructor() {
-    this.levels$ = this.coursesService.levels$.pipe(
-      tap(levels => {
-        if (levels.length === 0) return
-        this.setActiveLevel(levels[0])
-      })
-    )
-  }
-
-  ngOnInit() {
-    this.initializeSlider()
-  }
-
-  setActiveLevel(level: Level) {
-    this.activeLevel = level
-  }
-
-  initializeSlider() {
-    this.swiperInstance = Object.assign(
-      this.slider.nativeElement,
-      homeSliderOptions
-    )
-
-    this.slider.nativeElement.initialize()
-  }
-}
+export class HomeComponent {}

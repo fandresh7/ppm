@@ -1,20 +1,24 @@
-import { Component, Input } from '@angular/core'
-import { CommonModule } from '@angular/common'
+import { Component, Input, inject } from '@angular/core'
+import { AsyncPipe, NgClass } from '@angular/common'
+
+import { map } from 'rxjs'
 
 import { getPercentage } from '@courses/logic/helpers/courses'
 import { Lesson } from '@courses/logic/models/lessons'
 import { Level } from '@courses/logic/models/levels'
 import { RoundedProgressComponent } from '../rounded-progress/rounded-progress.component'
+import { LevelsService } from '@courses/services/levels.service'
 
 @Component({
   selector: 'app-level-card',
   standalone: true,
-  imports: [CommonModule, RoundedProgressComponent],
+  imports: [AsyncPipe, NgClass, RoundedProgressComponent],
   templateUrl: './level-card.component.html',
   styleUrl: './level-card.component.css'
 })
 export class LevelCardComponent {
-  @Input() isActive = false
+  levelsService = inject(LevelsService)
+
   @Input() level!: Level
 
   get lessons() {
@@ -28,15 +32,15 @@ export class LevelCardComponent {
     return percentage
   }
 
-  get cardBackground() {
-    return this.isActive ? 'bg-white' : 'bg-theme-grey-dark'
-  }
-
-  get activeClasses() {
-    return {
-      'opacity-100': this.isActive,
-      'opacity-50': !this.isActive
-    }
+  getActiveClasses() {
+    return this.levelsService.isActiveLevel(this.level).pipe(
+      map(isActive => {
+        return {
+          'opacity-100': isActive,
+          'opacity-50': !isActive
+        }
+      })
+    )
   }
 
   getLevelLessons() {
@@ -45,5 +49,9 @@ export class LevelCardComponent {
     }) as Lesson[]
 
     return lessons ?? []
+  }
+
+  setActiveLevel(level: Level) {
+    this.levelsService.activeLevel = level
   }
 }

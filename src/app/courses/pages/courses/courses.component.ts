@@ -1,12 +1,13 @@
 import { Component, inject } from '@angular/core'
-import { Observable } from 'rxjs'
+import { AsyncPipe } from '@angular/common'
 
-import { Course } from '@courses/logic/models/courses'
-import { Lesson } from '@courses/logic/models/lessons'
-import { CoursesService } from '@courses/services/courses.service'
+import { Observable, combineLatest, map } from 'rxjs'
+
 import { CourseCardComponent } from '@courses/components/course-card/course-card.component'
 import { BreadcrumbComponent } from '@courses/components/breadcrumb/breadcrumb.component'
-import { AsyncPipe } from '@angular/common'
+import { LevelsStore } from '@courses/store/levels.store'
+import { LoadingService } from '@shared/loading/loading.service'
+import { Course } from '@courses/logic/models/courses'
 
 @Component({
   selector: 'app-courses',
@@ -16,13 +17,20 @@ import { AsyncPipe } from '@angular/common'
   styleUrl: './courses.component.css'
 })
 export class CoursesComponent {
-  coursesService = inject(CoursesService)
+  levelsStore = inject(LevelsStore)
+  loadingService = inject(LoadingService)
 
-  courses$: Observable<Course[]>
-  recommendedLessons$: Observable<Lesson[]>
+  data$!: Observable<{ loading: boolean; courses: Course[] }>
 
   constructor() {
-    this.courses$ = this.coursesService.loadCourses()
-    this.recommendedLessons$ = this.coursesService.getRecommendedLessons()
+    this.data$ = combineLatest([
+      this.loadingService.loading$,
+      this.levelsStore.getAllCourses()
+    ]).pipe(
+      map(([loading, courses]) => {
+        console.log('here')
+        return { loading, courses }
+      })
+    )
   }
 }

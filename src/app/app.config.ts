@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { importProvidersFrom } from '@angular/core'
 
 import { routes } from './app.routes'
+import { LoadingService } from '@shared/loading/loading.service'
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,6 +18,9 @@ export const appConfig: ApplicationConfig = {
         anchorScrolling: 'enabled',
         scrollPositionRestoration: 'enabled'
       })
-    )
+    ),
+
+    // Services with multiple instances
+    LoadingService
   ]
 }

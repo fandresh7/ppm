@@ -8,28 +8,24 @@ import {
   ViewChild,
   inject
 } from '@angular/core'
-import {
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators
-} from '@angular/forms'
+
+import { AsyncPipe, JsonPipe } from '@angular/common'
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
-import { AsyncPipe } from '@angular/common'
+import { Observable, combineLatest, first, map, switchMap } from 'rxjs'
 
-import { Observable, tap } from 'rxjs'
-
-import { sendExternal } from '@superlikers/api/entries'
-import { FeedbackMessagesService } from '@shared/messages/services/feedback-messages.service'
-import { VideoAttemptModalComponent } from '@courses/components/video-attempt-modal/video-attempt-modal.component'
-import { canResponseTest } from '@courses/logic/helpers/courses'
-import { Lesson, LessonStatus } from '@courses/logic/models/lessons'
-import { Question } from '@courses/logic/models/tests'
-import { redeemLessonAttempt, validateAttempts } from '@courses/logic/tests'
-import { CoursesService } from '@courses/services/courses.service'
 import { SubmitButtonComponent } from '@shared/components/submit-button/submit-button.component'
 import { ProgressBarComponent } from '@courses/components/progress-bar/progress-bar.component'
+import { LevelsStore } from '@courses/store/levels.store'
+import { FormsService } from '@shared/features/forms/services/forms.service'
+import { Lesson } from '@courses/logic/models/lessons'
+import { LoadingService } from '@shared/loading/loading.service'
 import { testSliderOptions } from '@courses/utils/swipers'
+import { CheckboxGroupComponent } from '@shared/features/forms/components/checkbox-group/checkbox-group.component'
+import { RadioComponent } from '@shared/features/forms/components/radio/radio.component'
+import { FeedbackMessagesService } from '@shared/messages/services/feedback-messages.service'
+import { TestService } from '@courses/services/test.service'
+import Swiper from 'swiper'
 
 @Component({
   selector: 'app-test',
@@ -38,7 +34,10 @@ import { testSliderOptions } from '@courses/utils/swipers'
     ReactiveFormsModule,
     SubmitButtonComponent,
     ProgressBarComponent,
-    AsyncPipe
+    AsyncPipe,
+    JsonPipe,
+    CheckboxGroupComponent,
+    RadioComponent
   ],
   templateUrl: './test.component.html',
   styleUrl: './test.component.css',
@@ -49,21 +48,21 @@ export class TestComponent implements OnInit {
   route = inject(ActivatedRoute)
   router = inject(Router)
 
-  coursesService = inject(CoursesService)
+  levelsStore = inject(LevelsStore)
+  loadingService = inject(LoadingService)
+  formService = inject(FormsService)
   messagesService = inject(FeedbackMessagesService)
+  testService = inject(TestService)
 
-  @ViewChild('formSlide', { static: true }) formSlide!: ElementRef
-  swiperInit = false
+  @ViewChild('slider', { static: true }) slider!: ElementRef
+  swiperInstance!: Swiper
 
   form: FormGroup = this.fb.group({})
+  data$!: Observable<{ lesson: Lesson; loading: boolean }>
 
-  lesson$!: Observable<Lesson>
-
-  loading = false
-
-  questions: Question[] = []
   actualSlide = 1
-  totalSlides = 0
+  totalSlides = 1
+  submitLoading = false
 
   get percentage() {
     return this.totalSlides > 0
@@ -74,184 +73,106 @@ export class TestComponent implements OnInit {
   constructor(
     public dialog: Dialog,
     public overlay: Overlay
-  ) {}
+  ) {
+    this.form = this.formService.getForm()
 
-  ngOnInit() {
-    this.initializeForm()
-  }
-
-  initializeForm() {
-    const lessonCategory = this.route.snapshot.params['category']
-
-    this.lesson$ = this.coursesService.getLesson(lessonCategory).pipe(
-      tap(lesson => {
-        if (!lesson) return
-        console.log('here')
-
-        if (lesson.initial) {
-          this.validateInitialTest(lesson)
-        } else {
-          this.validateTest(lesson)
-        }
+    this.data$ = this.route.params.pipe(
+      switchMap(params => {
+        return combineLatest([
+          this.loadingService.loading$,
+          this.levelsStore.getLesson(params['category'])
+        ])
+      }),
+      map(([loading, lesson]) => {
+        this.initialize(lesson)
+        return { lesson, loading }
       })
     )
   }
 
-  validateInitialTest(lesson: Lesson) {
-    const { TestContent, nextLessonUrl } = lesson
+  ngOnInit() {
+    this.initializeSlider()
 
-    if (!TestContent) return
-    const { status } = TestContent
-
-    if (status === LessonStatus.Done) {
-      this.messagesService.showInitialTestFeedback().then(() => {
-        this.router.navigate(nextLessonUrl ?? ['/home'])
-      })
-    }
-
-    this.startTest(lesson)
-  }
-
-  validateTest(lesson: Lesson) {
-    const status = lesson.TestContent?.status
-    const nextLessonUrl = lesson.nextLessonUrl ?? ['/home']
-    const answers = lesson.TestContent?.correctAnswers ?? 0
-    const questions = lesson.TestContent?.amountQuestions ?? 0
-    const attempts = lesson.TestContent?.attempts ?? []
-    const canRedeemAttempt = validateAttempts(attempts)
-    const canResponse = canResponseTest(lesson)
-
-    if (canResponse) {
-      this.startTest(lesson)
-      return
-    }
-
-    if (status === LessonStatus.Done) {
-      this.messagesService.showDownloadMessage(answers, questions).then(() => {
-        this.router.navigate(['/certificates'])
-      })
-
-      return
-    }
-
-    if (canRedeemAttempt) {
-      this.messagesService.showTestWrongMessage().then(result => {
-        if (!result.isConfirmed) {
-          this.router.navigate(nextLessonUrl)
-        } else {
-          this.reddemAttempt(lesson)
-        }
-      })
-    } else {
-      this.messagesService.showVideoAttemptFeedback().then(result => {
-        if (result.isConfirmed) {
-          this.router.navigate(nextLessonUrl)
-          return
-        }
-
-        this.dialog.open(VideoAttemptModalComponent, {
-          data: { lesson },
-          disableClose: true
-        })
-
-        this.dialog.afterAllClosed.subscribe(() => {
-          this.loading = false
-          this.reset()
-        })
-      })
-    }
-  }
-
-  async reddemAttempt(lesson: Lesson) {
-    const response = await redeemLessonAttempt(lesson)
-    if (response !== 'success') return
-
-    this.coursesService.updateLesson(lesson).subscribe(() => {
-      this.reset()
+    this.testService.resetSwiperEvent.subscribe(() => {
+      this.resetSwiper()
     })
   }
 
+  initialize(lesson: Lesson) {
+    if (!lesson) return
+
+    const questions = lesson.TestContent?.questions ?? []
+    this.totalSlides = questions.length + 1
+
+    this.formService.initializeForm(questions)
+    this.testService.validate(lesson)
+  }
+
+  initializeSlider() {
+    console.log({ slide: this.swiperInstance })
+    this.swiperInstance = Object.assign(
+      this.slider.nativeElement,
+      testSliderOptions
+    )
+
+    this.slider.nativeElement.initialize()
+  }
+
+  onSwiperChange() {
+    const index = this.slider.nativeElement.swiper.realIndex
+    this.actualSlide = index + 1
+  }
+
+  previousSlide() {
+    this.slider.nativeElement.swiper.slidePrev()
+
+    const step = this.slider.nativeElement.swiper.realIndex
+    const previousStep = step + 1
+
+    if (previousStep >= 0) this.actualSlide = previousStep
+  }
+
+  nextSlide() {
+    this.slider.nativeElement.swiper.slideNext()
+
+    const step = this.slider.nativeElement.swiper.realIndex
+    const nextStep = step + 1
+
+    if (nextStep <= this.totalSlides) this.actualSlide = nextStep
+  }
+
+  resetSwiper() {
+    this.actualSlide = 1
+    this.slider.nativeElement.swiper.slideTo(0)
+  }
+
+  showSubmitButton(lesson: Lesson, index: number) {
+    const questions = lesson.TestContent?.questions ?? []
+
+    return questions.length - 1 === index
+  }
+
   onSubmit(lesson: Lesson) {
-    this.loading = true
+    const externalEvent = lesson.TestContent?.external
+    if (!externalEvent) return
 
     if (this.form.invalid) {
-      this.loading = false
       this.messagesService.showTestIncomplete()
       return
     }
 
-    const data = this.form.value
-    const event = lesson.TestContent?.external ?? ''
+    this.submitLoading = true
 
-    sendExternal({ event, properties: data }).then(response => {
-      if (response !== 'success') return
-
-      this.coursesService.updateLesson(lesson).subscribe()
-    })
-  }
-
-  startTest(lesson: Lesson) {
-    const questionsSlides = lesson?.TestContent?.amountQuestions ?? 0
-    this.totalSlides = questionsSlides + 1
-    this.questions = lesson?.TestContent?.questions ?? []
-
-    this.assignFieldsToForm()
-    this.initializeSlide()
-  }
-
-  assignFieldsToForm() {
-    this.questions.forEach(question => {
-      const formControl = this.fb.control(null, Validators.required)
-      this.form.addControl(question.name, formControl)
-    })
-  }
-
-  initializeSlide() {
-    if (this.swiperInit) return
-
-    Object.assign(this.formSlide.nativeElement, testSliderOptions)
-    this.formSlide.nativeElement.initialize()
-    this.swiperInit = true
-  }
-
-  reset() {
-    this.form.reset()
-    this.actualSlide = 1
-    this.loading = false
-    this.formSlide.nativeElement.swiper.slideTo(0)
-  }
-
-  onSwiperChange() {
-    const index = this.formSlide.nativeElement.swiper.realIndex
-    this.actualSlide = index + 1
-  }
-
-  nextSlide() {
-    this.formSlide.nativeElement.swiper.slideNext()
-
-    const step = this.formSlide.nativeElement.swiper.realIndex
-    const nextStep = step + 1
-    if (nextStep <= this.totalSlides) this.actualSlide = nextStep
-  }
-
-  previousSlide() {
-    this.formSlide.nativeElement.swiper.slidePrev()
-
-    const step = this.formSlide.nativeElement.swiper.realIndex
-    const previousStep = step + 1
-    if (previousStep >= 0) this.actualSlide = previousStep
-  }
-
-  onCheckboxChange(event: Event) {
-    const target = event.target as HTMLInputElement
-    const questionValue = this.form.controls[target.name].value
-
-    const values = questionValue ? questionValue.split(',') : []
-    const index = values.indexOf(target.value)
-
-    if (index === -1) values.push(target.value)
-    else values.splice(index, 1)
-
-    this.form.controls[target.name].setValue(values.join(','))
+    this.testService
+      .submit(externalEvent, this.form.value)
+      .pipe(
+        switchMap(() => {
+          return this.levelsStore.updateLesson(lesson)
+        }),
+        first()
+      )
+      .subscribe(() => {
+        this.submitLoading = false
+      })
   }
 }

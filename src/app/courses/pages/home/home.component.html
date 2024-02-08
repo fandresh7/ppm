@@ -1,35 +1,7 @@
 <div class="relative flex w-full flex-col gap-2">
   <h1 class="font-bold text-xl">¡Empieza a aprender con PPM U!</h1>
 
-  <swiper-container
-    #slider
-    class="relative h-full w-full px-4 py-2"
-    init="false">
-    @if (levels$ | async; as levels) {
-      @for (level of levels; track level.id) {
-        <swiper-slide>
-          <app-level-card
-            (click)="setActiveLevel(level)"
-            [isActive]="level.id === activeLevel?.id"
-            [level]="level">
-          </app-level-card>
-        </swiper-slide>
-      } @empty {
-        <swiper-slide>
-          <div
-            class="animate-pulse bg-theme-grey-dark rounded-xl w-[350px] h-[300px]"></div>
-        </swiper-slide>
-        <swiper-slide>
-          <div
-            class="animate-pulse bg-theme-grey-dark rounded-xl w-[350px] h-[300px]"></div>
-        </swiper-slide>
-        <swiper-slide>
-          <div
-            class="animate-pulse bg-theme-grey-dark rounded-xl w-[350px] h-[300px]"></div>
-        </swiper-slide>
-      }
-    }
-  </swiper-container>
+  <app-slider></app-slider>
 
   <div class="my-4 flex w-full items-center justify-between gap-2">
     <h3>
@@ -42,22 +14,5 @@
     </a>
   </div>
 
-  @if (activeLevel !== null) {
-    <cdk-accordion>
-      @for (course of activeLevel.courses; track course.id) {
-        <app-accordion-item [course]="course"></app-accordion-item>
-      } @empty {
-        <p>No hay cursos disponibles.</p>
-      }
-    </cdk-accordion>
-  } @else {
-    <div
-      class="animate-pulse bg-theme-grey-dark rounded-xl w-[full] h-[100px]"></div>
-    <div
-      class="animate-pulse bg-theme-grey-dark rounded-xl w-[full] h-[100px]"></div>
-    <div
-      class="animate-pulse bg-theme-grey-dark rounded-xl w-[full] h-[100px]"></div>
-    <div
-      class="animate-pulse bg-theme-grey-dark rounded-xl w-[full] h-[100px]"></div>
-  }
+  <app-course-accordion></app-course-accordion>
 </div>

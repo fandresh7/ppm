@@ -6,10 +6,11 @@ import { Observable, first, map } from 'rxjs'
 import { CustomData } from '@courses/logic/dragdrop'
 import { DragDropQuestion } from '@courses/logic/models/dragdrop'
 import { Lesson } from '@courses/logic/models/lessons'
-import { CoursesService } from '@courses/services/courses.service'
+import { CoursesService } from '@courses/services/courses.store'
 import { FeedbackMessagesService } from '@shared/messages/services/feedback-messages.service'
 import { sendExternal } from '@superlikers/api/entries'
 import { Router } from '@angular/router'
+import { LevelsStore } from '@courses/store/levels.store'
 
 interface dragDropData {
   options: DragDropQuestion[]
@@ -22,6 +23,7 @@ interface dragDropData {
 export class DragdropService {
   router = inject(Router)
   private coursesService = inject(CoursesService)
+  private levelsStore = inject(LevelsStore)
   private messagesService = inject(FeedbackMessagesService)
 
   lesson$!: Observable<Lesson>
@@ -29,7 +31,7 @@ export class DragdropService {
   answers: CustomData = {}
 
   setLesson(category: string) {
-    this.lesson$ = this.coursesService.getLesson(category)
+    this.lesson$ = this.levelsStore.getLesson(category)
   }
 
   initializeDragdrop() {

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, inject } from '@angular/core'
+import { AsyncPipe } from '@angular/common'
 
 import { Observable } from 'rxjs'
 
@@ -7,7 +8,7 @@ import { BlogService } from './services/blog.service'
 import { Comment } from '@superlikers/models/comments'
 import { WriteCommentComponent } from './components/write-comment/write-comment.component'
 import { CommentComponent } from './components/comment/comment.component'
-import { AsyncPipe } from '@angular/common'
+import { LoadingService } from '@shared/loading/loading.service'
 
 @Component({
   selector: 'app-blog',
@@ -20,6 +21,7 @@ export class BlogComponent implements OnInit {
   @Input() tags: string[] = []
 
   blogService = inject(BlogService)
+  loadingService = inject(LoadingService)
 
   blog$!: Observable<BlogPost | null>
   comments$!: Observable<Comment[]>

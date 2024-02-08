@@ -24,19 +24,4 @@
       </div>
     </div>
   }
-
-  <section class="mt-10">
-    <h2 class="font-bold text-lg">Certificados Obtenidos</h2>
-    <swiper-container
-      #completeCoursesSlide
-      init="false">
-      @for (course of completeCourses$ | async; track course.id) {
-        <swiper-slide class="p-1">
-          <app-certificate-card [course]="course"></app-certificate-card>
-        </swiper-slide>
-      } @empty {
-        <p class="mt-10">No hay cursos terminados aún.</p>
-      }
-    </swiper-container>
-  </section>
 </div>

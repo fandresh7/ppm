@@ -4,111 +4,115 @@
 </app-breadcrumb>
 
 @if (data$ | async; as data) {
-  <section
-    class="scroll-smooth relative grid-cols-1 grid xl:grid-cols-[8fr_4fr] mt-4 gap-4">
-    <section class="flex flex-col gap-4 items-start">
-      @if (data.lesson === null) {
-        <video
-          class="rounded-xl w-full"
-          controls>
-          <source
-            [src]="data.course?.introductionVideo"
-            type="video/mp4" />
-        </video>
-      }
-
-      <div class="flex flex-col gap-4 items-start w-full">
-        @if (data.lesson?.type === lessonsTypes.Video) {
-          <app-video
-            class="w-full"
-            [lesson]="data.lesson">
-          </app-video>
+  @if (data.loading) {
+    <p>loading</p>
+  } @else {
+    <section
+      class="scroll-smooth relative grid-cols-1 grid xl:grid-cols-[8fr_4fr] mt-4 gap-4">
+      <section class="flex flex-col gap-4 items-start">
+        @if (data.lesson === null) {
+          <video
+            class="rounded-xl w-full"
+            controls>
+            <source
+              [src]="data.course?.introductionVideo"
+              type="video/mp4" />
+          </video>
         }
 
-        @if (data.lesson?.type === lessonsTypes.Infografia) {
-          <app-infografia
-            class="w-full"
-            [lesson]="data.lesson">
-          </app-infografia>
-        }
-      </div>
+        <div class="flex flex-col gap-4 items-start w-full">
+          @if (data.lesson?.type === lessonsTypes.Video) {
+            <app-video
+              class="w-full"
+              [lesson]="data.lesson">
+            </app-video>
+          }
 
-      <div class="flex items-center gap-4 justify-start">
-        <div
-          class="bg-lesson-icon bg-1.2 bg-left bg-no-repeat pl-6 text-theme-black-50">
-          <p>{{ data.course?.lessons?.length ?? 0 }} lecciones</p>
+          @if (data.lesson?.type === lessonsTypes.Infografia) {
+            <app-infografia
+              class="w-full"
+              [lesson]="data.lesson">
+            </app-infografia>
+          }
         </div>
-        <div
-          class="bg-clock-icon bg-1.2 bg-left bg-no-repeat pl-6 text-theme-black-50">
-          <p>{{ data.course?.duration ?? '00:00' }} min</p>
-        </div>
-        <div class="text-theme-black-50"><p>Dificultad baja</p></div>
-      </div>
 
-      <section class="flex justify-start items-start">
-        <div class="grow">
-          <p [innerHTML]="data.course?.description"></p>
+        <div class="flex items-center gap-4 justify-start">
+          <div
+            class="bg-lesson-icon bg-1.2 bg-left bg-no-repeat pl-6 text-theme-black-50">
+            <p>{{ data.course?.lessons?.length ?? 0 }} lecciones</p>
+          </div>
+          <div
+            class="bg-clock-icon bg-1.2 bg-left bg-no-repeat pl-6 text-theme-black-50">
+            <p>{{ data.course?.duration ?? '00:00' }} min</p>
+          </div>
+          <div class="text-theme-black-50"><p>Dificultad baja</p></div>
         </div>
-        <app-rounded-progress
-          [width]="200"
-          [percentage]="getPercentage(data.course?.lessons ?? [])"
-          [strokeWidth]="14"
-          [fontSize]="'text-3xl'"
-          strokeColor="stroke-theme-grey-dark">
-        </app-rounded-progress>
+
+        <section class="flex justify-start items-start">
+          <div class="grow">
+            <p [innerHTML]="data.course?.description"></p>
+          </div>
+          <app-rounded-progress
+            [width]="200"
+            [percentage]="getPercentage(data.course?.lessons ?? [])"
+            [strokeWidth]="14"
+            [fontSize]="'text-3xl'"
+            strokeColor="stroke-theme-grey-dark">
+          </app-rounded-progress>
+        </section>
       </section>
-    </section>
 
-    <section>
-      <div class="bg-white rounded-xl p-4">
-        <div class="flex flex-row gap-4 mb-4">
-          <button
-            class="button-grey pl-4 pr-4 flex-grow"
-            (click)="changeContent('lessons')">
-            Lecciones
-          </button>
-
-          @if (
-            data.lesson &&
-            data.lesson.resources &&
-            data.lesson.resources.length > 0
-          ) {
+      <section>
+        <div class="bg-white rounded-xl p-4">
+          <div class="flex flex-row gap-4 mb-4">
             <button
               class="button-grey pl-4 pr-4 flex-grow"
-              (click)="changeContent('resources')">
-              Recursos
+              (click)="changeContent('lessons')">
+              Lecciones
             </button>
-          }
 
-          <button
-            class="button-grey pl-4 pr-4 flex-grow"
-            (click)="changeContent('comments')">
-            Comentarios
-          </button>
+            @if (
+              data.lesson &&
+              data.lesson.resources &&
+              data.lesson.resources.length > 0
+            ) {
+              <button
+                class="button-grey pl-4 pr-4 flex-grow"
+                (click)="changeContent('resources')">
+                Recursos
+              </button>
+            }
+
+            <button
+              class="button-grey pl-4 pr-4 flex-grow"
+              (click)="changeContent('comments')">
+              Comentarios
+            </button>
+          </div>
+          <div class="overflow-x-hidden overflow-y-auto pr-1 pb-1">
+            @if (content === 'lessons') {
+              <div class="flex flex-col gap-4">
+                @for (lesson of data.lessons; track lesson.id) {
+                  <app-lesson-state-card
+                    [lesson]="lesson"
+                    [showStatusBadge]="false"
+                    [active]="(isActive(lesson) | async) ?? false"
+                    (click)="setActiveLesson(lesson)">
+                  </app-lesson-state-card>
+                }
+              </div>
+            }
+
+            @if (content === 'comments') {
+              <app-blog [tags]="[data.course?.category ?? '']"></app-blog>
+            }
+
+            @if (content === 'resources') {
+              <div class="flex flex-col gap-4"></div>
+            }
+          </div>
         </div>
-        <div class="overflow-x-hidden overflow-y-auto pr-1 pb-1">
-          @if (content === 'lessons') {
-            <div class="flex flex-col gap-4">
-              @for (lesson of data.lessons; track lesson.id) {
-                <app-lesson-state-card
-                  [lesson]="lesson"
-                  [showStatusBadge]="false"
-                  [active]="(isActive(lesson) | async) ?? false"
-                  (click)="setActiveLesson(lesson)">
-                </app-lesson-state-card>
-              }
-            </div>
-          }
-
-          @if (content === 'comments') {
-            <app-blog [tags]="[data.course?.category ?? '']"></app-blog>
-          }
-
-          @if (content === 'resources') {
-            <div class="flex flex-col gap-4"></div>
-          }
-        </div>
-      </div>
+      </section>
     </section>
-  </section>
+  }
 }
