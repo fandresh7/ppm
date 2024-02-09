@@ -12,10 +12,14 @@
         {{ course.name }}
       </h3>
     </div>
-    <app-rounded-progress
-      [width]="55"
-      [percentage]="percentage"
-      [strokeWidth]="6">
-    </app-rounded-progress>
+    @if (isComplete) {
+      <app-certificate-button [course]="course"></app-certificate-button>
+    } @else {
+      <app-rounded-progress
+        [width]="55"
+        [percentage]="percentage"
+        [strokeWidth]="6">
+      </app-rounded-progress>
+    }
   </div>
 </div>
