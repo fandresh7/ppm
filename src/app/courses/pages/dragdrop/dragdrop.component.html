@@ -1,0 +1,20 @@
+<section class="flex flex-col gap-4">
+  <app-breadcrumb
+    text="Cursos"
+    link="/courses">
+  </app-breadcrumb>
+  <article class="bg-white rounded-xl p-6">
+    @if (data$ | async; as data) {
+      @if (data.loading) {
+        <p>Loading</p>
+      } @else {
+        <ng-container
+          *ngComponentOutlet="
+            selectedComponent;
+            inputs: { lesson: data.lesson, dragdrop: data.dragdrop }
+          ">
+        </ng-container>
+      }
+    }
+  </article>
+</section>

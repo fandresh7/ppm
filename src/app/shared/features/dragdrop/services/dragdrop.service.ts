@@ -6,7 +6,6 @@ import { Observable, first, map } from 'rxjs'
 import { CustomData } from '@courses/logic/dragdrop'
 import { DragDropQuestion } from '@courses/logic/models/dragdrop'
 import { Lesson } from '@courses/logic/models/lessons'
-import { CoursesService } from '@courses/services/courses.store'
 import { FeedbackMessagesService } from '@shared/messages/services/feedback-messages.service'
 import { sendExternal } from '@superlikers/api/entries'
 import { Router } from '@angular/router'
@@ -22,7 +21,6 @@ interface dragDropData {
 })
 export class DragdropService {
   router = inject(Router)
-  private coursesService = inject(CoursesService)
   private levelsStore = inject(LevelsStore)
   private messagesService = inject(FeedbackMessagesService)
 
@@ -138,7 +136,7 @@ export class DragdropService {
 
     await Promise.all([dragdropData, resumeData])
 
-    this.coursesService.updateLesson(lesson).subscribe(() => {
+    this.levelsStore.updateLesson(lesson).subscribe(() => {
       if (validation) {
         this.messagesService.showDragdropSuccessMessage().then(() => {
           this.router.navigate(nextLessonUrl ?? ['/home'])

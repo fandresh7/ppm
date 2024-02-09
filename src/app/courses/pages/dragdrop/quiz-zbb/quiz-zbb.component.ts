@@ -1,7 +1,6 @@
-import { Component, inject } from '@angular/core'
+import { Component, Input, inject } from '@angular/core'
 import { CommonModule } from '@angular/common'
 
-import { ActivatedRoute } from '@angular/router'
 import {
   CdkDragDrop,
   CdkDragPlaceholder,
@@ -9,19 +8,12 @@ import {
   CdkDropList,
   CdkDropListGroup
 } from '@angular/cdk/drag-drop'
-import { Observable } from 'rxjs'
 
-import { BreadcrumbComponent } from '@courses/components/breadcrumb/breadcrumb.component'
-import { DragDropQuestion } from '@courses/logic/models/dragdrop'
+import { DragDropData, DragDropQuestion } from '@courses/logic/models/dragdrop'
 import { Lesson } from '@courses/logic/models/lessons'
 import { SubmitButtonComponent } from '@shared/components/submit-button/submit-button.component'
 import { DragdropService } from '@shared/features/dragdrop/services/dragdrop.service'
 import { DropzoneComponent } from './dropzone/dropzone.component'
-
-interface dragDropData {
-  options: DragDropQuestion[]
-  dropzones: DragDropQuestion[][]
-}
 
 @Component({
   selector: 'app-quiz-champions',
@@ -33,26 +25,16 @@ interface dragDropData {
     CdkDragPlaceholder,
     CdkDropListGroup,
     SubmitButtonComponent,
-    DropzoneComponent,
-    BreadcrumbComponent
+    DropzoneComponent
   ],
   templateUrl: './quiz-zbb.component.html',
   styleUrls: ['./quiz-zbb.component.css']
 })
 export class QuizZbbComponent {
-  route = inject(ActivatedRoute)
+  @Input() lesson!: Lesson | undefined
+  @Input() dragdrop!: DragDropData
+
   dragdropService = inject(DragdropService)
-
-  lesson$!: Observable<Lesson | undefined>
-  data$!: Observable<dragDropData>
-
-  constructor() {
-    const category = 'quiz_zzb'
-    this.dragdropService.setLesson(category)
-
-    this.lesson$ = this.dragdropService.lesson$
-    this.data$ = this.dragdropService.initializeDragdrop()
-  }
 
   onDrop(event: CdkDragDrop<DragDropQuestion[]>) {
     this.dragdropService.onDrop(event)

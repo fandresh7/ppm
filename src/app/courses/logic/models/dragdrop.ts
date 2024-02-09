@@ -27,3 +27,8 @@ export interface DragDropLesson {
   amountQuestions?: number
   percentage?: number
 }
+
+export interface DragDropData {
+  options: DragDropQuestion[]
+  dropzones: DragDropQuestion[][]
+}

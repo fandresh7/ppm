@@ -122,7 +122,7 @@ export const getLessonUrl = (course: Course, lesson: Lesson | undefined) => {
   const nextUrlHandlers = {
     [LessonType.Video]: ['/course', courseCategory, category],
     [LessonType.Infografia]: ['/course', courseCategory, category],
-    [LessonType.Dragdrop]: ['/', category],
+    [LessonType.Dragdrop]: ['/dragdrop', category],
     [LessonType.Memory]: ['/memory', category],
     [LessonType.Test]: ['/test', category]
   }

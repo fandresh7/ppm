@@ -1,136 +1,123 @@
-<section class="flex flex-col gap-4">
-  <app-breadcrumb
-    text="Cursos"
-    link="/courses">
-  </app-breadcrumb>
+<header class="flex flex-row items-end gap-6 mb-10">
+  <img
+    class="w-40"
+    src="https://superlikers-themes.s3.amazonaws.com/ppmu/quiz-station-img.svg"
+    alt="quiz" />
+  <div>
+    <h2 class="font-bold">Quiz Station</h2>
+    <p>¡Aprendiz llegó el momento de probar lo aprendido!</p>
+  </div>
+</header>
 
-  @if (lesson$ | async; as lesson) {
-    <div class="bg-white p-6 rounded-xl">
-      <header class="flex flex-row items-end gap-6 mb-10">
-        <img
-          class="w-40"
-          src="https://superlikers-themes.s3.amazonaws.com/ppmu/quiz-station-img.svg"
-          alt="quiz" />
-        <div>
-          <h2 class="font-bold">Quiz Station</h2>
-          <p>¡Aprendiz llegó el momento de probar lo aprendido!</p>
-        </div>
-      </header>
-
-      @if (data$ | async; as data) {
-        <div class="bg-theme-grey p-6 rounded-xl">
-          <div
-            class="max-w-2xl mx-auto flex flex-col gap-4"
-            cdkDropListGroup>
-            <p>
-              Lee las opciones, arrastra y ubica las 7 actividades de la rutina
-              anual de Champions, según su orden cronológico.
-            </p>
-            <div
-              id="options"
-              cdkDropList
-              [cdkDropListData]="data.options"
-              (cdkDropListDropped)="onDrop($event)"
-              class="options flex flex-wrap gap-4 justify-center items-center min-w-full min-h-[3rem] border-[1px] p-1 border-theme-grey-dark rounded-xl">
-              @for (option of data.options; track option) {
-                <div
-                  cdkDrag
-                  class="cursor-move bg-white rounded-xl px-4 py-2 grow text-center max-w-fit">
-                  {{ option.value }}
-                </div>
-              }
-            </div>
-
-            <div>
-              <div class="border-theme-green border-[1px] p-2 rounded-xl">
-                <div
-                  class="overflow-x-scroll md:overflow-auto flex text-sm gap-1 px-1 pb-2 md:pb-0">
-                  <p
-                    class="text-xs text-white bg-theme-green rounded-xl text-center flex flex-col items-center justify-center px-2 py-1 gap-1">
-                    <span class="font-bold">TRI</span>
-                    <span>Total Recordable Injures</span>
-                  </p>
-                  <img
-                    class="w-6"
-                    src="https://superlikers-themes.s3.amazonaws.com/ppmu/i-igual.svg"
-                    alt="plus" />
-                  <app-monetizacion-dropzone
-                    [dropzoneItems]="data.dropzones[0]"
-                    question="question1"
-                    (dropEvent)="onDrop($event)">
-                  </app-monetizacion-dropzone>
-                  <img
-                    class="w-6"
-                    src="https://superlikers-themes.s3.amazonaws.com/ppmu/i-mas.svg"
-                    alt="plus" />
-                  <app-monetizacion-dropzone
-                    [dropzoneItems]="data.dropzones[1]"
-                    question="question2"
-                    (dropEvent)="onDrop($event)">
-                  </app-monetizacion-dropzone>
-                  <img
-                    class="w-6"
-                    src="https://superlikers-themes.s3.amazonaws.com/ppmu/i-mas.svg"
-                    alt="plus" />
-                  <app-monetizacion-dropzone
-                    [dropzoneItems]="data.dropzones[2]"
-                    question="question3"
-                    (dropEvent)="onDrop($event)">
-                  </app-monetizacion-dropzone>
-                </div>
-              </div>
-
-              <div class="border-theme-orange border-[1px] p-2 rounded-xl mt-4">
-                <div
-                  class="overflow-x-scroll md:overflow-auto flex items-center text-sm gap-1 px-1 pb-2 md:pb-0">
-                  <p
-                    class="text-xs text-white bg-theme-orange rounded-xl text-center flex flex-col items-center justify-center px-2 py-1 gap-1">
-                    <span class="font-bold">TEL</span>
-                    <span>Total Extract Losses</span>
-                  </p>
-                  <img
-                    class="w-6"
-                    src="https://superlikers-themes.s3.amazonaws.com/ppmu/i-igual.svg"
-                    alt="plus" />
-                  <div class="flex flex-wrap w-full">
-                    <div
-                      class="flex gap-2 pb-2 mb-2 border-b-theme-blue border-[1px] w-full">
-                      <app-monetizacion-dropzone
-                        class="grow"
-                        [dropzoneItems]="data.dropzones[3]"
-                        question="question4"
-                        (dropEvent)="onDrop($event)">
-                      </app-monetizacion-dropzone>
-                      <img
-                        class="w-6"
-                        src="https://superlikers-themes.s3.amazonaws.com/ppmu/i-multiply.svg"
-                        alt="plus" />
-                      <app-monetizacion-dropzone
-                        class="grow"
-                        [dropzoneItems]="data.dropzones[4]"
-                        question="question5"
-                        (dropEvent)="onDrop($event)">
-                      </app-monetizacion-dropzone>
-                    </div>
-                    <app-monetizacion-dropzone
-                      class="grow"
-                      [dropzoneItems]="data.dropzones[5]"
-                      question="question6"
-                      (dropEvent)="onDrop($event)">
-                    </app-monetizacion-dropzone>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <app-submit-button
-              class="mx-auto"
-              [isLoading]="false"
-              (click)="submit()">
-              Continuar
-            </app-submit-button>
-          </div>
+<div class="bg-theme-grey p-6 rounded-xl">
+  <div
+    class="max-w-2xl mx-auto flex flex-col gap-4"
+    cdkDropListGroup>
+    <p>
+      Lee las opciones, arrastra y ubica las 7 actividades de la rutina anual de
+      Champions, según su orden cronológico.
+    </p>
+    <div
+      id="options"
+      cdkDropList
+      [cdkDropListData]="dragdrop.options"
+      (cdkDropListDropped)="onDrop($event)"
+      class="options flex flex-wrap gap-4 justify-center items-center min-w-full min-h-[3rem] border-[1px] p-1 border-theme-grey-dark rounded-xl">
+      @for (option of dragdrop.options; track option) {
+        <div
+          cdkDrag
+          class="cursor-move bg-white rounded-xl px-4 py-2 grow text-center max-w-fit">
+          {{ option.value }}
         </div>
       }
     </div>
-  }
-</section>
+
+    <div>
+      <div class="border-theme-green border-[1px] p-2 rounded-xl">
+        <div
+          class="overflow-x-scroll md:overflow-auto flex text-sm gap-1 px-1 pb-2 md:pb-0">
+          <p
+            class="text-xs text-white bg-theme-green rounded-xl text-center flex flex-col items-center justify-center px-2 py-1 gap-1">
+            <span class="font-bold">TRI</span>
+            <span>Total Recordable Injures</span>
+          </p>
+          <img
+            class="w-6"
+            src="https://superlikers-themes.s3.amazonaws.com/ppmu/i-igual.svg"
+            alt="plus" />
+          <app-monetizacion-dropzone
+            [dropzoneItems]="dragdrop.dropzones[0]"
+            question="question1"
+            (dropEvent)="onDrop($event)">
+          </app-monetizacion-dropzone>
+          <img
+            class="w-6"
+            src="https://superlikers-themes.s3.amazonaws.com/ppmu/i-mas.svg"
+            alt="plus" />
+          <app-monetizacion-dropzone
+            [dropzoneItems]="dragdrop.dropzones[1]"
+            question="question2"
+            (dropEvent)="onDrop($event)">
+          </app-monetizacion-dropzone>
+          <img
+            class="w-6"
+            src="https://superlikers-themes.s3.amazonaws.com/ppmu/i-mas.svg"
+            alt="plus" />
+          <app-monetizacion-dropzone
+            [dropzoneItems]="dragdrop.dropzones[2]"
+            question="question3"
+            (dropEvent)="onDrop($event)">
+          </app-monetizacion-dropzone>
+        </div>
+      </div>
+
+      <div class="border-theme-orange border-[1px] p-2 rounded-xl mt-4">
+        <div
+          class="overflow-x-scroll md:overflow-auto flex items-center text-sm gap-1 px-1 pb-2 md:pb-0">
+          <p
+            class="text-xs text-white bg-theme-orange rounded-xl text-center flex flex-col items-center justify-center px-2 py-1 gap-1">
+            <span class="font-bold">TEL</span>
+            <span>Total Extract Losses</span>
+          </p>
+          <img
+            class="w-6"
+            src="https://superlikers-themes.s3.amazonaws.com/ppmu/i-igual.svg"
+            alt="plus" />
+          <div class="flex flex-wrap w-full">
+            <div
+              class="flex gap-2 pb-2 mb-2 border-b-theme-blue border-[1px] w-full">
+              <app-monetizacion-dropzone
+                class="grow"
+                [dropzoneItems]="dragdrop.dropzones[3]"
+                question="question4"
+                (dropEvent)="onDrop($event)">
+              </app-monetizacion-dropzone>
+              <img
+                class="w-6"
+                src="https://superlikers-themes.s3.amazonaws.com/ppmu/i-multiply.svg"
+                alt="plus" />
+              <app-monetizacion-dropzone
+                class="grow"
+                [dropzoneItems]="dragdrop.dropzones[4]"
+                question="question5"
+                (dropEvent)="onDrop($event)">
+              </app-monetizacion-dropzone>
+            </div>
+            <app-monetizacion-dropzone
+              class="grow"
+              [dropzoneItems]="dragdrop.dropzones[5]"
+              question="question6"
+              (dropEvent)="onDrop($event)">
+            </app-monetizacion-dropzone>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-submit-button
+      class="mx-auto"
+      [isLoading]="false"
+      (click)="submit()">
+      Continuar
+    </app-submit-button>
+  </div>
+</div>
