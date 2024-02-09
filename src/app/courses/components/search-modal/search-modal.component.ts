@@ -1,10 +1,12 @@
 import { AsyncPipe } from '@angular/common'
 import { Component, OnInit, inject } from '@angular/core'
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms'
-import { Lesson } from '@courses/logic/models/lessons'
-import { CoursesService } from '@courses/services/courses.store'
+
 import { Observable, debounceTime, tap } from 'rxjs'
+
+import { Lesson } from '@courses/logic/models/lessons'
 import { LessonCardComponent } from '../lesson-card/lesson-card.component'
+import { LevelsStore } from '@courses/store/levels.store'
 
 @Component({
   selector: 'app-search-modal',
@@ -15,7 +17,7 @@ import { LessonCardComponent } from '../lesson-card/lesson-card.component'
 })
 export class SearchModalComponent implements OnInit {
   fb = inject(FormBuilder)
-  coursesService = inject(CoursesService)
+  levelsStore = inject(LevelsStore)
 
   lessons$!: Observable<Lesson[]>
 
@@ -29,7 +31,7 @@ export class SearchModalComponent implements OnInit {
         debounceTime(500),
         tap(({ search }) => {
           if (!search) return
-          this.lessons$ = this.coursesService.getSearchLessons(search)
+          this.lessons$ = this.levelsStore.getSearchLessons(search)
         })
       )
       .subscribe()
@@ -43,6 +45,6 @@ export class SearchModalComponent implements OnInit {
   reset() {
     this.form.reset()
 
-    this.lessons$ = this.coursesService.getSearchLessons('')
+    this.lessons$ = this.levelsStore.getSearchLessons('')
   }
 }

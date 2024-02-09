@@ -5,16 +5,16 @@ import { BehaviorSubject, filter, first, map } from 'rxjs'
 
 import { Lesson } from '@courses/logic/models/lessons'
 import { MemoryCard } from '@courses/logic/models/memory'
-import { CoursesService } from '@courses/services/courses.store'
 import { FeedbackMessagesService } from '@shared/messages/services/feedback-messages.service'
 import { sendExternal } from '@superlikers/api/entries'
+import { LevelsStore } from '@courses/store/levels.store'
 
 @Injectable({
   providedIn: 'any'
 })
 export class MemoryService {
   router = inject(Router)
-  coursesService = inject(CoursesService)
+  levelsStore = inject(LevelsStore)
   messagesService = inject(FeedbackMessagesService)
 
   private cardsSubject$ = new BehaviorSubject<MemoryCard[]>([])
@@ -132,7 +132,7 @@ export class MemoryService {
       properties
     })
 
-    this.coursesService.updateLesson(lesson).subscribe(() => {
+    this.levelsStore.updateLesson(lesson).subscribe(() => {
       this.messagesService.showMemorySuccessMessage(opportunities).then(() => {
         this.router.navigate(nextLessonUrl ?? ['/home'])
       })

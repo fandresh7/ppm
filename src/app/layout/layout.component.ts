@@ -7,7 +7,6 @@ import { Observable } from 'rxjs'
 import { HeaderComponent } from './components/header/header.component'
 import { SidebarComponent } from './components/sidebar/sidebar.component'
 import { SidebarService } from './services/sidebar.service'
-import { CoursesService } from '@courses/services/courses.store'
 import { ParticipantService } from '@participant/services/participant.service'
 
 @Component({
@@ -19,7 +18,6 @@ import { ParticipantService } from '@participant/services/participant.service'
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class LayoutComponent {
-  coursesService = inject(CoursesService)
   participantService = inject(ParticipantService)
 
   sidebar$: Observable<boolean>

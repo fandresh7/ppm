@@ -12,8 +12,8 @@ import { pdfDefaultOptions } from 'ngx-extended-pdf-viewer'
 
 import { Lesson } from '@courses/logic/models/lessons'
 import { sendExternal } from '@superlikers/api/entries'
-import { CoursesService } from '@courses/services/courses.store'
 import { SubmitButtonComponent } from '@shared/components/submit-button/submit-button.component'
+import { LevelsStore } from '@courses/store/levels.store'
 
 @Component({
   selector: 'app-infografia',
@@ -24,7 +24,7 @@ import { SubmitButtonComponent } from '@shared/components/submit-button/submit-b
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class InfografiaComponent implements OnInit {
-  coursesService = inject(CoursesService)
+  levelsStore = inject(LevelsStore)
 
   router = inject(Router)
 
@@ -67,7 +67,7 @@ export class InfografiaComponent implements OnInit {
 
       const nextLessonUrl = this.lesson.nextLessonUrl ?? ['/home']
 
-      this.coursesService.updateLesson(this.lesson).subscribe(() => {
+      this.levelsStore.updateLesson(this.lesson).subscribe(() => {
         this.router.navigate(nextLessonUrl)
       })
     })

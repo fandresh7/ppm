@@ -17,7 +17,7 @@ import { VgBufferingModule } from '@videogular/ngx-videogular/buffering'
 
 import { Lesson, LessonType } from '@courses/logic/models/lessons'
 import { sendExternal } from '@superlikers/api/entries'
-import { CoursesService } from '@courses/services/courses.store'
+import { LevelsStore } from '@courses/store/levels.store'
 
 @Component({
   selector: 'app-video',
@@ -32,7 +32,7 @@ import { CoursesService } from '@courses/services/courses.store'
   styleUrl: './video.component.css'
 })
 export class VideoComponent implements OnDestroy, OnChanges {
-  coursesService = inject(CoursesService)
+  levelsStore = inject(LevelsStore)
   router = inject(Router)
 
   preload = 'auto'
@@ -113,7 +113,7 @@ export class VideoComponent implements OnDestroy, OnChanges {
 
   updateLesson() {
     if (!this.lesson) return
-    this.coursesService.updateLesson(this.lesson).subscribe(() => {
+    this.levelsStore.updateLesson(this.lesson).subscribe(() => {
       if (this.attempt) return
 
       const nextUrl = this.lesson?.nextLessonUrl ?? ['/home']

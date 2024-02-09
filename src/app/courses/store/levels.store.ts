@@ -152,4 +152,42 @@ export class LevelsStore {
       })
     )
   }
+
+  updateLessonAsFavorite(lesson: Lesson) {
+    const ls = localStorage.getItem('lessons')
+    let favoriteLessons = (!ls ? [] : JSON.parse(ls)) as number[]
+
+    const favorite = favoriteLessons.includes(lesson.id)
+    const updatedLesson = { ...lesson, isFavorite: !favorite }
+
+    if (favoriteLessons.includes(lesson.id)) {
+      favoriteLessons = favoriteLessons.filter(item => item !== lesson.id)
+    } else {
+      favoriteLessons.push(lesson.id)
+    }
+
+    localStorage.setItem('lessons', JSON.stringify(favoriteLessons))
+
+    return this.updateLesson(updatedLesson)
+  }
+
+  getSearchLessons(query: string) {
+    const value = query.trim().toLocaleLowerCase()
+
+    return this.levels$.pipe(
+      map(levels => {
+        if (value === '') return []
+        const lessons = getAllLessons(levels)
+
+        const filterLessons = lessons.filter(lesson => {
+          const name = lesson.name.toLocaleLowerCase()
+          const description = lesson.description?.toLocaleLowerCase()
+
+          return name.includes(value) || description?.includes(value)
+        })
+
+        return filterLessons
+      })
+    )
+  }
 }
