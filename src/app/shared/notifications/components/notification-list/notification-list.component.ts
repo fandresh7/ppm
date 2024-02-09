@@ -10,6 +10,7 @@ import { NotificationComponent } from '../notification/notification.component'
   styleUrl: './notification-list.component.css'
 })
 export class NotificationListComponent {
+  notifications: string[] = []
   isDropdownOpen = false
 
   toggleDropdown() {

@@ -5,7 +5,7 @@
   (click)="toggleDropdown()">
   <span
     class="absolute -right-1 -top-1 h-4 w-4 rounded-full bg-red-600 text-xs text-theme-white"
-    >1</span
+    >{{ notifications.length }}</span
   >
   <div
     class="group/notification h-full w-full rounded-full bg-theme-grey-dark transition-all duration-500 hover:bg-theme-black">
@@ -44,17 +44,18 @@
     [class.opacity-100]="isDropdownOpen"
     [class.opacity-0]="!isDropdownOpen">
     <div class="flex h-full w-full flex-col">
-      <header class="flex justify-between">
+      <header class="flex justify-between gap-4">
         <h2 class="m-0 text-lg font-bold">Notificaciones</h2>
         <button class="text-theme-blue hover:underline">
           Marcar todos como leído
         </button>
       </header>
       <ul class="mt-2 flex flex-col gap-2">
-        <app-notification></app-notification>
-        <app-notification></app-notification>
-        <app-notification></app-notification>
-        <app-notification></app-notification>
+        @for (notification of notifications; track notification) {
+          <app-notification></app-notification>
+        } @empty {
+          <p>No hay notificaciones disponibles.</p>
+        }
       </ul>
     </div>
   </div>
