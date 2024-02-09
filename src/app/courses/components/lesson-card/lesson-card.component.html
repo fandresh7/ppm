@@ -1,17 +1,21 @@
-<div class="bg-white rounded-xl p-4 block cursor-pointer">
+<div
+  class="bg-theme-grey rounded-xl p-4 block cursor-pointer"
+  [routerLink]="lesson.lessonUrl">
   <div class="flex flex-col gap-2">
     <img
-      class="w-full"
-      src="https://contenidospmm.s3.amazonaws.com/cursos/curso_4/posters/Thumbnail_Verticales_Unit1_Lesson5.2.png"
-      alt="" />
+      class="w-full rounded-xl"
+      [src]="lesson.image"
+      [alt]="lesson.name" />
     <h2 class="grow text-lg font-bold leading-5">
-      6. Botella: Variables de costos en la producción
+      {{ lesson.name }}
     </h2>
-    <p
-      class="bg-clock-icon bg-1.2 bg-left bg-no-repeat pl-6 text-theme-black-50">
-      11:34 min
-    </p>
-    <p><span class="font-bold">Curso: </span>IV. Operaciones Verticalizadas</p>
+    @if (showDuration()) {
+      <p
+        class="bg-clock-icon bg-1.2 bg-left bg-no-repeat pl-6 text-theme-black-50">
+        {{ duration }}
+      </p>
+    }
+    <p><span class="font-bold">Curso: </span>{{ lesson.courseName }}</p>
     <div class="flex flex-row gap-2 self-end">
       <app-favorite-button [lesson]="lesson"></app-favorite-button>
 

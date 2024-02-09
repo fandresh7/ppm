@@ -1,6 +1,10 @@
 import { Dialog } from '@angular/cdk/dialog'
 import { Overlay } from '@angular/cdk/overlay'
-import { Component, HostListener, OnInit } from '@angular/core'
+import { Component, HostListener, OnInit, inject } from '@angular/core'
+import { NavigationEnd, Router } from '@angular/router'
+
+import { filter } from 'rxjs'
+
 import { SearchModalComponent } from '../search-modal/search-modal.component'
 
 @Component({
@@ -11,6 +15,7 @@ import { SearchModalComponent } from '../search-modal/search-modal.component'
   styleUrl: './search.component.css'
 })
 export class SearchComponent implements OnInit {
+  router = inject(Router)
   isDialogOpen = false
 
   constructor(
@@ -22,6 +27,16 @@ export class SearchComponent implements OnInit {
     this.dialog.afterAllClosed.subscribe(() => {
       this.isDialogOpen = false
     })
+
+    // If the route change and the modal is open, close modal when page has changed
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => {
+        if (this.isDialogOpen) {
+          this.dialog.closeAll()
+          this.isDialogOpen = false
+        }
+      })
   }
 
   @HostListener('document:keydown', ['$event'])
