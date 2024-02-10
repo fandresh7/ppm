@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core'
-import { BehaviorSubject, defer, first, map } from 'rxjs'
+import { BehaviorSubject, defer, first, tap } from 'rxjs'
 
 import { SessionService } from '@auth/services/session.service'
 import { getParticipant } from '@superlikers/api/participant'
@@ -34,17 +34,16 @@ export class ParticipantService {
 
     const data = { participation: { avatar: url } }
 
-    this.sessionService
-      .update(data)
-      .pipe(
-        first(),
-        map(() => {
+    return this.sessionService.update(data).pipe(
+      first(),
+      tap(response => {
+        if (response.success) {
           const newParticipant = structuredClone(participant)
           newParticipant.avatar = url
 
           this.participant = newParticipant
-        })
-      )
-      .subscribe()
+        }
+      })
+    )
   }
 }

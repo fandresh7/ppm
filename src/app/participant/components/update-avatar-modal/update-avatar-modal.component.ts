@@ -30,6 +30,7 @@ export class UpdateAvatarModalComponent {
   imageUrl: string | ArrayBuffer | null = null
   image: File | null = null
   loading = false
+  error = ''
 
   form: FormGroup = this.fb.group({
     avatar: [null, [Validators.required]]
@@ -70,7 +71,14 @@ export class UpdateAvatarModalComponent {
 
     const url = initialPath + '/' + photoId + '/' + name
 
-    this.participantService.updateAvatar(url)
+    this.participantService.updateAvatar(url).subscribe(response => {
+      if (!response.success && response.message) {
+        this.error = response.message
+        return
+      }
+
+      this.dialogRef.close()
+    })
   }
 
   onSubmit() {
@@ -95,7 +103,6 @@ export class UpdateAvatarModalComponent {
         avatarControl.setErrors({ customError: message })
       } else {
         this.updateParticipantAvatar(location)
-        this.dialogRef.close()
       }
 
       this.loading = false

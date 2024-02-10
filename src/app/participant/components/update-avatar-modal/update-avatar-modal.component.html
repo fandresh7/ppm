@@ -39,6 +39,10 @@
       <span class="text-sm text-theme-red">Debes subir una foto</span>
     }
 
+    @if (error) {
+      <span class="text-sm text-theme-red"> Debes actualizar tu perfil</span>
+    }
+
     @if (form.get('avatar')?.hasError('customError')) {
       <span class="text-sm text-theme-red">
         {{ form.get('avatar')?.getError('customError') }}
