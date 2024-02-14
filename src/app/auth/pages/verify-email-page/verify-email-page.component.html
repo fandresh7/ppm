@@ -1,1 +1,110 @@
-<p>verify-email-page works!</p>
+<section
+  class="relative grid place-items-center bg-[#eeeeee] w-full h-screen p-6">
+  <img
+    class="z-0 absolute right-0 top-10 w-[500px] md:w-[50%] max-w-full md:top-0 md:bottom-0 my-auto"
+    src="https://superlikers-themes.s3.amazonaws.com/ppmu/mail/email_notification/img-verificacion.png"
+    alt="Verificar Email" />
+
+  @if (email$ | async; as email) {
+    <article
+      class="z-10 rounded-2xl p-6 flex flex-col gap-4 bg-white max-w-xl text-center">
+      <a
+        class="text-right cursor-pointer whitespace-nowrap text-theme-blue transition-colors duration-200 hover:text-theme-blue/75 hover:underline"
+        (click)="logout()">
+        Cerrar Sesión
+      </a>
+
+      <h1 class="font-bold text-xl">¡Confirma tu registro!</h1>
+      <div>
+        <p>A tu correo electrónico te llegará un código de 6 dígitos.</p>
+        <p>{{ email }}</p>
+      </div>
+
+      <a
+        class="cursor-pointer whitespace-nowrap text-theme-blue transition-colors duration-200 hover:text-theme-blue/75 hover:underline"
+        (click)="switchFrom()">
+        Cambiar o reenviar
+      </a>
+
+      @if (showForm === 'sendCodeForm') {
+        <form
+          class="flex flex-col gap-2"
+          [formGroup]="sendCodeform"
+          (ngSubmit)="sendCode()">
+          <label
+            class="font-bold text-left"
+            for="token_input">
+            Ingresa tu código de 6 dígitos
+          </label>
+
+          <input
+            class="input"
+            type="text"
+            id="token_input"
+            formControlName="token" />
+
+          @if (
+            sendCodeform.controls['token'].touched &&
+            sendCodeform.controls['token'].errors
+          ) {
+            <p class="text-sm text-theme-red">
+              Debes ingresar un código válido.
+            </p>
+          }
+
+          <app-submit-button
+            type="submit"
+            [isLoading]="loading">
+            Enviar
+          </app-submit-button>
+        </form>
+
+        <p class="text-sm">
+          Si no recibes el código revisa tu direccion de correo de nuevo y
+          revisa la bandeja correo no deseado. Usar un código diferente al
+          enviado a tu correo electrónico no será válido y no te permitirá
+          ingresar.
+        </p>
+      }
+
+      @if (showForm === 'resetForm') {
+        <form
+          class="flex flex-col gap-2"
+          [formGroup]="resetForm"
+          (ngSubmit)="resendEmail()">
+          <p class="font-bold text-lg">
+            Si aún no te ha llegado tu código o si no reconoces el correo
+            electrónico cámbialo y has clic en reenviar
+          </p>
+
+          <input
+            class="input"
+            type="email"
+            id="email"
+            formControlName="email" />
+
+          @if (
+            resetForm.controls['email'].touched &&
+            resetForm.controls['email'].errors
+          ) {
+            <p class="text-sm text-theme-red">
+              Debes ingresar un correo electrónico válido.
+            </p>
+          }
+
+          <app-submit-button
+            type="submit"
+            [isLoading]="loading">
+            Reenviar
+          </app-submit-button>
+
+          <a
+            class="text-right cursor-pointer whitespace-nowrap text-theme-blue transition-colors duration-200 hover:text-theme-blue/75 hover:underline"
+            (click)="cancel()">
+            Cancelar reenvío
+          </a>
+        </form>
+      }
+    </article>
+  }
+</section>

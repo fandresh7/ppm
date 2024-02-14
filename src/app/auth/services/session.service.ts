@@ -4,9 +4,11 @@ import { defer, first } from 'rxjs'
 
 import {
   checkRequirements,
+  confirmEmail,
   getLoginForm,
   login,
-  logout
+  logout,
+  resendEmail
 } from '@superlikers/api/session'
 
 import {
@@ -47,5 +49,13 @@ export class SessionService {
 
   requirements() {
     return defer(() => checkRequirements())
+  }
+
+  confirmEmail(token: string) {
+    return defer(() => confirmEmail(token))
+  }
+
+  resendCode(email: string) {
+    return defer(() => resendEmail(email))
   }
 }

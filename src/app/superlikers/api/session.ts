@@ -3,6 +3,7 @@ import {
   LoginFormData,
   LoginParams,
   LoginResponse,
+  VerifyEmailResponse,
   loginRequirementsResponse
 } from '../models/session'
 
@@ -78,6 +79,42 @@ export const checkRequirements = async () => {
   )
 
   const result = (await response.json()) as loginRequirementsResponse
+
+  return result
+}
+
+export const confirmEmail = async (token: string) => {
+  const response: Response = await fetch(
+    `${baseUrl}/registrations/confirm_email`,
+    {
+      method: 'POST',
+      body: JSON.stringify({ token }),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include'
+    }
+  )
+
+  const result = (await response.json()) as VerifyEmailResponse
+
+  return result
+}
+
+export const resendEmail = async (email: string) => {
+  const response: Response = await fetch(
+    `${baseUrl}/registrations/reset_email_verify_token`,
+    {
+      method: 'POST',
+      body: JSON.stringify({ email }),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include'
+    }
+  )
+
+  const result = await response.json()
 
   return result
 }

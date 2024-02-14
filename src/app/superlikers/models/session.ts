@@ -20,3 +20,10 @@ export interface loginRequirementsResponse {
   redirect_page: string
   mesage: string
 }
+
+export interface VerifyEmailResponse {
+  state: string
+  allowed: boolean
+  redirect_page: string
+  message: string
+}
