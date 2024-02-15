@@ -17,11 +17,17 @@ import { certificateSliderOptions } from '@courses/utils/swipers'
 import { CertificateCardComponent } from '@courses/components/certificate-card/certificate-card.component'
 import { LevelsStore } from '@courses/store/levels.store'
 import { LoadingService } from '@shared/loading/loading.service'
+import { LoadingCertificateCardComponent } from '@courses/components/loading/loading-certificate-card/loading-certificate-card.component'
 
 @Component({
   selector: 'app-certificates',
   standalone: true,
-  imports: [CertificateCardComponent, BreadcrumbComponent, AsyncPipe],
+  imports: [
+    CertificateCardComponent,
+    BreadcrumbComponent,
+    AsyncPipe,
+    LoadingCertificateCardComponent
+  ],
   templateUrl: './certificates.component.html',
   styleUrl: './certificates.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

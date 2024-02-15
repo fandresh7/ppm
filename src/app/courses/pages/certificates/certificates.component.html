@@ -25,7 +25,18 @@
     init="false">
     @if (data$ | async; as data) {
       @if (data.loading) {
-        <p>loading</p>
+        <swiper-slide>
+          <app-loading-certificate-card></app-loading-certificate-card>
+        </swiper-slide>
+        <swiper-slide>
+          <app-loading-certificate-card></app-loading-certificate-card>
+        </swiper-slide>
+        <swiper-slide>
+          <app-loading-certificate-card></app-loading-certificate-card>
+        </swiper-slide>
+        <swiper-slide>
+          <app-loading-certificate-card></app-loading-certificate-card>
+        </swiper-slide>
       } @else {
         @for (course of data.completeCourses; track course.id) {
           <swiper-slide class="p-1">
@@ -46,7 +57,18 @@
     init="false">
     @if (data$ | async; as data) {
       @if (data.loading) {
-        <p>Loading</p>
+        <swiper-slide>
+          <app-loading-certificate-card></app-loading-certificate-card>
+        </swiper-slide>
+        <swiper-slide>
+          <app-loading-certificate-card></app-loading-certificate-card>
+        </swiper-slide>
+        <swiper-slide>
+          <app-loading-certificate-card></app-loading-certificate-card>
+        </swiper-slide>
+        <swiper-slide>
+          <app-loading-certificate-card></app-loading-certificate-card>
+        </swiper-slide>
       } @else {
         @for (course of data.inProgressCourses; track course.id) {
           <swiper-slide class="p-1">

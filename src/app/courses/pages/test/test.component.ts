@@ -26,6 +26,7 @@ import { RadioComponent } from '@shared/features/forms/components/radio/radio.co
 import { FeedbackMessagesService } from '@shared/messages/services/feedback-messages.service'
 import { TestService } from '@courses/services/test.service'
 import Swiper from 'swiper'
+import { LoadingTestComponent } from '@courses/components/loading/loading-test/loading-test.component'
 
 @Component({
   selector: 'app-test',
@@ -37,7 +38,8 @@ import Swiper from 'swiper'
     AsyncPipe,
     JsonPipe,
     CheckboxGroupComponent,
-    RadioComponent
+    RadioComponent,
+    LoadingTestComponent
   ],
   templateUrl: './test.component.html',
   styleUrl: './test.component.css',

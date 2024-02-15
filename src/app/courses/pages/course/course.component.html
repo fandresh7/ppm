@@ -5,7 +5,7 @@
 
 @if (data$ | async; as data) {
   @if (data.loading) {
-    <p>loading</p>
+    <app-loading-course></app-loading-course>
   } @else {
     <section
       class="scroll-smooth relative grid-cols-1 grid xl:grid-cols-[8fr_4fr] mt-4 gap-4">

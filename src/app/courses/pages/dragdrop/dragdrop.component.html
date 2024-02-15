@@ -6,7 +6,11 @@
   <article class="bg-white rounded-xl p-6">
     @if (data$ | async; as data) {
       @if (data.loading) {
-        <p>Loading</p>
+        <div class="animate-pulse flex flex-col gap-4">
+          <div class="w-full h-[30px] bg-gray-300"></div>
+          <div class="w-full h-[60px] bg-gray-300"></div>
+          <div class="w-full h-[200px] bg-gray-300"></div>
+        </div>
       } @else {
         <ng-container
           *ngComponentOutlet="

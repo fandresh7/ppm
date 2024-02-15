@@ -7,7 +7,7 @@
       @if (data$ | async; as data) {
         @if (data.loading) {
           <swiper-slide>
-            <p>Loading</p>
+            <app-loading-test></app-loading-test>
           </swiper-slide>
         } @else {
           <swiper-slide>

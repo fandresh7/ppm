@@ -14,6 +14,7 @@ import { AsyncPipe } from '@angular/common'
 import { RoundedProgressComponent } from '@courses/components/rounded-progress/rounded-progress.component'
 import { BlogComponent } from '@shared/features/blog/blog.component'
 import { LoadingService } from '@shared/loading/loading.service'
+import { LoadingCourseComponent } from '@courses/components/loading/loading-course/loading-course.component'
 
 type ContentType = 'lessons' | 'comments' | 'resources'
 
@@ -34,7 +35,8 @@ interface PageData {
     InfografiaComponent,
     LessonStateCardComponent,
     RoundedProgressComponent,
-    BlogComponent
+    BlogComponent,
+    LoadingCourseComponent
   ],
   templateUrl: './course.component.html',
   styleUrl: './course.component.css'

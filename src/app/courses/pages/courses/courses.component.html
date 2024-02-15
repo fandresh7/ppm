@@ -6,7 +6,14 @@
 <section class="grid mt-10 grid-cols-auto2 gap-4">
   @if (data$ | async; as data) {
     @if (data.loading) {
-      <p>Loading</p>
+      <app-loading-card></app-loading-card>
+      <app-loading-card></app-loading-card>
+      <app-loading-card></app-loading-card>
+      <app-loading-card></app-loading-card>
+      <app-loading-card></app-loading-card>
+      <app-loading-card></app-loading-card>
+      <app-loading-card></app-loading-card>
+      <app-loading-card></app-loading-card>
     } @else {
       @for (course of data.courses; track course.id) {
         <app-course-card [course]="course"></app-course-card>
