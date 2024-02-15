@@ -18,6 +18,7 @@ import { VgBufferingModule } from '@videogular/ngx-videogular/buffering'
 import { Lesson, LessonType } from '@courses/logic/models/lessons'
 import { sendExternal } from '@superlikers/api/entries'
 import { LevelsStore } from '@courses/store/levels.store'
+import { DomSanitizer } from '@angular/platform-browser'
 
 @Component({
   selector: 'app-video',
@@ -34,6 +35,7 @@ import { LevelsStore } from '@courses/store/levels.store'
 export class VideoComponent implements OnDestroy, OnChanges {
   levelsStore = inject(LevelsStore)
   router = inject(Router)
+  sanitizer = inject(DomSanitizer)
 
   preload = 'auto'
   api: VgApiService = new VgApiService()
@@ -47,6 +49,12 @@ export class VideoComponent implements OnDestroy, OnChanges {
   private intervalId!: any
 
   private hasFinish = false
+
+  get subtitles() {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(
+      this.lesson?.VideoContent?.subtitles ?? ''
+    )
+  }
 
   onPlayerReady(source: VgApiService) {
     this.api = source

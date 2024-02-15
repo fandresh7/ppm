@@ -25,5 +25,14 @@
     class="w-full"
     [vgMedia]="$any(media)"
     #media
-    id="singleVideo"></video>
+    id="singleVideo">
+    @if (subtitles) {
+      <track
+        kind="subtitles"
+        label="Español"
+        [src]="subtitles"
+        srclang="es"
+        default />
+    }
+  </video>
 </vg-player>
