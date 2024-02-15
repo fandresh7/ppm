@@ -37,7 +37,8 @@
       <div class="flex gap-2">
         <app-favorite-button
           [lesson]="lesson"
-          (click)="preventRouteChange($event)"></app-favorite-button>
+          (click)="preventRouteChange($event)">
+        </app-favorite-button>
         <app-download-button
           [name]="lesson.name"
           [file]="
@@ -45,7 +46,8 @@
             lesson.InfografiaContent?.infografia ||
             ''
           "
-          (click)="preventRouteChange($event)"></app-download-button>
+          (click)="preventRouteChange($event)">
+        </app-download-button>
       </div>
     </div>
   </a>

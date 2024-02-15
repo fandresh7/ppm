@@ -1,0 +1,15 @@
+<article
+  class="bg-theme-grey rounded-lg flex flex-row gap-4 justify-between items-center p-2">
+  <div class="bg-file-icon w-7 h-5 bg-no-repeat bg-center"></div>
+  <h3 class="text-left w-full">{{ resource.name }}</h3>
+  <div class="flex flex-row gap-2">
+    <app-favorite-button
+      [resource]="resource"
+      (click)="preventRouteChange($event)">
+    </app-favorite-button>
+    <app-download-button
+      [name]="resource.name"
+      [file]="resource.file">
+    </app-download-button>
+  </div>
+</article>

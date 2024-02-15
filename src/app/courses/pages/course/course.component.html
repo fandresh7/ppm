@@ -108,7 +108,11 @@
             }
 
             @if (content === 'resources') {
-              <div class="flex flex-col gap-4"></div>
+              <div class="flex flex-col gap-4">
+                @for (resource of data.lesson?.resources; track resource) {
+                  <app-resource-card [resource]="resource"></app-resource-card>
+                }
+              </div>
             }
           </div>
         </div>

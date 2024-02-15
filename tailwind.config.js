@@ -66,7 +66,8 @@ module.exports = {
         'download-icon-active': 'url(/assets/icons/i-download-active.svg)',
         'resource-icon': 'url(/assets/icons/resource.svg)',
 
-        'button-icon': 'url(/assets/icons/i-button.svg)'
+        'button-icon': 'url(/assets/icons/i-button.svg)',
+        'file-icon': 'url(/assets/icons/file.svg)'
       },
       backgroundSize: {
         50: '50%',
