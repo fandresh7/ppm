@@ -90,7 +90,8 @@ export const confirmEmail = async (token: string) => {
       method: 'POST',
       body: JSON.stringify({ token }),
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
       },
       credentials: 'include'
     }
@@ -108,7 +109,8 @@ export const resendEmail = async (email: string) => {
       method: 'POST',
       body: JSON.stringify({ email }),
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
       },
       credentials: 'include'
     }

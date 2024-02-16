@@ -20,13 +20,13 @@
         <p>{{ email }}</p>
       </div>
 
-      <a
-        class="cursor-pointer whitespace-nowrap text-theme-blue transition-colors duration-200 hover:text-theme-blue/75 hover:underline"
-        (click)="switchFrom()">
-        Cambiar o reenviar
-      </a>
-
       @if (showForm === 'sendCodeForm') {
+        <a
+          class="cursor-pointer whitespace-nowrap text-theme-blue transition-colors duration-200 hover:text-theme-blue/75 hover:underline"
+          (click)="switchFrom()">
+          Cambiar o reenviar
+        </a>
+
         <form
           class="flex flex-col gap-2"
           [formGroup]="sendCodeform"
@@ -100,7 +100,7 @@
 
           <a
             class="text-right cursor-pointer whitespace-nowrap text-theme-blue transition-colors duration-200 hover:text-theme-blue/75 hover:underline"
-            (click)="cancel()">
+            (click)="switchFrom()">
             Cancelar reenvío
           </a>
         </form>

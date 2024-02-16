@@ -55,7 +55,11 @@ export class VerifyEmailPageComponent {
   }
 
   switchFrom() {
-    this.showForm = 'resetForm'
+    if (this.showForm === 'resetForm') {
+      this.showForm = 'sendCodeForm'
+    } else {
+      this.showForm = 'resetForm'
+    }
   }
 
   sendCode() {
