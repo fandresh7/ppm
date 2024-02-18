@@ -1,0 +1,10 @@
+<swiper-container
+  #slider
+  class="relative h-full w-full"
+  init="false">
+  @for (course of courses; track course.id) {
+    <swiper-slide>
+      <app-course-card [course]="course"></app-course-card>
+    </swiper-slide>
+  }
+</swiper-container>

@@ -1,0 +1,12 @@
+<swiper-container
+  #slider
+  class="relative h-full w-full"
+  init="false">
+  @for (course of courses; track course.id) {
+    <swiper-slide>
+      <img
+        [src]="course.certificadoImage"
+        [alt]="course.name" />
+    </swiper-slide>
+  }
+</swiper-container>

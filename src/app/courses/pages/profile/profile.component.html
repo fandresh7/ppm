@@ -1,27 +1,60 @@
-<div class="flex flex-col gap-4">
-  @if (participant$ | async; as participant) {
-    <div class="bg-white rounded-xl p-6">
-      <div class="flex flex-col justify-start items-center gap-4">
-        <app-avatar></app-avatar>
+<div class="flex flex-col gap-4 md:flex-row md:items-start">
+  @if (data$ | async; as data) {
+    <article class="bg-white rounded-xl p-6 md:w-72">
+      <div
+        class="flex flex-row flex-wrap sm:flex-nowrap items-center gap-4 md:flex-col">
+        <div
+          class="flex flex-col items-center justify-center gap-1 w-64 mx-auto">
+          <app-avatar></app-avatar>
+          <h1 class="font-bold text-xl">
+            {{ data.participant['nombre-completo'] }}
+          </h1>
+        </div>
 
-        <h1 class="font-bold text-2xl">{{ participant['nombre-completo'] }}</h1>
-        <div
-          class="bg-theme-grey p-4 flex flex-col justify-start gap-2 rounded-xl w-full">
-          <p>Rol</p>
-          <p class="font-bold">{{ participant.cargo }}</p>
+        <div class="grow flex flex-col justify-between gap-4 w-full">
+          <div
+            class="bg-theme-grey px-4 py-2 flex flex-col justify-start gap-2 rounded-xl w-full">
+            <p>
+              Rol: <span class="font-bold">{{ data.participant.cargo }}</span>
+            </p>
+          </div>
+          <div
+            class="bg-theme-grey px-4 py-2 flex flex-col justify-start gap-2 rounded-xl w-full">
+            <p>
+              BU: <span class="font-bold">{{ data.participant }}</span>
+            </p>
+          </div>
+          <a class="button text-center rounded-3xl">Editar perfil</a>
         </div>
-        <div
-          class="bg-theme-grey p-4 flex flex-col justify-start gap-2 rounded-xl w-full">
-          <p>VP</p>
-          <p class="font-bold">{{ participant.vp }}</p>
-        </div>
-        <div
-          class="bg-theme-grey p-4 flex flex-col justify-start gap-2 rounded-xl w-full">
-          <p>ZBS</p>
-          <p class="font-bold">{{ participant.zbs }}</p>
-        </div>
-        <a class="button">Editar perfil</a>
       </div>
-    </div>
+    </article>
+
+    <section class="flex flex-col gap-4 w-full md:w-[calc(100%-19rem)]">
+      <article
+        class="rounded-xl bg-theme-grey-dark p-6 flex flex-col gap-4 w-full">
+        <h3 class="font-bold text-lg">Cursos en progreso</h3>
+        <app-courses-slider
+          [courses]="data.inProgressCourses"
+          [sliderOptions]="swiperOptions">
+        </app-courses-slider>
+      </article>
+
+      <article class="rounded-xl bg-white p-6 flex flex-col gap-4 w-full">
+        <h3 class="font-bold text-lg">Insignias conseguidas</h3>
+        <app-courses-slider
+          [courses]="data.inProgressCourses"
+          [sliderOptions]="swiperOptions">
+        </app-courses-slider>
+      </article>
+
+      <article
+        class="rounded-xl bg-theme-grey-dark p-6 flex flex-col gap-4 w-full">
+        <h3 class="font-bold text-lg">Certificados obtenidos</h3>
+        <app-certificate-slider
+          [courses]="data.completeCourses"
+          [sliderOptions]="swiperOptions">
+        </app-certificate-slider>
+      </article>
+    </section>
   }
 </div>

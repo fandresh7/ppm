@@ -1,6 +1,6 @@
 import { SwiperOptions } from 'swiper/types'
 
-const defaultOptions: SwiperOptions = {
+export const defaultOptions: SwiperOptions = {
   slidesPerView: 1,
   centeredSlides: false,
   spaceBetween: 20,
@@ -36,6 +36,27 @@ export const homeSliderOptions: SwiperOptions = {
     },
     1060: {
       slidesPerView: 3
+    },
+    1360: {
+      slidesPerView: 3
+    }
+  }
+}
+
+export const ProfileCustomSliderOptions: SwiperOptions = {
+  ...defaultOptions,
+  breakpoints: {
+    0: {
+      slidesPerView: 1
+    },
+    620: {
+      slidesPerView: 2
+    },
+    768: {
+      slidesPerView: 1
+    },
+    1000: {
+      slidesPerView: 2
     },
     1360: {
       slidesPerView: 3
