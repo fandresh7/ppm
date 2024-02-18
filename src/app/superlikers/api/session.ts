@@ -4,7 +4,9 @@ import {
   LoginParams,
   LoginResponse,
   VerifyEmailResponse,
-  loginRequirementsResponse
+  loginRequirementsResponse,
+  ResetEmailVerifyTokenResponse,
+  ValidateEmailTokenResponse
 } from '../models/session'
 
 export const getLoginForm = async () => {
@@ -83,7 +85,45 @@ export const checkRequirements = async () => {
   return result
 }
 
-export const confirmEmail = async (token: string) => {
+export const resetEmailVerifyToken = async (email: string) => {
+  const response: Response = await fetch(
+    `${baseUrl}/registrations/reset_email_verify_token`,
+    {
+      method: 'POST',
+      body: JSON.stringify({ email }),
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      credentials: 'include'
+    }
+  )
+
+  const result = (await response.json()) as ResetEmailVerifyTokenResponse
+
+  return result
+}
+
+export const ValidateEmailToken = async (token: string) => {
+  const response: Response = await fetch(
+    `${baseUrl}/registrations/validate_email_token`,
+    {
+      method: 'POST',
+      body: JSON.stringify({ token }),
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      credentials: 'include'
+    }
+  )
+
+  const result = (await response.json()) as ValidateEmailTokenResponse
+
+  return result
+}
+
+export const verifyEmail = async (token: string) => {
   const response: Response = await fetch(
     `${baseUrl}/registrations/confirm_email`,
     {
@@ -98,25 +138,6 @@ export const confirmEmail = async (token: string) => {
   )
 
   const result = (await response.json()) as VerifyEmailResponse
-
-  return result
-}
-
-export const resendEmail = async (email: string) => {
-  const response: Response = await fetch(
-    `${baseUrl}/registrations/reset_email_verify_token`,
-    {
-      method: 'POST',
-      body: JSON.stringify({ email }),
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json'
-      },
-      credentials: 'include'
-    }
-  )
-
-  const result = await response.json()
 
   return result
 }

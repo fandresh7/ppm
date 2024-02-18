@@ -20,7 +20,7 @@
         <p>{{ email }}</p>
       </div>
 
-      @if (showForm === 'sendCodeForm') {
+      @if (showForm === 'sendTokenForm') {
         <a
           class="cursor-pointer whitespace-nowrap text-theme-blue transition-colors duration-200 hover:text-theme-blue/75 hover:underline"
           (click)="switchFrom()">
@@ -29,8 +29,8 @@
 
         <form
           class="flex flex-col gap-2"
-          [formGroup]="sendCodeform"
-          (ngSubmit)="sendCode()">
+          [formGroup]="sendTokenForm"
+          (submit)="sendToken()">
           <label
             class="font-bold text-left"
             for="token_input">
@@ -44,12 +44,16 @@
             formControlName="token" />
 
           @if (
-            sendCodeform.controls['token'].touched &&
-            sendCodeform.controls['token'].errors
+            sendTokenForm.controls['token'].touched &&
+            sendTokenForm.controls['token'].errors
           ) {
             <p class="text-sm text-theme-red">
               Debes ingresar un código válido.
             </p>
+          }
+
+          @if (sendTokenFormError) {
+            <p class="text-sm text-theme-red">{{ sendTokenFormError }}</p>
           }
 
           <app-submit-button
@@ -67,11 +71,11 @@
         </p>
       }
 
-      @if (showForm === 'resetForm') {
+      @if (showForm === 'resendCodeForm') {
         <form
           class="flex flex-col gap-2"
-          [formGroup]="resetForm"
-          (ngSubmit)="resendEmail()">
+          [formGroup]="resendCodeForm"
+          (submit)="resendCode()">
           <p class="font-bold text-lg">
             Si aún no te ha llegado tu código o si no reconoces el correo
             electrónico cámbialo y has clic en reenviar
@@ -84,12 +88,16 @@
             formControlName="email" />
 
           @if (
-            resetForm.controls['email'].touched &&
-            resetForm.controls['email'].errors
+            resendCodeForm.controls['email'].touched &&
+            resendCodeForm.controls['email'].errors
           ) {
             <p class="text-sm text-theme-red">
               Debes ingresar un correo electrónico válido.
             </p>
+          }
+
+          @if (resendCodeFormError) {
+            <p class="text-sm text-theme-red">{{ resendCodeFormError }}</p>
           }
 
           <app-submit-button

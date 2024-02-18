@@ -21,9 +21,17 @@ export interface loginRequirementsResponse {
   mesage: string
 }
 
+export interface ResetEmailVerifyTokenResponse {
+  state: string
+  message: string
+}
+
+export interface ValidateEmailTokenResponse {
+  state: string
+  valid: boolean
+}
+
 export interface VerifyEmailResponse {
   state: string
-  allowed: boolean
-  redirect_page: string
   message: string
 }

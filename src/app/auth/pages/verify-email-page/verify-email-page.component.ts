@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common'
-import { Component, inject } from '@angular/core'
+import { Component, OnDestroy, OnInit, inject } from '@angular/core'
 import {
   FormBuilder,
   FormGroup,
@@ -7,10 +7,21 @@ import {
   Validators
 } from '@angular/forms'
 import { Router } from '@angular/router'
+
+import {
+  Observable,
+  Subscription,
+  debounceTime,
+  filter,
+  map,
+  switchMap,
+  tap
+} from 'rxjs'
+
 import { SessionService } from '@auth/services/session.service'
+import { VerifyEmailService } from '@auth/services/verify-email.service'
 import { ParticipantService } from '@participant/services/participant.service'
 import { SubmitButtonComponent } from '@shared/components/submit-button/submit-button.component'
-import { Observable, map, tap } from 'rxjs'
 
 @Component({
   selector: 'app-verify-email-page',
@@ -19,33 +30,109 @@ import { Observable, map, tap } from 'rxjs'
   templateUrl: './verify-email-page.component.html',
   styleUrl: './verify-email-page.component.css'
 })
-export class VerifyEmailPageComponent {
+export class VerifyEmailPageComponent implements OnInit, OnDestroy {
   router = inject(Router)
   fb = inject(FormBuilder)
 
   sessionService = inject(SessionService)
+  verifyEmailService = inject(VerifyEmailService)
   participantService = inject(ParticipantService)
 
   email$!: Observable<string>
 
   loading = false
-  showForm: 'sendCodeForm' | 'resetForm' = 'sendCodeForm'
+  showForm: 'sendTokenForm' | 'resendCodeForm' = 'sendTokenForm'
 
-  sendCodeform: FormGroup = this.fb.group({
+  sendTokenFormError = ''
+  sendTokenForm: FormGroup = this.fb.group({
     token: ['', Validators.required]
   })
 
-  resetForm: FormGroup = this.fb.group({
+  resendCodeFormError = ''
+  resendCodeForm: FormGroup = this.fb.group({
     email: ['', [Validators.required, Validators.email]]
   })
+
+  validateTokenSubscription!: Subscription
 
   constructor() {
     this.email$ = this.participantService.participant$.pipe(
       tap(participant =>
-        this.resetForm.controls['email'].setValue(participant.email)
+        this.resendCodeForm.controls['email'].setValue(participant.email)
       ),
       map(participant => participant.email)
     )
+  }
+
+  ngOnInit() {
+    this.validateTokenSubscription = this.validateToken().subscribe()
+  }
+
+  ngOnDestroy() {
+    this.validateTokenSubscription.unsubscribe()
+  }
+
+  validateToken() {
+    return this.sendTokenForm.valueChanges.pipe(
+      debounceTime(300),
+      map(formValue => formValue.token),
+      filter(token => !!token),
+      switchMap(token => {
+        return this.verifyEmailService.validateToken(token)
+      })
+    )
+  }
+
+  resendCode() {
+    if (this.resendCodeForm.invalid) {
+      this.resendCodeForm.markAllAsTouched()
+      return
+    }
+
+    this.loading = true
+    const email = this.resendCodeForm.value.email.trim()
+
+    this.verifyEmailService.resendCode(email).subscribe({
+      next: response => {
+        this.loading = false
+
+        if (response.state === 'success') {
+          this.switchFrom()
+        } else {
+          this.resendCodeFormError = response.message
+        }
+      },
+      error: () => {
+        this.loading = false
+        this.resendCodeFormError = 'Ha ocurrido un error. Inténtelo más tarde.'
+      }
+    })
+  }
+
+  sendToken() {
+    if (this.sendTokenForm.invalid) {
+      this.sendTokenForm.markAllAsTouched()
+      return
+    }
+
+    this.loading = true
+    const token = this.sendTokenForm.value.token.trim()
+
+    this.verifyEmailService.sendToken(token).subscribe({
+      next: response => {
+        this.loading = false
+
+        if (response.state === 'success') {
+          this.router.navigate(['/home'])
+        } else {
+          this.sendTokenFormError = response.message
+        }
+      },
+      error: () => {
+        this.loading = false
+        this.sendTokenFormError = 'Ha ocurrido un error. Inténtelo más tarde.'
+      }
+    })
   }
 
   logout() {
@@ -55,42 +142,10 @@ export class VerifyEmailPageComponent {
   }
 
   switchFrom() {
-    if (this.showForm === 'resetForm') {
-      this.showForm = 'sendCodeForm'
+    if (this.showForm === 'sendTokenForm') {
+      this.showForm = 'resendCodeForm'
     } else {
-      this.showForm = 'resetForm'
+      this.showForm = 'sendTokenForm'
     }
-  }
-
-  sendCode() {
-    if (this.sendCodeform.invalid) {
-      this.sendCodeform.markAllAsTouched()
-      return
-    }
-
-    this.loading = true
-    const token = this.sendCodeform.value.token.trim()
-
-    this.sessionService.confirmEmail(token).subscribe(response => {
-      console.log({ sendcode: response })
-      this.loading = false
-    })
-  }
-
-  cancel() {}
-
-  resendEmail() {
-    if (this.resetForm.invalid) {
-      this.resetForm.markAllAsTouched()
-      return
-    }
-
-    this.loading = true
-    const email = this.resetForm.value.email.trim()
-
-    this.sessionService.resendCode(email).subscribe(response => {
-      console.log({ resendEmail: response })
-      this.loading = false
-    })
   }
 }
