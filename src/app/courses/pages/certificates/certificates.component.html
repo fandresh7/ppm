@@ -23,47 +23,55 @@
       </p>
     </div>
   </section>
-
-  <section
-    class="bg-theme-green rounded-xl p-4 pt-8 flex flex-col gap-0 md:w-4/12 lg:w-3/12 lg:pt-24">
-    <h3 class="lg:text-lg lg:mb-2">Progreso</h3>
-
-    <div
-      class="relative bg-white rounded-lg flex flex-row gap-4 items-center text-center justify-start p-4 md:flex-col md:justify-center md:items-center lg:py-12 lg:gap-0">
-      <p class="text-4xl lg:text-5xl">7 / 15</p>
-      <p class="text-2xl">Cursos terminados</p>
-      <img
-        class="absolute w-24 -top-8 right-0 lg:w-36 lg:-top-24 lg:right-8"
-        src="https://superlikers-themes.s3.amazonaws.com/ppmu/certificate_image2.png"
-        alt="" />
-    </div>
-  </section>
-
   @if (data$ | async; as data) {
-    <section class="md:w-[64%] lg:w-[73%]">
-      <section class="bg-theme-grey-dark flex flex-col gap-4 p-4 rounded-xl">
-        <h3 class="text-lg font-bold">Cursos en progreso</h3>
-        <app-courses-slider
-          [courses]="data.inProgressCourses"
-          [sliderOptions]="coursesSwiperOptions">
-        </app-courses-slider>
-      </section>
-      <button
-        class="button w-full mt-4 disabled:cursor-not-allowed"
-        disabled
-        [appTooltip]="masterTooltip">
-        Descarga tu certificado Master
-      </button>
-    </section>
+    @if (data.loading) {
+      <app-loading-certificate class="w-full"></app-loading-certificate>
+    } @else {
+      <section
+        class="bg-theme-green rounded-xl p-4 pt-8 flex flex-col gap-0 md:w-4/12 lg:w-3/12 lg:pt-24">
+        <h3 class="lg:text-lg lg:mb-2">Progreso</h3>
 
-    <section class="flex flex-col gap-4">
-      <h3 class="text-xl font-bold">Certificados obtenidos</h3>
-      <div class="grid grid-cols-2">
-        @for (course of data.completeCourses; track course.id) {
-          <app-certificate-card [course]="course"></app-certificate-card>
-        }
-      </div>
-    </section>
+        <div
+          class="relative bg-white rounded-lg flex flex-row gap-4 items-center text-center justify-start p-4 md:flex-col md:justify-center md:items-center lg:py-12 lg:gap-0">
+          <p class="text-4xl lg:text-5xl">
+            {{ data.completeCourses.length }} /
+            {{ data.completeCourses.length + data.inProgressCourses.length }}
+          </p>
+          <p class="text-2xl">Cursos terminados</p>
+          <img
+            class="absolute w-24 -top-8 right-0 lg:w-36 lg:-top-24 lg:right-8"
+            src="https://superlikers-themes.s3.amazonaws.com/ppmu/certificate_image2.png"
+            alt="" />
+        </div>
+      </section>
+
+      <section class="md:w-[64%] lg:w-[73%]">
+        <section class="bg-theme-grey-dark flex flex-col gap-4 p-4 rounded-xl">
+          <h3 class="text-lg font-bold">Cursos en progreso</h3>
+          <app-courses-slider
+            [courses]="data.inProgressCourses"
+            [sliderOptions]="coursesSwiperOptions">
+          </app-courses-slider>
+        </section>
+        <button
+          class="button w-full mt-4 disabled:cursor-not-allowed"
+          disabled
+          [appTooltip]="masterTooltip">
+          Descarga tu certificado Master
+        </button>
+      </section>
+
+      <section class="flex flex-col gap-4">
+        <h3 class="text-xl font-bold">Certificados obtenidos</h3>
+        <div class="grid grid-cols-2">
+          @for (course of data.completeCourses; track course.id) {
+            <app-certificate-card [course]="course"></app-certificate-card>
+          } @empty {
+            <p>No hay cursos terminados.</p>
+          }
+        </div>
+      </section>
+    }
   }
 </div>
 

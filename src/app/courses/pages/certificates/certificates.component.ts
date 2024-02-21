@@ -8,10 +8,10 @@ import { BreadcrumbComponent } from '@courses/components/breadcrumb/breadcrumb.c
 import { CertificateCardComponent } from '@courses/components/certificate-card/certificate-card.component'
 import { LevelsStore } from '@courses/store/levels.store'
 import { LoadingService } from '@shared/loading/loading.service'
-import { LoadingCertificateCardComponent } from '@courses/components/loading/loading-certificate-card/loading-certificate-card.component'
 import { CoursesSliderComponent } from '@courses/components/sliders/courses-slider/courses-slider.component'
 import { certificateCoursesSliderOptions } from '@courses/utils/swipers'
 import { TooltipDirective } from '@courses/directives/tooltip/tooltip.directive'
+import { LoadingCertificateComponent } from '@courses/components/loading/loading-certificate/loading-certificate.component'
 
 @Component({
   selector: 'app-certificates',
@@ -20,9 +20,9 @@ import { TooltipDirective } from '@courses/directives/tooltip/tooltip.directive'
     CertificateCardComponent,
     BreadcrumbComponent,
     AsyncPipe,
-    LoadingCertificateCardComponent,
     CoursesSliderComponent,
-    TooltipDirective
+    TooltipDirective,
+    LoadingCertificateComponent
   ],
   templateUrl: './certificates.component.html',
   styleUrl: './certificates.component.css',
