@@ -1,23 +1,17 @@
-import {
-  CUSTOM_ELEMENTS_SCHEMA,
-  Component,
-  ElementRef,
-  OnInit,
-  ViewChild,
-  inject
-} from '@angular/core'
+import { CUSTOM_ELEMENTS_SCHEMA, Component, inject } from '@angular/core'
 import { AsyncPipe } from '@angular/common'
 
 import { Observable, combineLatest, map } from 'rxjs'
-import Swiper from 'swiper'
 
 import { Course } from '@courses/logic/models/courses'
 import { BreadcrumbComponent } from '@courses/components/breadcrumb/breadcrumb.component'
-import { certificateSliderOptions } from '@courses/utils/swipers'
 import { CertificateCardComponent } from '@courses/components/certificate-card/certificate-card.component'
 import { LevelsStore } from '@courses/store/levels.store'
 import { LoadingService } from '@shared/loading/loading.service'
 import { LoadingCertificateCardComponent } from '@courses/components/loading/loading-certificate-card/loading-certificate-card.component'
+import { CoursesSliderComponent } from '@courses/components/sliders/courses-slider/courses-slider.component'
+import { certificateCoursesSliderOptions } from '@courses/utils/swipers'
+import { TooltipDirective } from '@courses/directives/tooltip/tooltip.directive'
 
 @Component({
   selector: 'app-certificates',
@@ -26,23 +20,19 @@ import { LoadingCertificateCardComponent } from '@courses/components/loading/loa
     CertificateCardComponent,
     BreadcrumbComponent,
     AsyncPipe,
-    LoadingCertificateCardComponent
+    LoadingCertificateCardComponent,
+    CoursesSliderComponent,
+    TooltipDirective
   ],
   templateUrl: './certificates.component.html',
   styleUrl: './certificates.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class CertificatesComponent implements OnInit {
+export class CertificatesComponent {
   levelsStore = inject(LevelsStore)
   loadingService = inject(LoadingService)
 
-  completeCoursesSwiperInstance!: Swiper
-  @ViewChild('completeCoursesSlide', { static: true })
-  completeCoursesSlide!: ElementRef
-
-  inProgressCoursesSwiperInstance!: Swiper
-  @ViewChild('inProgressCoursesSlide', { static: true })
-  inProgressCoursesSlide!: ElementRef
+  coursesSwiperOptions = certificateCoursesSliderOptions
 
   data$!: Observable<{
     completeCourses: Course[]
@@ -60,28 +50,5 @@ export class CertificatesComponent implements OnInit {
         return { completeCourses, inProgressCourses, loading }
       })
     )
-  }
-
-  ngOnInit() {
-    this.initializeCompleteCoursesSlide()
-    this.initializeInProgressCoursesSlide()
-  }
-
-  initializeCompleteCoursesSlide() {
-    this.completeCoursesSwiperInstance = Object.assign(
-      this.completeCoursesSlide.nativeElement,
-      certificateSliderOptions
-    )
-
-    this.completeCoursesSlide.nativeElement.initialize()
-  }
-
-  initializeInProgressCoursesSlide() {
-    this.inProgressCoursesSwiperInstance = Object.assign(
-      this.inProgressCoursesSlide.nativeElement,
-      certificateSliderOptions
-    )
-
-    this.inProgressCoursesSlide.nativeElement.initialize()
   }
 }

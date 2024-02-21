@@ -108,3 +108,24 @@ export const completeCoursesSliderOptions: SwiperOptions = {
     }
   }
 }
+
+export const certificateCoursesSliderOptions: SwiperOptions = {
+  ...defaultOptions,
+  breakpoints: {
+    0: {
+      slidesPerView: 1
+    },
+    620: {
+      slidesPerView: 2
+    },
+    768: {
+      slidesPerView: 1
+    },
+    1060: {
+      slidesPerView: 2
+    },
+    1360: {
+      slidesPerView: 3
+    }
+  }
+}
