@@ -36,6 +36,8 @@ export const getLessonStatus = (lesson: Lesson): LessonStatus => {
       return lesson.TestContent?.status ?? LessonStatus.Open
     case LessonType.Dragdrop:
       return lesson.DragdropContent?.status ?? LessonStatus.Open
+    case LessonType.Memory:
+      return lesson.MemoryContent?.status ?? LessonStatus.Open
     default:
       return LessonStatus.Open
   }

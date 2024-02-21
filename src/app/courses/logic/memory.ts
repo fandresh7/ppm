@@ -12,7 +12,7 @@ export const getMemory = async (category: string) => {
   if (!memory || !lesson) return
 
   const externals = await getExternals<CustomData>({
-    atype: memory.category,
+    atype: memory.external,
     view: 'show'
   })
 

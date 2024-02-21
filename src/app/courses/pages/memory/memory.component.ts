@@ -65,6 +65,8 @@ export class MemoryComponent {
       })
     )
 
+    this.lesson$ = this.data$.pipe(map(({ lesson }) => lesson))
+
     this.memoryService.validateAllMatch$
       .pipe(
         withLatestFrom(this.lesson$),
