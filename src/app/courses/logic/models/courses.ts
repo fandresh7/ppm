@@ -15,4 +15,5 @@ export interface Course {
   lessons?: Lesson[]
   duration?: string
   percentage?: number
+  requirements?: number[]
 }

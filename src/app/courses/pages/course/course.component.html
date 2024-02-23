@@ -60,6 +60,51 @@
             strokeColor="stroke-theme-grey-dark">
           </app-rounded-progress>
         </section>
+
+        <div class="w-full grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-4">
+          @if (data.requirementsCourses.length > 0) {
+            <section class="flex flex-col gap-4 w-full">
+              <h3 class="font-bold text-lg">
+                Conocimientos previos necesarios
+              </h3>
+              @for (course of data.requirementsCourses; track course.id) {
+                <app-course-state-card [course]="course">
+                </app-course-state-card>
+              }
+            </section>
+          }
+
+          <section class="flex flex-col gap-4 w-full">
+            <h3 class="font-bold text-lg">
+              Para ver este curso vas a necesitar
+            </h3>
+            <div
+              class="bg-white rounded-xl border-theme-grey-dark border-[1px] p-4 flex flex-row justify-between md:flex-wrap gap-2">
+              <div
+                class="w-full text-center flex flex-row gap-2 items-center justify-center">
+                <div
+                  class="w-7 h-7 rounded-full p-[6px] bg-gray-600 flex justify-center items-center">
+                  <img
+                    class="w-full"
+                    src="https://superlikers-themes.s3.amazonaws.com/ppmu/hours.svg"
+                    alt="" />
+                </div>
+                <p>2 horas de contenido</p>
+              </div>
+              <div
+                class="w-full text-center flex flex-row gap-2 items-center justify-center">
+                <div
+                  class="w-7 h-7 rounded-full p-[6px] bg-gray-600 flex justify-center items-center">
+                  <img
+                    class="w-full"
+                    src="https://superlikers-themes.s3.amazonaws.com/ppmu/practice_hours.svg"
+                    alt="" />
+                </div>
+                <p>12 horas de práctica</p>
+              </div>
+            </div>
+          </section>
+        </div>
       </section>
 
       <section>
@@ -82,12 +127,6 @@
                 Recursos
               </button>
             }
-
-            <button
-              class="button-grey pl-4 pr-4 flex-grow"
-              (click)="changeContent('comments')">
-              Comentarios
-            </button>
           </div>
           <div class="overflow-x-hidden overflow-y-auto pr-1 pb-1">
             @if (content === 'lessons') {
@@ -101,10 +140,6 @@
                   </app-lesson-state-card>
                 }
               </div>
-            }
-
-            @if (content === 'comments') {
-              <app-blog [tags]="[data.course?.category ?? '']"></app-blog>
             }
 
             @if (content === 'resources') {

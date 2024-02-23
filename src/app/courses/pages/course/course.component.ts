@@ -16,12 +16,14 @@ import { BlogComponent } from '@shared/features/blog/blog.component'
 import { LoadingService } from '@shared/loading/loading.service'
 import { LoadingCourseComponent } from '@courses/components/loading/loading-course/loading-course.component'
 import { ResourceCardComponent } from '@courses/components/resource-card/resource-card.component'
+import { CourseStateCardComponent } from '@courses/components/course-state-card/course-state-card.component'
 
 type ContentType = 'lessons' | 'comments' | 'resources'
 
 interface PageData {
   loading: boolean
   course: Course | null
+  requirementsCourses: Course[]
   lessons: Lesson[]
   lesson: Lesson | null
 }
@@ -35,6 +37,7 @@ interface PageData {
     VideoComponent,
     InfografiaComponent,
     LessonStateCardComponent,
+    CourseStateCardComponent,
     RoundedProgressComponent,
     BlogComponent,
     LoadingCourseComponent,
@@ -66,10 +69,19 @@ export class CourseComponent {
         const course$ = this.courseService.loadCourse(params['category'])
         const lessons$ = this.courseService.loadLessons(params['category'])
         const lesson$ = this.courseService.loadLesson(params['lesson'])
+        const requirementsCourses$ = this.courseService.getRequirementsCourses(
+          params['category']
+        )
 
-        return combineLatest([loading$, course$, lessons$, lesson$]).pipe(
-          map(([loading, course, lessons, lesson]) => {
-            return { loading, course, lessons, lesson }
+        return combineLatest([
+          loading$,
+          course$,
+          lessons$,
+          lesson$,
+          requirementsCourses$
+        ]).pipe(
+          map(([loading, course, lessons, lesson, requirementsCourses]) => {
+            return { loading, course, lessons, lesson, requirementsCourses }
           })
         )
       })

@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core'
-import { BehaviorSubject, map, of, tap } from 'rxjs'
+import { BehaviorSubject, combineLatest, map, of, tap } from 'rxjs'
 
 import { Lesson, LessonStatus } from '@courses/logic/models/lessons'
 import { Course } from '@courses/logic/models/courses'
@@ -62,6 +62,21 @@ export class CourseService {
     }
 
     return lessons.filter(lesson => lesson.initial)
+  }
+
+  getRequirementsCourses(category: string) {
+    return combineLatest([
+      this.levelsStore.getCourse(category),
+      this.levelsStore.getAllCourses()
+    ]).pipe(
+      map(([course, courses]) => {
+        const requirementsCourses = courses.filter(c => {
+          return course.requirements?.includes(c.id)
+        })
+
+        return requirementsCourses
+      })
+    )
   }
 
   loadLesson(category?: string) {

@@ -1,0 +1,30 @@
+<article
+  class="flex flex-row gap-2 items-center transition-all duration-500 rounded-3xl p-4 flex-wrap"
+  [ngClass]="{
+    'bg-theme-green/20 hover:bg-theme-green/40': percentage >= 100,
+    'bg-theme-grey hover:bg-theme-grey-dark': percentage < 100
+  }">
+  <a
+    class="group/imagehover"
+    [routerLink]="['/course', course.category]">
+    <img
+      class="w-6 transition-all duration-200 group-hover/imagehover:w-7"
+      src="/assets/icons/i-play.svg"
+      alt="play" />
+  </a>
+  <h2 class="grow">{{ course.name }}</h2>
+  <div
+    class="flex flex-row gap-2 items-center rounded-3xl py-1 px-3"
+    [ngClass]="{
+      'bg-theme-green': percentage >= 100,
+      'bg-gray-400': percentage < 100
+    }">
+    <img
+      class="w-4"
+      [src]="getIcon(percentage)"
+      alt="check" />
+    <p class="text-sm text-white">
+      {{ percentage >= 100 ? 'Finalizado' : 'Por Iniciar' }}
+    </p>
+  </div>
+</article>
