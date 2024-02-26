@@ -1,15 +1,6 @@
 import { Injectable } from '@angular/core'
 
-import {
-  BehaviorSubject,
-  concatMap,
-  defer,
-  first,
-  map,
-  shareReplay,
-  tap,
-  timer
-} from 'rxjs'
+import { BehaviorSubject, concatMap, defer, first, map, tap, timer } from 'rxjs'
 
 import { getLevels } from '@courses/logic/courses'
 import { Level } from '@courses/logic/models/levels'
@@ -38,9 +29,7 @@ export class LevelsStore {
     this.levelsSubject$.next(levels)
   }
 
-  constructor(private loadingService: LoadingService) {
-    this.loadLevels().pipe(shareReplay()).subscribe()
-  }
+  constructor(private loadingService: LoadingService) {}
 
   loadLevels() {
     const levels$ = timer(2000).pipe(

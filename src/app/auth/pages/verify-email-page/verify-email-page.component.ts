@@ -54,8 +54,15 @@ export class VerifyEmailPageComponent implements OnInit, OnDestroy {
   })
 
   validateTokenSubscription!: Subscription
+  participantSubscription!: Subscription
 
   constructor() {
+    this.participantSubscription = this.participantService
+      .loadParticipant()
+      .subscribe(participant => {
+        this.participantService.participant = participant.participation
+      })
+
     this.email$ = this.participantService.participant$.pipe(
       tap(participant =>
         this.resendCodeForm.controls['email'].setValue(participant.email)
@@ -70,6 +77,7 @@ export class VerifyEmailPageComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.validateTokenSubscription.unsubscribe()
+    this.participantSubscription.unsubscribe()
   }
 
   validateToken() {
