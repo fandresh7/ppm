@@ -12,6 +12,7 @@ import { LoadingService } from '@shared/loading/loading.service'
 import { CoursesSliderComponent } from '@courses/components/sliders/courses-slider/courses-slider.component'
 import { CertificateSliderComponent } from '@courses/components/sliders/certificate-slider/certificate-slider.component'
 import { ProfileCustomSliderOptions } from '@courses/utils/swipers'
+import { BadgesSliderComponent } from '@courses/components/sliders/badges-slider/badges-slider.component'
 
 interface PageData {
   participant: Participant
@@ -28,6 +29,7 @@ interface PageData {
     AvatarComponent,
     CoursesSliderComponent,
     CertificateSliderComponent,
+    BadgesSliderComponent,
     AsyncPipe,
     JsonPipe
   ],

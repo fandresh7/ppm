@@ -1,0 +1,15 @@
+<swiper-container
+  #slider
+  class="relative h-full w-full"
+  init="false">
+  @for (course of courses; track course.id) {
+    <swiper-slide>
+      <article class="rounded-xl bg-theme-grey grid place-items-center p-4">
+        <img
+          class="w-60 grayscale"
+          src="https://superlikers-themes.s3.amazonaws.com/ppmu/lock-badge-complete.png"
+          alt="badge" />
+      </article>
+    </swiper-slide>
+  }
+</swiper-container>
