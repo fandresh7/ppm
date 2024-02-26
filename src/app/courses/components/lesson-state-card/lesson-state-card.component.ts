@@ -22,7 +22,7 @@ import { TooltipDirective } from '@courses/directives/tooltip/tooltip.directive'
   styleUrl: './lesson-state-card.component.css'
 })
 export class LessonStateCardComponent {
-  @Input() lesson!: Lesson
+  @Input({ required: true }) lesson!: Lesson
   @Input() showStatusBadge = true
   @Input() active = false
 

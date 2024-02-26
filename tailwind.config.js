@@ -60,10 +60,6 @@ module.exports = {
         'check-icon': 'url(https://superlikers-themes.s3.amazonaws.com/ppmu/check-complete.svg)',
         'open-icon': 'url(https://superlikers-themes.s3.amazonaws.com/ppmu/waiting.svg)',
 
-        'favorite-icon': 'url(/assets/icons/i-favorite.svg)',
-        'favorite-icon-active': 'url(/assets/icons/i-favorite-active.svg)',
-        'download-icon': 'url(/assets/icons/i-download.svg)',
-        'download-icon-active': 'url(/assets/icons/i-download-active.svg)',
         'resource-icon': 'url(/assets/icons/resource.svg)',
 
         'button-icon': 'url(/assets/icons/i-button.svg)',

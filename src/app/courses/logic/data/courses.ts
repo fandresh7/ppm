@@ -16,7 +16,9 @@ export const COURSES: Course[] = [
     assessment: 1,
     expert: '',
     lessonsIds: [56, 51, 1, 2, 3, 4, 5, 6, 7, 8, 45],
-    requirements: []
+    requirements: [],
+    contentHours: 2,
+    practiceHours: 12
   },
   {
     id: 2,
@@ -33,7 +35,9 @@ export const COURSES: Course[] = [
     assessment: 2,
     expert: '',
     lessonsIds: [57, 52, 9, 10, 48, 11, 12, 13, 14, 15, 16, 47],
-    requirements: []
+    requirements: [],
+    contentHours: 2,
+    practiceHours: 12
   },
   {
     id: 3,
@@ -50,7 +54,9 @@ export const COURSES: Course[] = [
     assessment: 3,
     expert: '',
     lessonsIds: [58, 53, 17, 18, 19, 49, 20, 21, 22, 23, 46],
-    requirements: []
+    requirements: [],
+    contentHours: 2,
+    practiceHours: 12
   },
   {
     id: 4,
@@ -67,7 +73,9 @@ export const COURSES: Course[] = [
     assessment: 4,
     expert: '',
     lessonsIds: [59, 54, 24, 25, 26, 27, 28, 50, 29, 30, 31, 32, 43],
-    requirements: []
+    requirements: [],
+    contentHours: 2,
+    practiceHours: 12
   },
   {
     id: 5,
@@ -84,7 +92,9 @@ export const COURSES: Course[] = [
     assessment: 5,
     expert: '',
     lessonsIds: [60, 55, 33, 34, 35, 36, 44, 37, 38, 39, 40, 41, 42],
-    requirements: []
+    requirements: [],
+    contentHours: 2,
+    practiceHours: 12
   },
   {
     id: 6,
@@ -101,7 +111,9 @@ export const COURSES: Course[] = [
     assessment: 6,
     expert: '',
     lessonsIds: [91, 102, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 96],
-    requirements: []
+    requirements: [],
+    contentHours: 2,
+    practiceHours: 12
   },
   {
     id: 7,
@@ -118,7 +130,9 @@ export const COURSES: Course[] = [
     assessment: 7,
     expert: '',
     lessonsIds: [97, 99, 71, 72, 73, 74, 75, 76, 98],
-    requirements: [6]
+    requirements: [6],
+    contentHours: 2,
+    practiceHours: 12
   },
   {
     id: 8,
@@ -135,7 +149,9 @@ export const COURSES: Course[] = [
     assessment: 8,
     expert: '',
     lessonsIds: [99, 77, 78, 79, 80, 81, 82, 100],
-    requirements: [6]
+    requirements: [6],
+    contentHours: 2,
+    practiceHours: 12
   },
   {
     id: 9,
@@ -152,7 +168,9 @@ export const COURSES: Course[] = [
     assessment: 9,
     expert: '',
     lessonsIds: [101, 83, 84, 85, 86, 87, 88, 103],
-    requirements: [6]
+    requirements: [6],
+    contentHours: 2,
+    practiceHours: 12
   },
   {
     id: 10,
@@ -169,7 +187,9 @@ export const COURSES: Course[] = [
     assessment: 10,
     expert: '',
     lessonsIds: [104, 89, 90, 92, 93, 94, 95, 105],
-    requirements: [6]
+    requirements: [6],
+    contentHours: 2,
+    practiceHours: 12
   },
   {
     id: 11,
@@ -188,7 +208,9 @@ export const COURSES: Course[] = [
     lessonsIds: [
       145, 106, 107, 108, 109, 115, 116, 117, 110, 111, 112, 113, 114
     ],
-    requirements: []
+    requirements: [],
+    contentHours: 2,
+    practiceHours: 12
   },
   {
     id: 12,
@@ -205,7 +227,9 @@ export const COURSES: Course[] = [
     assessment: 11,
     expert: 'Luz Elena Arizpe',
     lessonsIds: [118, 119, 120, 121, 122, 123, 124, 125],
-    requirements: [6, 7, 8, 9, 10]
+    requirements: [6, 7, 8, 9, 10],
+    contentHours: 2,
+    practiceHours: 12
   },
   {
     id: 13,
@@ -225,7 +249,9 @@ export const COURSES: Course[] = [
       126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140,
       141, 142, 143
     ],
-    requirements: [6, 7, 8, 9, 10]
+    requirements: [6, 7, 8, 9, 10],
+    contentHours: 2,
+    practiceHours: 12
   },
   {
     id: 14,
@@ -242,7 +268,9 @@ export const COURSES: Course[] = [
     assessment: 11,
     expert: 'Luz Elena Arizpe',
     lessonsIds: [146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157],
-    requirements: [6, 7, 8, 9, 10]
+    requirements: [6, 7, 8, 9, 10],
+    contentHours: 2,
+    practiceHours: 12
   },
   {
     id: 15,
@@ -262,7 +290,9 @@ export const COURSES: Course[] = [
       158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172,
       173, 174
     ],
-    requirements: [11]
+    requirements: [11],
+    contentHours: 2,
+    practiceHours: 12
   },
   {
     id: 16,
@@ -279,6 +309,8 @@ export const COURSES: Course[] = [
     assessment: 11,
     expert: 'Rafael Martinez | Marisol Pilco | Carlos Marin',
     lessonsIds: [175, 176, 177, 178, 179, 180, 181, 182],
-    requirements: [6, 7, 8, 9, 10]
+    requirements: [6, 7, 8, 9, 10],
+    contentHours: 2,
+    practiceHours: 12
   }
 ]

@@ -10,17 +10,18 @@ import { LessonStatus } from '@courses/logic/models/lessons'
 })
 export class StatusBadgeComponent {
   @Input() status: LessonStatus = LessonStatus.Open
+  @Input() showBackground = true
 
   data = {
     [LessonStatus.Done]: {
       text: 'Finalizado',
       background: 'bg-theme-green',
-      icon: 'bg-check-icon'
+      icon: 'https://superlikers-themes.s3.amazonaws.com/ppmu/check-complete.svg'
     },
     [LessonStatus.Open]: {
       text: 'Por Iniciar',
-      background: 'bg-gray-300',
-      icon: 'bg-open-icon'
+      background: 'bg-gray-400',
+      icon: 'https://superlikers-themes.s3.amazonaws.com/ppmu/waiting.svg'
     }
   }
 }

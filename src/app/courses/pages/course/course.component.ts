@@ -17,6 +17,7 @@ import { LoadingService } from '@shared/loading/loading.service'
 import { LoadingCourseComponent } from '@courses/components/loading/loading-course/loading-course.component'
 import { ResourceCardComponent } from '@courses/components/resource-card/resource-card.component'
 import { CourseStateCardComponent } from '@courses/components/course-state-card/course-state-card.component'
+import { LessonListComponent } from '@courses/components/lesson-list/lesson-list.component'
 
 type ContentType = 'lessons' | 'comments' | 'resources'
 
@@ -41,7 +42,8 @@ interface PageData {
     RoundedProgressComponent,
     BlogComponent,
     LoadingCourseComponent,
-    ResourceCardComponent
+    ResourceCardComponent,
+    LessonListComponent
   ],
   templateUrl: './course.component.html',
   styleUrl: './course.component.css'

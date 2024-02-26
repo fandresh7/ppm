@@ -1,7 +1,26 @@
 <a
-  class="block cursor-pointer bg-favorite-icon bg-cover transition-all duration-300 hover:bg-favorite-icon-active"
+  class="grid place-items-center cursor-pointer transition-all duration-300 rounded-xl bg-white hover:text-white hover:bg-theme-green"
   [class.bg-favorite-icon-active]="isFavorite"
   [class]="sizeClasses"
   (click)="save()">
-  <span></span>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="10.569"
+    height="14.557"
+    viewBox="0 0 10.569 14.557">
+    <g transform="translate(-11039.069 21418.322)">
+      <g
+        transform="translate(11039.569 -21417.822)"
+        opacity="0.5">
+        <path
+          d="M11.724,1.607H5.345A1.58,1.58,0,0,0,3.75,3.171V15.164l4.785-4.171,4.785,4.171V3.171A1.58,1.58,0,0,0,11.724,1.607Z"
+          transform="translate(-3.75 -1.607)"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1" />
+      </g>
+    </g>
+  </svg>
 </a>

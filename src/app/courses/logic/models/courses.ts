@@ -16,4 +16,6 @@ export interface Course {
   duration?: string
   percentage?: number
   requirements?: number[]
+  contentHours: number
+  practiceHours: number
 }

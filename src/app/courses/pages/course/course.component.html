@@ -62,17 +62,14 @@
         </section>
 
         <div class="w-full grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-4">
-          @if (data.requirementsCourses.length > 0) {
-            <section class="flex flex-col gap-4 w-full">
-              <h3 class="font-bold text-lg">
-                Conocimientos previos necesarios
-              </h3>
-              @for (course of data.requirementsCourses; track course.id) {
-                <app-course-state-card [course]="course">
-                </app-course-state-card>
-              }
-            </section>
-          }
+          <section class="flex flex-col gap-4 w-full">
+            <h3 class="font-bold text-lg">Conocimientos previos necesarios</h3>
+            @for (course of data.requirementsCourses; track course.id) {
+              <app-course-state-card [course]="course"> </app-course-state-card>
+            } @empty {
+              <p>No hay cursos necesarios.</p>
+            }
+          </section>
 
           <section class="flex flex-col gap-4 w-full">
             <h3 class="font-bold text-lg">
@@ -89,7 +86,7 @@
                     src="https://superlikers-themes.s3.amazonaws.com/ppmu/hours.svg"
                     alt="" />
                 </div>
-                <p>2 horas de contenido</p>
+                <p>{{ data.course?.contentHours }} horas de contenido</p>
               </div>
               <div
                 class="w-full text-center flex flex-row gap-2 items-center justify-center">
@@ -100,7 +97,7 @@
                     src="https://superlikers-themes.s3.amazonaws.com/ppmu/practice_hours.svg"
                     alt="" />
                 </div>
-                <p>12 horas de práctica</p>
+                <p>{{ data.course?.practiceHours }} horas de práctica</p>
               </div>
             </div>
           </section>
@@ -130,16 +127,16 @@
           </div>
           <div class="overflow-x-hidden overflow-y-auto pr-1 pb-1">
             @if (content === 'lessons') {
-              <div class="flex flex-col gap-4">
+              <section class="flex flex-col gap-2 p-2 bg-theme-grey rounded-lg">
                 @for (lesson of data.lessons; track lesson.id) {
                   <app-lesson-state-card
                     [lesson]="lesson"
+                    (click)="setActiveLesson(lesson)"
                     [showStatusBadge]="false"
-                    [active]="(isActive(lesson) | async) ?? false"
-                    (click)="setActiveLesson(lesson)">
+                    [active]="(isActive(lesson) | async) ?? false">
                   </app-lesson-state-card>
                 }
-              </div>
+              </section>
             }
 
             @if (content === 'resources') {

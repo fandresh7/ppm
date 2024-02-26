@@ -1,57 +1,59 @@
-<div
-  class="rounded-xl"
-  [class]="active ? 'bg-theme-green/50' : 'bg-theme-grey'">
+<article>
   <a
-    [routerLink]="lesson.lessonUrl"
-    class="flex flex-wrap items-center gap-4 p-3 cursor-pointer">
-    <div
-      [class]="{
-        'bg-play-lesson-icon': !active,
-        'bg-play-lesson-icon-active': active
-      }"
-      class="h-8 w-8 cursor-pointer bg-center bg-no-repeat transition-all duration-300 hover:bg-play-lesson-icon-active"></div>
+    class="w-full flex flex-row flex-wrap rounded-xl p-2 items-start gap-2 cursor-pointer transition-colors duration-200"
+    [class]="{
+      'bg-theme-green/40': active,
+      'text-white': active,
+      'hover:bg-theme-grey-dark': !active
+    }"
+    [routerLink]="lesson.lessonUrl">
+    <img
+      class="w-6"
+      src="/assets/icons/i-play.svg"
+      alt="play lesson" />
 
-    <div
-      [class]="{ 'text-white': active }"
-      class="flex grow flex-col gap-1">
-      <h4
-        class="relative font-bold max-w-[20ch]"
-        style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden"
-        [appTooltip]="lessonNameTooltip">
+    <div class="grow flex flex-col">
+      <h2
+        [appTooltip]="lessonNameTooltip"
+        class="font-bold text-lg max-w-[20ch]"
+        style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden">
         {{ lesson.name }}
-      </h4>
+      </h2>
 
-      @if (showStatusText) {
-        <p
-          class="bg-[4rem_4_rem] bg-green-check-icon bg-no-repeat pl-6 text-sm">
-          Finalizado
-        </p>
-      }
+      <app-status-badge
+        [status]="status"
+        [showBackground]="false">
+      </app-status-badge>
     </div>
 
-    <div class="flex flex-wrap gap-2">
-      @if (showStatusBadge) {
-        <app-status-badge [status]="status"></app-status-badge>
-      }
+    @if (showStatusBadge) {
+      <app-status-badge
+        class="hidden md:block"
+        [classList]="{
+          hidden: !showStatusBadge
+        }"
+        [status]="status">
+      </app-status-badge>
+    }
 
-      <div class="flex gap-2">
-        <app-favorite-button
-          [lesson]="lesson"
-          (click)="preventRouteChange($event)">
-        </app-favorite-button>
-        <app-download-button
-          [name]="lesson.name"
-          [file]="
-            lesson.VideoContent?.video ||
-            lesson.InfografiaContent?.infografia ||
-            ''
-          "
-          (click)="preventRouteChange($event)">
-        </app-download-button>
-      </div>
+    <div class="flex flex-row gap-2 text-black">
+      <app-favorite-button
+        [lesson]="lesson"
+        (click)="preventRouteChange($event)">
+      </app-favorite-button>
+
+      <app-download-button
+        [name]="lesson.name"
+        [file]="
+          lesson.VideoContent?.video ||
+          lesson.InfografiaContent?.infografia ||
+          ''
+        "
+        (click)="preventRouteChange($event)">
+      </app-download-button>
     </div>
   </a>
-</div>
+</article>
 
 <ng-template #lessonNameTooltip>
   <p
