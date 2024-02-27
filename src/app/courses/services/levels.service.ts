@@ -1,26 +1,70 @@
-import { Injectable } from '@angular/core'
-import { Level } from '@courses/logic/models/levels'
-import { BehaviorSubject, map } from 'rxjs'
+import { Injectable, inject } from '@angular/core'
+import { Course } from '@courses/logic/models/courses'
+import { LevelsStore } from '@courses/store/levels.store'
+import { BehaviorSubject, combineLatest, map, switchMap, tap } from 'rxjs'
 
 @Injectable({
   providedIn: 'root'
 })
 export class LevelsService {
-  private aciveLevelSubject$ = new BehaviorSubject<Level | null>(null)
-  activeLevel$ = this.aciveLevelSubject$.asObservable()
+  levelsStore = inject(LevelsStore)
+
+  constructor() {
+    this.updateCourses().subscribe()
+  }
+
+  private activeCoursesSubject$ = new BehaviorSubject<Course[]>([])
+  activeCourses$ = this.activeCoursesSubject$.asObservable()
+
+  private activeLevelSubject$ = new BehaviorSubject<string>('basic')
+  activeLevel$ = this.activeLevelSubject$.asObservable()
+
+  private activePilarSubject$ = new BehaviorSubject<string>('VIC')
+  activePilar$ = this.activePilarSubject$.asObservable()
+
+  get activeCourses() {
+    return this.activeCoursesSubject$.getValue()
+  }
+
+  set activeCourses(courses: Course[]) {
+    this.activeCoursesSubject$.next(courses)
+  }
 
   get activeLevel() {
-    return this.aciveLevelSubject$.getValue()
+    return this.activeLevelSubject$.getValue()
   }
 
-  set activeLevel(level: Level | null) {
-    this.aciveLevelSubject$.next(level)
+  set activeLevel(level: string) {
+    this.activeLevelSubject$.next(level)
   }
 
-  isActiveLevel(level: Level) {
-    return this.activeLevel$.pipe(
-      map(activeLevel => {
-        return activeLevel?.id === level.id
+  get activePilar() {
+    return this.activePilarSubject$.getValue()
+  }
+
+  set activePilar(pilar: string) {
+    this.activePilarSubject$.next(pilar)
+  }
+
+  getPilars() {
+    return this.levelsStore.getAllCourses().pipe(
+      map(courses => {
+        const pilars = courses.map(course => course.pilar)
+        const uniquePilars = [...new Set(pilars)]
+
+        return uniquePilars
+      })
+    )
+  }
+
+  updateCourses() {
+    return combineLatest([this.activePilar$, this.activeLevel$]).pipe(
+      switchMap(([pilar, level]) => {
+        return this.levelsStore.getFilteredCourses(level, pilar)
+      }),
+      tap(courses => {
+        console.log({ courses })
+        this.activeCourses = courses
       })
     )
   }

@@ -49,6 +49,18 @@ export class LevelsStore {
     )
   }
 
+  getFilteredCourses(levelId: string, pilar: string) {
+    return this.levels$.pipe(
+      map(levels => {
+        const level = levels.find(level => level.id === levelId)
+        if (!level) return [] as Course[]
+
+        const courses = level.courses?.filter(course => course.pilar === pilar)
+        return courses ?? []
+      })
+    )
+  }
+
   getCourse(category: string) {
     return this.levels$.pipe(
       map(levels => {

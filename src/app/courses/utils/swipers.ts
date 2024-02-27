@@ -129,3 +129,45 @@ export const certificateCoursesSliderOptions: SwiperOptions = {
     }
   }
 }
+
+export const pilarsSliderOptions: SwiperOptions = {
+  ...defaultOptions,
+  injectStyles: [
+    `.swiper-button-next, .swiper-button-prev {
+      width: 20px !important;
+      height: 20px !important;
+      color: #FFFFFF !important;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+    }
+    
+    .swiper-button-next {
+      right: 0 !important;
+    }
+    
+    .swiper-button-prev {
+      left: 0 !important;
+    }`
+  ],
+  breakpoints: {
+    0: {
+      slidesPerView: 1
+    },
+    420: {
+      slidesPerView: 2
+    },
+    620: {
+      slidesPerView: 3
+    },
+    768: {
+      slidesPerView: 4
+    },
+    1060: {
+      slidesPerView: 5
+    },
+    1360: {
+      slidesPerView: 6
+    }
+  }
+}

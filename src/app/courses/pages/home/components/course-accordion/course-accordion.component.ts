@@ -1,7 +1,7 @@
 import { AsyncPipe } from '@angular/common'
 import { CUSTOM_ELEMENTS_SCHEMA, Component, inject } from '@angular/core'
 
-import { Observable, combineLatest, map } from 'rxjs'
+import { Observable } from 'rxjs'
 
 import { AccordionItemComponent } from '@courses/components/accordion-item/accordion-item.component'
 import { Level } from '@courses/logic/models/levels'
@@ -24,13 +24,13 @@ export class CourseAccordionComponent {
   data$!: Observable<{ loading: boolean; activeLevel: Level | null }>
 
   constructor() {
-    this.data$ = combineLatest([
-      this.loadingService.loading$,
-      this.levelsService.activeLevel$
-    ]).pipe(
-      map(([loading, activeLevel]) => {
-        return { loading, activeLevel }
-      })
-    )
+    // this.data$ = combineLatest([
+    //   this.loadingService.loading$,
+    //   this.levelsService.activeLevel$
+    // ]).pipe(
+    //   map(([loading, activeLevel]) => {
+    //     return { loading, activeLevel }
+    //   })
+    // )
   }
 }

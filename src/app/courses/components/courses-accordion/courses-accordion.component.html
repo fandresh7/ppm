@@ -1,0 +1,7 @@
+<cdk-accordion>
+  @for (course of courses; track course.id) {
+    <app-accordion-item [course]="course"></app-accordion-item>
+  } @empty {
+    <p>No hay cursos disponibles.</p>
+  }
+</cdk-accordion>

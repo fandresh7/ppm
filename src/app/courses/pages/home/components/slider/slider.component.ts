@@ -8,7 +8,7 @@ import {
 } from '@angular/core'
 
 import { AsyncPipe } from '@angular/common'
-import { Observable, combineLatest, map } from 'rxjs'
+import { Observable } from 'rxjs'
 import Swiper from 'swiper'
 
 import { homeSliderOptions } from '@courses/utils/swipers'
@@ -38,15 +38,15 @@ export class SliderComponent implements OnInit {
   data$!: Observable<{ loading: boolean; levels: Level[] }>
 
   constructor() {
-    this.data$ = combineLatest([
-      this.loadingService.loading$,
-      this.levelsStore.levels$
-    ]).pipe(
-      map(([loading, levels]) => {
-        this.levelsService.activeLevel = levels[0]
-        return { loading, levels }
-      })
-    )
+    // this.data$ = combineLatest([
+    //   this.loadingService.loading$,
+    //   this.levelsStore.levels$
+    // ]).pipe(
+    //   map(([loading, levels]) => {
+    //     this.levelsService.activeLevel = levels[0]
+    //     return { loading, levels }
+    //   })
+    // )
   }
 
   ngOnInit() {

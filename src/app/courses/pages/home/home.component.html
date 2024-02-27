@@ -1,18 +1,33 @@
-<div class="relative flex w-full flex-col gap-2">
-  <h1 class="font-bold text-xl">¡Empieza a aprender con PPM U!</h1>
+<div class="relative flex w-full flex-col gap-4">
+  <app-news-ppm></app-news-ppm>
 
-  <app-slider></app-slider>
+  <h1 class="font-bold text-2xl mb-2">
+    ¡Comienza a impulsar tu perfil profesional en PPM University!
+  </h1>
 
-  <div class="my-4 flex w-full items-center justify-between gap-2">
-    <h3>
-      <span class="font-bold">Cursos Disponibles</span>
-      Selecciona el curso que quieres ver y mira cada lección
-    </h3>
-    <a
-      class="cursor-pointer whitespace-nowrap text-theme-blue transition-colors duration-200 hover:text-theme-blue/75 hover:underline">
-      Ver más
-    </a>
-  </div>
+  @if (data$ | async; as data) {
+    @if (data.loading) {
+      <p>Loading...</p>
+    } @else {
+      <section class="flex flex-col gap-2">
+        <p>Escoge el área de la que te interesa aprender</p>
+        <app-pilar-slider
+          [pilars]="data.pilars"
+          [activePilar]="data.activePilar">
+        </app-pilar-slider>
+      </section>
 
-  <app-course-accordion></app-course-accordion>
+      <section class="flex flex-col gap-2">
+        <p>Selecciona un nivel de dificultad</p>
+        <app-level-selection></app-level-selection>
+      </section>
+
+      <section class="flex flex-col gap-2">
+        <h3 class="font-bold">Cursos Disponibles</h3>
+        <p>Selecciona el curso que quieres ver y mira cada lección</p>
+
+        <app-courses-accordion [courses]="data.courses"></app-courses-accordion>
+      </section>
+    }
+  }
 </div>

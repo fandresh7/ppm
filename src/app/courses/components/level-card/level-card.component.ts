@@ -1,8 +1,6 @@
 import { Component, Input, inject } from '@angular/core'
 import { AsyncPipe, NgClass } from '@angular/common'
 
-import { map } from 'rxjs'
-
 import { getPercentage } from '@courses/logic/helpers/courses'
 import { Lesson } from '@courses/logic/models/lessons'
 import { Level } from '@courses/logic/models/levels'
@@ -33,14 +31,14 @@ export class LevelCardComponent {
   }
 
   getActiveClasses() {
-    return this.levelsService.isActiveLevel(this.level).pipe(
-      map(isActive => {
-        return {
-          'opacity-100': isActive,
-          'opacity-50': !isActive
-        }
-      })
-    )
+    // return this.levelsService.isActiveLevel(this.level).pipe(
+    //   map(isActive => {
+    //     return {
+    //       'opacity-100': isActive,
+    //       'opacity-50': !isActive
+    //     }
+    //   })
+    // )
   }
 
   getLevelLessons() {
@@ -52,6 +50,7 @@ export class LevelCardComponent {
   }
 
   setActiveLevel(level: Level) {
-    this.levelsService.activeLevel = level
+    console.log(level)
+    // this.levelsService.activeLevel = level
   }
 }

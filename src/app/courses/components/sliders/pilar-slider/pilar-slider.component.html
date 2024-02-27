@@ -1,0 +1,15 @@
+<swiper-container
+  #slider
+  class="relative h-full w-full bg-white p-4 rounded-xl"
+  init="false">
+  @for (pilar of pilars; track pilar) {
+    <swiper-slide>
+      <article
+        (click)="selectPilar(pilar)"
+        [class]="{ '!bg-theme-black-90': activePilar === pilar }"
+        class="cursor-pointer transition-colors duration-500 hover:bg-theme-black-60 rounded-lg bg-theme-black-50 p-6 grid place-items-center h-[120px] text-white font-bold text-lg">
+        <p class="text-center">{{ pilar }}</p>
+      </article>
+    </swiper-slide>
+  }
+</swiper-container>
