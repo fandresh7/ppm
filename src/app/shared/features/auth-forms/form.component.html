@@ -3,7 +3,7 @@
   [formGroup]="form"
   (ngSubmit)="submit()">
   @for (field of fields; track field.name) {
-    <div>
+    <div [class]="getWrapClass(field)">
       @if (field._type === 'CheckBoxField') {
         <app-checkbox-field [field]="field"></app-checkbox-field>
       } @else if (field._type === 'CheckBoxGroupField') {

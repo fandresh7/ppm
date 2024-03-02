@@ -49,6 +49,10 @@ export class FormComponent {
     this.form = this.formService.getForm()
   }
 
+  getWrapClass(field: Field) {
+    return `wrap-${field.name}`
+  }
+
   isInvalidField(name: string) {
     return this.form.controls[name]?.errors && this.form.controls[name]?.touched
   }
