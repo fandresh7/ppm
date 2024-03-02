@@ -1,15 +1,18 @@
 import { AsyncPipe } from '@angular/common'
-import { Component, inject } from '@angular/core'
+import { Component, OnDestroy, inject } from '@angular/core'
 import { FormBuilder } from '@angular/forms'
 import { Router, RouterLink } from '@angular/router'
 
-import { Observable, map, tap } from 'rxjs'
+import { Observable, Subscription, map, tap } from 'rxjs'
 
 import { RequirementComponent } from '@auth/components/requirement/requirement.component'
 import { SessionService } from '@auth/services/session.service'
 import { FormComponent } from '@shared/features/auth-forms/form.component'
 import { FormService } from '@shared/features/auth-forms/services/form.service'
 import { Field } from '@superlikers/models/inputs'
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type Conditions = Record<string, Record<string, any[]>>
 
 @Component({
   selector: 'app-register-page',
@@ -18,7 +21,7 @@ import { Field } from '@superlikers/models/inputs'
   templateUrl: './register-page.component.html',
   styleUrl: './register-page.component.css'
 })
-export class RegisterPageComponent {
+export class RegisterPageComponent implements OnDestroy {
   router = inject(Router)
   fb = inject(FormBuilder)
   sessionService = inject(SessionService)
@@ -27,14 +30,58 @@ export class RegisterPageComponent {
   fields$: Observable<Field[]>
   loading = false
 
+  subscription!: Subscription
+
+  fieldsConditions: Conditions = {
+    bu: {
+      vp: ['Supply', 'logistica']
+    }
+  }
+
   constructor() {
     this.fields$ = this.sessionService.signupForm().pipe(
       map(fields => {
         const filteredFields = this.formService.getFilteredFields(fields)
         return filteredFields
       }),
-      tap(fields => this.formService.initializeForm(fields))
+      tap(fields => this.formService.initializeForm({ fields })),
+      tap(() => {
+        setTimeout(() => {
+          this.validateConditions()
+        })
+      })
     )
+
+    this.subscription = this.validateConditionsOnFormChanges().subscribe()
+  }
+
+  validateConditionsOnFormChanges() {
+    return this.formService.getForm().valueChanges.pipe(
+      tap(() => {
+        this.validateConditions()
+      })
+    )
+  }
+
+  validateConditions() {
+    const formValues = this.formService.getForm().value
+    const conditionsEntries = Object.entries(this.fieldsConditions)
+
+    conditionsEntries.forEach(([key, value]) => {
+      const element = document.querySelector(`.wrap-${key}`)
+      if (!element) return
+
+      const conditionEntries = Object.entries(value)
+      conditionEntries.forEach(([name, conditionValue]) => {
+        const formValue = formValues[name]
+
+        if (!conditionValue.includes(formValue)) {
+          element.classList.add('hidden')
+        } else {
+          element.classList.remove('hidden')
+        }
+      })
+    })
   }
 
   signup(data: Record<string, string>) {
@@ -50,5 +97,9 @@ export class RegisterPageComponent {
         this.router.navigate(['/'])
       }
     })
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe()
   }
 }

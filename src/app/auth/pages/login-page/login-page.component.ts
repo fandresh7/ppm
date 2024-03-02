@@ -30,7 +30,7 @@ export class LoginPageComponent {
   constructor() {
     this.fields$ = this.sessionService.loginForm().pipe(
       tap(fields => {
-        this.formService.initializeForm(fields, false)
+        this.formService.initializeForm({ fields, showConfirmFields: false })
       })
     )
   }

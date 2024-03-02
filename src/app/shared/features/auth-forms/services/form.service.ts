@@ -1,9 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable, inject } from '@angular/core'
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 
 import { Field } from '@superlikers/models/inputs'
 import { Participant } from '@superlikers/models/participant'
+
+interface initForm {
+  fields: Field[]
+  showConfirmFields?: boolean
+}
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +24,7 @@ export class FormService {
     return this.form
   }
 
-  initializeForm(fields: Field[], showConfirmFields = true) {
+  initializeForm({ fields, showConfirmFields = true }: initForm) {
     this.assignFieldsToForm(fields, showConfirmFields)
     this.assingLabels(fields, showConfirmFields)
   }

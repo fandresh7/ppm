@@ -36,7 +36,7 @@ export class CompleteSignupPageComponent {
             return filteredFields
           }),
           tap(fields => {
-            this.formService.initializeForm(fields)
+            this.formService.initializeForm({ fields })
             this.formService.setFormValues(participant)
           })
         )

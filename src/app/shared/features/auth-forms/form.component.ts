@@ -33,7 +33,9 @@ import { SubmitButtonComponent } from '@shared/components/submit-button/submit-b
   styleUrl: './form.component.css'
 })
 export class FormComponent {
-  @Input() fields: Field[] = []
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  @Input() fieldsConditions: Record<string, any> = {}
+  @Input({ required: true }) fields: Field[] = []
   @Input() buttonText = 'Enviar'
   @Input() showConfirmFields = true
   @Input() loading = false
@@ -47,6 +49,10 @@ export class FormComponent {
 
   constructor() {
     this.form = this.formService.getForm()
+  }
+
+  getWrapClass(field: Field) {
+    return `wrap-${field.name}`
   }
 
   isInvalidField(name: string) {
