@@ -48,9 +48,4 @@ export class LevelCardComponent {
 
     return lessons ?? []
   }
-
-  setActiveLevel(level: Level) {
-    console.log(level)
-    // this.levelsService.activeLevel = level
-  }
 }

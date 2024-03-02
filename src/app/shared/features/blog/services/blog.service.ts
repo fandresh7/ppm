@@ -39,7 +39,6 @@ export class BlogService {
 
         return defer(() => getActivityComments({ target_id: blog._id })).pipe(
           tap(comments => {
-            console.log({ comments })
             this.commentsSubject$.next(comments)
           })
         )

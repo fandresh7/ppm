@@ -45,6 +45,5 @@ export class PilarSliderComponent implements OnInit {
 
   selectPilar(pilar: string) {
     this.levelsService.activePilar = pilar
-    console.log({ pilar, activePilar: this.activePilar })
   }
 }

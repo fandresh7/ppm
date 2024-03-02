@@ -111,7 +111,6 @@ export class TestComponent implements OnInit {
   }
 
   initializeSlider() {
-    console.log({ slide: this.swiperInstance })
     this.swiperInstance = Object.assign(
       this.slider.nativeElement,
       testSliderOptions

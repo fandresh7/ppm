@@ -63,7 +63,6 @@ export class LevelsService {
         return this.levelsStore.getFilteredCourses(level, pilar)
       }),
       tap(courses => {
-        console.log({ courses })
         this.activeCourses = courses
       })
     )
