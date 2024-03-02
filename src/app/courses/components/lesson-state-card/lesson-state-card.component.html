@@ -1,42 +1,47 @@
-<article>
+<article
+  class="@container relative transition-colors duration-300 rounded-lg"
+  [class]="getArticleClasses()">
   <a
-    class="w-full flex flex-row flex-wrap rounded-xl p-2 items-start gap-2 cursor-pointer transition-colors duration-200"
-    [class]="{
-      'bg-theme-green/40': active,
-      'text-white': active,
-      'hover:bg-theme-grey-dark': !active
-    }"
+    class="w-full flex flex-row items-center justify-between gap-2 p-4 cursor-pointer"
     [routerLink]="lesson.lessonUrl">
-    <img
-      class="w-6"
-      src="/assets/icons/i-play.svg"
-      alt="play lesson" />
+    <svg
+      class="flex-shrink-0 w-6 h-6 self-start text-theme-black transition-colors duration-200"
+      [class]="{ 'text-white': active }"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 12.859 12.859">
+      <g transform="translate(18982.641 22564.826)">
+        <g transform="translate(-18982.141 -22564.326)">
+          <path
+            d="M14.86,8.93A5.93,5.93,0,1,1,8.93,3a5.93,5.93,0,0,1,5.93,5.93Z"
+            transform="translate(-3 -3)"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="0.7" />
+          <path
+            d="M15,12l3.221,2.147L15,16.294Z"
+            transform="translate(-10.063 -8.217)"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="0.7" />
+        </g>
+      </g>
+    </svg>
 
-    <div class="grow flex flex-col">
-      <h2
-        [appTooltip]="lessonNameTooltip"
-        class="font-bold text-lg max-w-[20ch]"
-        style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden">
+    <div
+      class="grow flex flex-col items-start gap-1 @lg:flex-row @lg:justify-between">
+      <h2 class="text-base font-semibold">
         {{ lesson.name }}
       </h2>
-
       <app-status-badge
-        [status]="status"
-        [showBackground]="false">
-      </app-status-badge>
+        class="flex-shrink-0"
+        [status]="status"></app-status-badge>
     </div>
 
-    @if (showStatusBadge) {
-      <app-status-badge
-        class="hidden md:block"
-        [classList]="{
-          hidden: !showStatusBadge
-        }"
-        [status]="status">
-      </app-status-badge>
-    }
-
-    <div class="flex flex-row gap-2 text-black">
+    <div class="flex flex-row gap-2 text-black self-start">
       <app-favorite-button
         [lesson]="lesson"
         (click)="preventRouteChange($event)">
@@ -44,20 +49,9 @@
 
       <app-download-button
         [name]="lesson.name"
-        [file]="
-          lesson.VideoContent?.video ||
-          lesson.InfografiaContent?.infografia ||
-          ''
-        "
+        [file]="getDownloadFile(lesson)"
         (click)="preventRouteChange($event)">
       </app-download-button>
     </div>
   </a>
 </article>
-
-<ng-template #lessonNameTooltip>
-  <p
-    class="absolute min-w-max -left-28 -top-[4.5rem] bg-theme-black px-2 py-1 rounded text-white">
-    {{ lesson.name }}
-  </p>
-</ng-template>

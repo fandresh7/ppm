@@ -9,11 +9,15 @@
   </header>
 
   <main
-    class="content transition-all duration-700 block overflow-y-auto rounded-t-3xl bg-theme-grey py-10 px-6 max-w-full lg:z-30"
+    class="content transition-all duration-700 block overflow-y-auto rounded-t-3xl bg-theme-grey max-w-full lg:z-30"
     [ngClass]="{
       'md:mx-auto md:w-11/12': sidebar$ | async
     }">
-    <router-outlet></router-outlet>
+    <div
+      id="sticky-course-container"
+      class="py-10 px-6 relative">
+      <router-outlet></router-outlet>
+    </div>
   </main>
 
   <aside

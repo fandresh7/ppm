@@ -7,8 +7,8 @@
   @if (data.loading) {
     <app-loading-course></app-loading-course>
   } @else {
-    <section
-      class="scroll-smooth relative grid-cols-1 grid xl:grid-cols-[8fr_4fr] mt-4 gap-4">
+    <div
+      class="xxscroll-smooth relative grid-cols-1 grid lg:grid-cols-[8fr_4fr] mt-4 gap-4">
       <section class="flex flex-col gap-4 items-start">
         @if (data.lesson === null) {
           <video
@@ -48,65 +48,26 @@
           <div class="text-theme-black-50"><p>Dificultad baja</p></div>
         </div>
 
-        <section class="flex justify-start items-start">
-          <div class="grow">
-            <p [innerHTML]="data.course?.description"></p>
-          </div>
-          <app-rounded-progress
-            [width]="200"
-            [percentage]="getPercentage(data.course?.lessons ?? [])"
-            [strokeWidth]="14"
-            [fontSize]="'text-3xl'"
-            strokeColor="stroke-theme-grey-dark">
-          </app-rounded-progress>
-        </section>
-
-        <div class="w-full grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-4">
-          <section class="flex flex-col gap-4 w-full">
-            <h3 class="font-bold text-lg">Conocimientos previos necesarios</h3>
-            @for (course of data.requirementsCourses; track course.id) {
-              <app-course-state-card [course]="course"> </app-course-state-card>
-            } @empty {
-              <p>No hay cursos necesarios.</p>
-            }
-          </section>
-
-          <section class="flex flex-col gap-4 w-full">
-            <h3 class="font-bold text-lg">
-              Para ver este curso vas a necesitar
-            </h3>
-            <div
-              class="bg-white rounded-xl border-theme-grey-dark border-[1px] p-4 flex flex-row justify-between md:flex-wrap gap-2">
-              <div
-                class="w-full text-center flex flex-row gap-2 items-center justify-center">
-                <div
-                  class="w-7 h-7 rounded-full p-[6px] bg-gray-600 flex justify-center items-center">
-                  <img
-                    class="w-full"
-                    src="https://superlikers-themes.s3.amazonaws.com/ppmu/hours.svg"
-                    alt="" />
-                </div>
-                <p>{{ data.course?.contentHours }} horas de contenido</p>
-              </div>
-              <div
-                class="w-full text-center flex flex-row gap-2 items-center justify-center">
-                <div
-                  class="w-7 h-7 rounded-full p-[6px] bg-gray-600 flex justify-center items-center">
-                  <img
-                    class="w-full"
-                    src="https://superlikers-themes.s3.amazonaws.com/ppmu/practice_hours.svg"
-                    alt="" />
-                </div>
-                <p>{{ data.course?.practiceHours }} horas de práctica</p>
-              </div>
-            </div>
-          </section>
-        </div>
+        <app-course-description
+          class="hidden lg:block"
+          [course]="data.course!"
+          [requirementsCourses]="data.requirementsCourses">
+        </app-course-description>
       </section>
 
-      <section>
+      <section
+        class="sticky top-0 z-[1] lg:h-[calc(100vh_-_200px)] lg:overflow-y-auto"
+        #stickyContent>
         <div class="bg-white rounded-xl p-4">
-          <div class="flex flex-row gap-4 mb-4">
+          <div
+            #stickyButtons
+            class="flex flex-row gap-4 bg-white pb-4 sticky top-0 z-[1]">
+            <button
+              class="button-grey pl-4 pr-4 flex-grow lg:hidden"
+              (click)="changeContent('content')">
+              Contenido
+            </button>
+
             <button
               class="button-grey pl-4 pr-4 flex-grow"
               (click)="changeContent('lessons')">
@@ -125,18 +86,17 @@
               </button>
             }
           </div>
-          <div class="overflow-x-hidden overflow-y-auto pr-1 pb-1">
+          <div class="pr-1 pb-1 lg:h-[700px] lg:overflow-y-auto">
             @if (content === 'lessons') {
-              <section class="flex flex-col gap-2 p-2 bg-theme-grey rounded-lg">
-                @for (lesson of data.lessons; track lesson.id) {
-                  <app-lesson-state-card
-                    [lesson]="lesson"
-                    (click)="setActiveLesson(lesson)"
-                    [showStatusBadge]="false"
-                    [active]="(isActive(lesson) | async) ?? false">
-                  </app-lesson-state-card>
-                }
-              </section>
+              <app-lessons-list [course]="data.course!"></app-lessons-list>
+            }
+
+            @if (content === 'content') {
+              <app-course-description
+                class="lg:hidden"
+                [course]="data.course!"
+                [requirementsCourses]="data.requirementsCourses">
+              </app-course-description>
             }
 
             @if (content === 'resources') {
@@ -149,6 +109,6 @@
           </div>
         </div>
       </section>
-    </section>
+    </div>
   }
 }

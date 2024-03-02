@@ -10,7 +10,6 @@ import { LessonStatus } from '@courses/logic/models/lessons'
 })
 export class StatusBadgeComponent {
   @Input() status: LessonStatus = LessonStatus.Open
-  @Input() showBackground = true
 
   data = {
     [LessonStatus.Done]: {

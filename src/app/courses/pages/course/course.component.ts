@@ -1,7 +1,7 @@
-import { Component, inject } from '@angular/core'
+import { Component, ElementRef, ViewChild, inject } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 
-import { Observable, combineLatest, map, switchMap } from 'rxjs'
+import { Observable, combineLatest, map, switchMap, tap } from 'rxjs'
 
 import { Course } from '@courses/logic/models/courses'
 import { LessonType, Lesson } from '@courses/logic/models/lessons'
@@ -17,8 +17,10 @@ import { LoadingService } from '@shared/loading/loading.service'
 import { LoadingCourseComponent } from '@courses/components/loading/loading-course/loading-course.component'
 import { ResourceCardComponent } from '@courses/components/resource-card/resource-card.component'
 import { CourseStateCardComponent } from '@courses/components/course-state-card/course-state-card.component'
+import { LessonsListComponent } from '@courses/components/lessons-list/lessons-list.component'
+import { CourseDescriptionComponent } from '@courses/components/course-description/course-description.component'
 
-type ContentType = 'lessons' | 'comments' | 'resources'
+type ContentType = 'lessons' | 'content' | 'resources'
 
 interface PageData {
   loading: boolean
@@ -41,7 +43,9 @@ interface PageData {
     RoundedProgressComponent,
     BlogComponent,
     LoadingCourseComponent,
-    ResourceCardComponent
+    ResourceCardComponent,
+    LessonsListComponent,
+    CourseDescriptionComponent
   ],
   templateUrl: './course.component.html',
   styleUrl: './course.component.css'
@@ -58,8 +62,19 @@ export class CourseComponent {
   lessonsTypes = LessonType
   content: ContentType = 'lessons'
 
+  @ViewChild('stickyContent') stickyContent!: ElementRef
+  @ViewChild('stickyButtons') stickyButtons!: ElementRef
+
   constructor() {
     this.data$ = this.getPageData()
+  }
+
+  scrollToHeader(element: ElementRef) {
+    const container = document.querySelector('#sticky-course-container')
+    if (!container) return
+
+    const headerOffset = element.nativeElement.offsetTop
+    container.scrollTop = headerOffset
   }
 
   getPageData() {
@@ -82,6 +97,14 @@ export class CourseComponent {
         ]).pipe(
           map(([loading, course, lessons, lesson, requirementsCourses]) => {
             return { loading, course, lessons, lesson, requirementsCourses }
+          }),
+          tap(({ loading }) => {
+            if (loading) return
+
+            setTimeout(() => {
+              this.scrollToHeader(this.stickyContent)
+              this.scrollToHeader(this.stickyButtons)
+            })
           })
         )
       })

@@ -1,6 +1,60 @@
-<cdk-accordion>
-  @for (course of courses; track course.id) {
-    <app-accordion-item [course]="course"></app-accordion-item>
+<cdk-accordion class="flex flex-col gap-4">
+  @for (course of courses; track course.id; let index = $index) {
+    <cdk-accordion-item
+      #accordionItem="cdkAccordionItem"
+      class="relative bg-white rounded-xl"
+      role="button"
+      tabindex="0"
+      [attr.id]="'accordion-header-' + index"
+      [attr.aria-expanded]="accordionItem.expanded"
+      [attr.aria-controls]="'accordion-body-' + index">
+      <div
+        class="sticky top-0 p-4 z-[1] bg-white rounded-xl"
+        #accordionItemHeader
+        (click)="accordionItem.toggle(); scrollToHeader()">
+        <h2 class="font-bold text-lg">{{ course.name }}</h2>
+
+        <div class="flex flex-row items-center gap-2">
+          <p class="text-sm lg:text-base">Avance:</p>
+          <app-progress-bar
+            class="grow"
+            [percentage]="getCoursePercentage(course)">
+          </app-progress-bar>
+          <p class="text-sm lg:text-base">
+            {{ getCoursePercentage(course) | number: '1.0-0' }}%
+          </p>
+          <img
+            class="h-2 w-2 transition-transform delay-100 duration-500"
+            [ngClass]="{
+              '-rotate-90': !accordionItem.expanded,
+              'rotate-90': accordionItem.expanded
+            }"
+            src="https://superlikers-themes.s3.amazonaws.com/ppmu/arrow-left.svg"
+            alt="arrow left" />
+          <button
+            [routerLink]="getFirstLessonNotCompletedUrl(course)"
+            class="button rounded-full px-6 py-2 text-sm lg:text-base">
+            Continuar curso
+          </button>
+        </div>
+      </div>
+
+      <div
+        role="region"
+        class="relative flex flex-col gap-4 z-0 p-4 before:content-[''] before:absolute before:w-full before:h-[2px] before:bg-theme-grey-dark before:top-0"
+        [@expand]="accordionItem.expanded ? 'expanded' : 'collapsed'"
+        [style.display]="accordionItem.expanded ? '' : 'none'"
+        [attr.id]="'accordion-body-' + index"
+        [attr.aria-labelledby]="'accordion-header-' + index">
+        <p>
+          <span class="font-bold">Description:</span> Aprende todos los datos
+          básicos que necesitas tener claro para tu primer encuentro con nuestro
+          Costo Variable Industrial, desde un enfoque sencillo y paso a paso.
+        </p>
+
+        <app-lessons-list [course]="course"></app-lessons-list>
+      </div>
+    </cdk-accordion-item>
   } @empty {
     <p>No hay cursos disponibles.</p>
   }

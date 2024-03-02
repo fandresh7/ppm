@@ -1,0 +1,53 @@
+<section class="flex flex-col gap-4">
+  <div>
+    <app-rounded-progress
+      [width]="150"
+      [percentage]="getPercentage(course.lessons ?? [])"
+      [strokeWidth]="10"
+      [fontSize]="'text-2xl'"
+      strokeColor="stroke-theme-grey-dark"
+      [wrapText]="true">
+    </app-rounded-progress>
+    <p [innerHTML]="course.description"></p>
+  </div>
+
+  <div class="flex flex-col gap-4 md:grid md:grid-cols-[2fr_1fr]">
+    <section class="flex flex-col gap-4 w-full">
+      <h3 class="font-bold text-lg">Conocimientos previos necesarios</h3>
+      @for (course of requirementsCourses; track course.id) {
+        <app-course-state-card [course]="course"> </app-course-state-card>
+      } @empty {
+        <p>No hay cursos necesarios.</p>
+      }
+    </section>
+
+    <section class="flex flex-col gap-4 w-full">
+      <h3 class="font-bold text-lg">Para ver este curso vas a necesitar</h3>
+      <div
+        class="bg-white rounded-xl border-theme-grey-dark border-[1px] p-4 flex flex-row justify-between md:flex-wrap gap-2">
+        <div
+          class="w-full text-center flex flex-row gap-2 items-center justify-center">
+          <div
+            class="w-7 h-7 rounded-full p-[6px] bg-gray-600 flex justify-center items-center">
+            <img
+              class="w-full"
+              src="https://superlikers-themes.s3.amazonaws.com/ppmu/hours.svg"
+              alt="" />
+          </div>
+          <p>{{ course.contentHours }} horas de contenido</p>
+        </div>
+        <div
+          class="w-full text-center flex flex-row gap-2 items-center justify-center">
+          <div
+            class="w-7 h-7 rounded-full p-[6px] bg-gray-600 flex justify-center items-center">
+            <img
+              class="w-full"
+              src="https://superlikers-themes.s3.amazonaws.com/ppmu/practice_hours.svg"
+              alt="" />
+          </div>
+          <p>{{ course.practiceHours }} horas de práctica</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</section>

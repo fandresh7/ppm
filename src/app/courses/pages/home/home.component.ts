@@ -3,7 +3,6 @@ import { AsyncPipe } from '@angular/common'
 
 import { Observable, combineLatest, map } from 'rxjs'
 
-import { SliderComponent } from './components/slider/slider.component'
 import { NewsPpmComponent } from '@courses/components/adds/news-ppm/news-ppm.component'
 import { Course } from '@courses/logic/models/courses'
 import { LevelsService } from '@courses/services/levels.service'
@@ -18,7 +17,6 @@ import { CoursesAccordionComponent } from '@courses/components/courses-accordion
   imports: [
     CoursesAccordionComponent,
     AsyncPipe,
-    SliderComponent,
     NewsPpmComponent,
     PilarSliderComponent,
     LevelSelectionComponent

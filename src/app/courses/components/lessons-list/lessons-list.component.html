@@ -1,0 +1,14 @@
+<div class="flex flex-col rounded-xl bg-theme-grey">
+  @for (
+    lesson of getCourseLessons(course.lessons);
+    track lesson.id;
+    let last = $last
+  ) {
+    <app-lesson-state-card
+      [lesson]="lesson"
+      [last]="last">
+    </app-lesson-state-card>
+  } @empty {
+    <p>No hay lecciones disponibles.</p>
+  }
+</div>

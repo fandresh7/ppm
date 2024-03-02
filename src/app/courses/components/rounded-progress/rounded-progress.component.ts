@@ -9,13 +9,14 @@ import { Component, Input } from '@angular/core'
   styleUrl: './rounded-progress.component.css'
 })
 export class RoundedProgressComponent {
-  @Input() width!: number
-  @Input() strokeWidth!: number
-  @Input() percentage!: number
+  @Input({ required: true }) width!: number
+  @Input({ required: true }) strokeWidth!: number
+  @Input({ required: true }) percentage!: number
   @Input() strokeColor = 'stroke-theme-grey'
   @Input() fontSize = 'text-sm'
   @Input() strokeProgressColor = 'stroke-theme-green'
   @Input() textColor = 'text-theme-green'
+  @Input() wrapText = false
 
   get radius() {
     return (45 * this.width) / 100
@@ -26,10 +27,17 @@ export class RoundedProgressComponent {
   }
 
   containerStyles() {
-    return {
+    const classes: Record<string, string> = {
       width: `${this.width + 10}px`,
       height: `${this.width + 10}px`
     }
+
+    if (this.wrapText) {
+      classes['shape-outside'] = 'circle()'
+      classes['float'] = 'right'
+    }
+
+    return classes
   }
 
   firstCircleStyles() {

@@ -1,15 +1,11 @@
 <div
-  class="flex flex-row gap-2 items-center rounded-3xl py-1 px-3"
-  [class]="showBackground ? data[status].background : ''">
+  class="flex flex-row gap-1 items-center rounded-3xl py-1 px-3"
+  [class]="data[status].background">
   <img
     class="w-4"
     [src]="data[status].icon"
     alt="check" />
-  <p
-    class="text-sm"
-    [classList]="{
-      'text-white': showBackground
-    }">
+  <p class="text-sm text-white">
     {{ data[status].text }}
   </p>
 </div>
