@@ -2,11 +2,14 @@
   @for (
     lesson of getCourseLessons(course.lessons);
     track lesson.id;
+    let first = $first;
     let last = $last
   ) {
     <app-lesson-state-card
       [lesson]="lesson"
-      [last]="last">
+      [last]="last"
+      [first]="first"
+      [isActive]="isActive(lesson)">
     </app-lesson-state-card>
   } @empty {
     <p>No hay lecciones disponibles.</p>

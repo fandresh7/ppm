@@ -88,7 +88,10 @@
           </div>
           <div class="pr-1 pb-1 lg:h-[700px] lg:overflow-y-auto">
             @if (content === 'lessons') {
-              <app-lessons-list [course]="data.course!"></app-lessons-list>
+              <app-lessons-list
+                [course]="data.course!"
+                [activeLesson]="data.lesson">
+              </app-lessons-list>
             }
 
             @if (content === 'content') {

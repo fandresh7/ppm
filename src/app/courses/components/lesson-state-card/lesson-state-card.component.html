@@ -1,12 +1,12 @@
 <article
-  class="@container relative transition-colors duration-300 rounded-lg"
+  class="@container relative transition-colors duration-300"
   [class]="getArticleClasses()">
   <a
     class="w-full flex flex-row items-center justify-between gap-2 p-4 cursor-pointer"
     [routerLink]="lesson.lessonUrl">
     <svg
       class="flex-shrink-0 w-6 h-6 self-start text-theme-black transition-colors duration-200"
-      [class]="{ 'text-white': active }"
+      [class]="{ 'text-white': isActive }"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 12.859 12.859">
       <g transform="translate(18982.641 22564.826)">

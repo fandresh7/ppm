@@ -41,18 +41,21 @@
 
       <div
         role="region"
-        class="relative flex flex-col gap-4 z-0 p-4 before:content-[''] before:absolute before:w-full before:h-[2px] before:bg-theme-grey-dark before:top-0"
+        class="relative z-0 before:content-[''] before:absolute before:w-full before:h-[2px] before:bg-theme-grey-dark before:top-0"
         [@expand]="accordionItem.expanded ? 'expanded' : 'collapsed'"
         [style.display]="accordionItem.expanded ? '' : 'none'"
         [attr.id]="'accordion-body-' + index"
         [attr.aria-labelledby]="'accordion-header-' + index">
-        <p>
-          <span class="font-bold">Description:</span> Aprende todos los datos
-          básicos que necesitas tener claro para tu primer encuentro con nuestro
-          Costo Variable Industrial, desde un enfoque sencillo y paso a paso.
-        </p>
+        <div class="flex flex-col gap-4 p-4">
+          <p>
+            <span class="font-bold">Description:</span> Aprende todos los datos
+            básicos que necesitas tener claro para tu primer encuentro con
+            nuestro Costo Variable Industrial, desde un enfoque sencillo y paso
+            a paso.
+          </p>
 
-        <app-lessons-list [course]="course"></app-lessons-list>
+          <app-lessons-list [course]="course"></app-lessons-list>
+        </div>
       </div>
     </cdk-accordion-item>
   } @empty {

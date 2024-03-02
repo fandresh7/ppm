@@ -119,10 +119,6 @@ export class CourseComponent {
     this.content = content
   }
 
-  isActive(lesson: Lesson) {
-    return this.courseService.isActiveLesson(lesson)
-  }
-
   setActiveLesson(lesson: Lesson) {
     this.courseService.setActiveLesson(lesson)
   }

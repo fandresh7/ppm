@@ -1,12 +1,12 @@
 import { Component, Input } from '@angular/core'
 import { RouterModule } from '@angular/router'
+import { AsyncPipe } from '@angular/common'
 
 import { getLessonStatus } from '@courses/logic/helpers/courses'
 import { Lesson, LessonStatus } from '@courses/logic/models/lessons'
 import { StatusBadgeComponent } from '../status-badge/status-badge.component'
 import { DownloadButtonComponent } from '../download-button/download-button.component'
 import { FavoriteButtonComponent } from '../favorite-button/favorite-button.component'
-import { TooltipDirective } from '@courses/directives/tooltip/tooltip.directive'
 
 @Component({
   selector: 'app-lesson-state-card',
@@ -16,15 +16,16 @@ import { TooltipDirective } from '@courses/directives/tooltip/tooltip.directive'
     StatusBadgeComponent,
     DownloadButtonComponent,
     FavoriteButtonComponent,
-    TooltipDirective
+    AsyncPipe
   ],
   templateUrl: './lesson-state-card.component.html',
   styleUrl: './lesson-state-card.component.css'
 })
 export class LessonStateCardComponent {
   @Input({ required: true }) lesson!: Lesson
-  @Input() active = false
   @Input() last = false
+  @Input() first = false
+  @Input() isActive = false
 
   get status() {
     return getLessonStatus(this.lesson)
@@ -48,14 +49,16 @@ export class LessonStateCardComponent {
 
   getArticleClasses() {
     const classes: Record<string, boolean> = {
-      'bg-theme-green/40': this.active,
-      'text-white': this.active,
-      'hover:bg-theme-grey-dark': !this.active,
+      'bg-theme-green/40': this.isActive,
+      'text-white': this.isActive,
+      'hover:bg-theme-grey-dark': !this.isActive,
       'before:w-full': !this.last,
       'before:h-[1px]': !this.last,
       'before:bg-white': !this.last,
       'before:absolute': !this.last,
-      'before:-bottom-0': !this.last
+      'before:-bottom-0': !this.last,
+      'rounded-t-xl': this.first,
+      'rounded-b-xl': this.last
     }
 
     return classes

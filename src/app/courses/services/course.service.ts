@@ -89,14 +89,6 @@ export class CourseService {
     )
   }
 
-  isActiveLesson(lessonToCheck: Lesson) {
-    return this.lesson$.pipe(
-      map(lesson => {
-        return lessonToCheck.category === lesson.category
-      })
-    )
-  }
-
   getPercentage(lessons: Lesson[]) {
     return getPercentage(lessons) * 100
   }
