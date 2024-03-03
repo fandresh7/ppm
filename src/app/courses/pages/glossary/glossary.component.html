@@ -13,10 +13,14 @@
   </article>
 
   <article class="bg-white p-4 rounded-xl">
-    <div class="grid grid-cols-auto gap-2">
-      @for (letter of alphabet; track letter) {
+    <div class="grid grid-cols-auto gap-4">
+      @for (letter of letters; track letter) {
         <div
           class="flex h-8 w-8 cursor-pointer items-center justify-center rounded-md p-1 text-center text-xl transition-all duration-200 hover:bg-theme-black-90 hover:text-white"
+          [class]="{
+            'bg-theme-black-50': letter === activeLetter,
+            'text-white': letter === activeLetter
+          }"
           (click)="filter(letter)">
           {{ letter.toUpperCase() }}
         </div>
@@ -24,9 +28,11 @@
     </div>
   </article>
 
-  <div class="grid grid-cols-auto2 gap-2">
+  <div class="grid grid-cols-auto2 gap-4">
     @for (item of glossaryItems$ | async; track item) {
       <app-glossary-card [item]="item"></app-glossary-card>
+    } @empty {
+      <p>No se encontraron resultados.</p>
     }
   </div>
 </div>

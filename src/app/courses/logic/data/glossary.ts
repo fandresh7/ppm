@@ -497,3 +497,32 @@ export const GLOSSARY: Glossary[] = [
       'Es un método de presupuesto en el que todos los gastos deben justificarse para cada nuevo período. Esto significa que cada función dentro de una organización se analiza para sus necesidades y no para los gastos de su período anterior. Y así es como nuestra empresa presupuesta, rastrea y monitorea nuestros gastos. '
   }
 ]
+
+export const alphabet: string[] = [
+  'a',
+  'b',
+  'c',
+  'd',
+  'e',
+  'f',
+  'g',
+  'h',
+  'i',
+  'j',
+  'k',
+  'l',
+  'm',
+  'n',
+  'o',
+  'p',
+  'q',
+  'r',
+  's',
+  't',
+  'u',
+  'v',
+  'w',
+  'x',
+  'y',
+  'z'
+]

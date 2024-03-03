@@ -25,7 +25,7 @@ module.exports = {
       },
       gridTemplateColumns: {
         auto: 'repeat(auto-fit, minmax(2rem, 1fr))',
-        auto2: 'repeat(auto-fill, minmax(350px, 1fr))',
+        auto2: 'repeat(auto-fill, minmax(400px, 1fr))',
         memory: 'repeat(auto-fill, minmax(180px, 1fr))'
       },
       backgroundImage: {
