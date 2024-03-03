@@ -63,6 +63,8 @@ export interface Participant {
   cargo: string
   celular: string
   vp: string
+  bu: string
+  area: string
   'area-categoria': string
   plantas: string
   zbs: string
