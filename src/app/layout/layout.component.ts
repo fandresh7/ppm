@@ -1,8 +1,14 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Component, inject } from '@angular/core'
-import { RouterOutlet } from '@angular/router'
+import {
+  CUSTOM_ELEMENTS_SCHEMA,
+  Component,
+  OnDestroy,
+  OnInit,
+  inject
+} from '@angular/core'
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router'
 import { CommonModule } from '@angular/common'
 
-import { Observable, shareReplay } from 'rxjs'
+import { Observable, Subscription, combineLatest, map, shareReplay } from 'rxjs'
 
 import { HeaderComponent } from './components/header/header.component'
 import { SidebarComponent } from './components/sidebar/sidebar.component'
@@ -18,11 +24,14 @@ import { ParticipantService } from '@participant/services/participant.service'
   styleUrl: './layout.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class LayoutComponent {
+export class LayoutComponent implements OnInit, OnDestroy {
+  router = inject(Router)
+
   levelsStore = inject(LevelsStore)
   participantService = inject(ParticipantService)
 
   sidebar$: Observable<boolean>
+  subscription!: Subscription
 
   constructor(private sidebarService: SidebarService) {
     this.sidebar$ = this.sidebarService.sidebar
@@ -34,7 +43,32 @@ export class LayoutComponent {
     })
   }
 
+  ngOnInit() {
+    this.subscription = this.checkSidebarToHide().subscribe()
+  }
+
   toggleSidebar() {
     this.sidebarService.toggleSidebar()
+  }
+
+  checkSidebarToHide() {
+    return combineLatest([
+      this.router.events,
+      this.sidebarService.sidebar$
+    ]).pipe(
+      map(([event, sidebar]) => {
+        if (!(event instanceof NavigationEnd)) return
+
+        const isMobile = window.innerWidth <= 1024
+
+        if (!sidebar && isMobile) {
+          this.sidebarService.sidebar = true
+        }
+      })
+    )
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe()
   }
 }
