@@ -53,12 +53,6 @@
             [sliderOptions]="coursesSwiperOptions">
           </app-courses-slider>
         </section>
-        <button
-          class="button w-full mt-4 disabled:cursor-not-allowed"
-          disabled
-          [appTooltip]="masterTooltip">
-          Descarga tu certificado Master
-        </button>
       </section>
 
       <section class="flex flex-col gap-4">
@@ -74,10 +68,3 @@
     }
   }
 </div>
-
-<ng-template #masterTooltip>
-  <p
-    class="absolute min-w-max -left-28 -top-[4.5rem] bg-theme-black px-2 py-1 rounded text-white">
-    Mensaje de prueba
-  </p>
-</ng-template>

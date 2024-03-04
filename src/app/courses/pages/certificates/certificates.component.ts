@@ -10,7 +10,6 @@ import { LevelsStore } from '@courses/store/levels.store'
 import { LoadingService } from '@shared/loading/loading.service'
 import { CoursesSliderComponent } from '@courses/components/sliders/courses-slider/courses-slider.component'
 import { certificateCoursesSliderOptions } from '@courses/utils/swipers'
-import { TooltipDirective } from '@courses/directives/tooltip/tooltip.directive'
 import { LoadingCertificateComponent } from '@courses/components/loading/loading-certificate/loading-certificate.component'
 
 @Component({
@@ -21,7 +20,6 @@ import { LoadingCertificateComponent } from '@courses/components/loading/loading
     BreadcrumbComponent,
     AsyncPipe,
     CoursesSliderComponent,
-    TooltipDirective,
     LoadingCertificateComponent
   ],
   templateUrl: './certificates.component.html',
