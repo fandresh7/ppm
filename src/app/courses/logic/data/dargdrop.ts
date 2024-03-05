@@ -273,5 +273,95 @@ export const DRAGDROP: DragDropLesson[] = [
         html: 'ceptaste el reto y potenciaste tus habilidades sobre el primer componente del Business Case: el Template Financiero. Avanza a la siguiente unidad y conviértete en todo un experto de la rutina de aprobación del BC.'
       }
     }
+  },
+  {
+    category: 'quiz_vclppm',
+    page: 'quiz_vclppm',
+    external: 'quiz_vclppm',
+    questions: [
+      {
+        question: 'question1',
+        value:
+          'Se ve impactado por cambios en los macroeconómicos de cada país.'
+      },
+      {
+        question: 'question2',
+        value:
+          'Se puede ver impactado por la Inflación o nuevos términos de negociación.'
+      },
+      {
+        question: 'question3',
+        value: 'Puede verse impactado por la variación del salario mínimo.'
+      },
+      {
+        question: 'question4',
+        value:
+          'Se ve impactado a partir de indicadores como el Weight per Shipment.'
+      },
+      {
+        question: 'question5',
+        value:
+          'Podemos determinar sus impactos o ahorros a partir de iniciativas como Footprint allocation.'
+      },
+      {
+        question: 'question6',
+        value: 'Se ve impactado por indicadores como ADT y GFP.'
+      }
+    ],
+    feedback: {
+      wrong: {
+        title: '¡Aprendiz esta vez fallaste!',
+        html: '<p>Pero tus ganas por demostrar lo aprendido siguen intactas. No dejes de intentarlo.<br> ¡De seguro esta vez lo lograrás!</p>'
+      },
+      right: {
+        title: '¡Lo has hecho increíble!',
+        html: '<p>¡Estás subiendo de nivel rápidamente en este curso! Continúa tu recorrido y conviértete en todo un experto del VLC.<br><br> ¡Te esperamos en la siguiente lección!</p>'
+      }
+    }
+  },
+  {
+    category: 'quiz_vclppmv2',
+    page: 'quiz_vclppmv2',
+    external: 'quiz_vclppmv2',
+    questions: [
+      {
+        question: 'question1',
+        value:
+          'Es el efecto que se da por la combinación de SKU´s dependiendo la zona, región o país.'
+      },
+      {
+        question: 'question2',
+        value: 'Para calcularlo se requiere el volumen y las cuotas.'
+      },
+      {
+        question: 'question3',
+        value:
+          'No podemos tener cuotas negativas porque el efecto sería erróneo.'
+      },
+      {
+        question: 'question4',
+        value:
+          'Responde al efecto resultante del volumen real frente a lo planeado en budget.'
+      },
+      {
+        question: 'question5',
+        value: 'A mayor venta, nuestro efecto será positivo.'
+      },
+      {
+        question: 'question6',
+        value:
+          'En AB InBev usamos este efecto para conocer el impacto de VLC en términos de volumen.'
+      }
+    ],
+    feedback: {
+      wrong: {
+        title: 'Aprendiz esta vez fallaste',
+        html: '<p>Pero no dudamos de tu dedicación y objetivos. Alcanza tu meta revisando el contenido una vez más. Anímate a intentarlo nuevamente. ¡De seguro esta vez lo lograrás!</p>'
+      },
+      right: {
+        title: '¡Lo has hecho increíble!',
+        html: '¡Estás subiendo de nivel en VLC PPM! Esperamos que esta información y conocimientos te sean útil para alcanzar tus metas con éxito. <br>Avanza a la siguiente lección y continúa aprendiendo.'
+      }
+    }
   }
 ]

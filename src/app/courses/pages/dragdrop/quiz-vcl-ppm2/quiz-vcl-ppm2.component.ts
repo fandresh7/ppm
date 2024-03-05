@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, inject } from '@angular/core'
+import { Component, Input, inject } from '@angular/core'
 import { CommonModule } from '@angular/common'
 
 import {
@@ -16,7 +16,7 @@ import { DragdropService } from '@shared/features/dragdrop/services/dragdrop.ser
 import { DropzoneComponent } from './dropzone/dropzone.component'
 
 @Component({
-  selector: 'app-quiz-champions-eng-initial',
+  selector: 'app-quiz-vcl-ppm2',
   standalone: true,
   imports: [
     CommonModule,
@@ -27,17 +27,14 @@ import { DropzoneComponent } from './dropzone/dropzone.component'
     SubmitButtonComponent,
     DropzoneComponent
   ],
-  templateUrl: './quiz-champions-eng-initial.component.html'
+  templateUrl: './quiz-vcl-ppm2.component.html',
+  styleUrl: './quiz-vcl-ppm2.component.css'
 })
-export class QuizChampionsEngInitialComponent implements OnInit {
+export class QuizVclPpm2Component {
   @Input() lesson!: Lesson | undefined
   @Input() dragdrop!: DragDropData
 
   dragdropService = inject(DragdropService)
-
-  ngOnInit(): void {
-    console.log(this.lesson, this.dragdrop)
-  }
 
   onDrop(event: CdkDragDrop<DragDropQuestion[]>) {
     this.dragdropService.onDrop(event)

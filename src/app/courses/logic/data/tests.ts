@@ -7280,5 +7280,515 @@ export const TESTS: TestLesson[] = [
         ]
       }
     ]
+  },
+  {
+    category: 'vclcost_initial',
+    page: 'vclcost_initial',
+    external: 'vclcost_initial',
+    steps: 11,
+    title: 'PRUEBA - Curso  VLC PPM',
+    description:
+      '<p>¡Aprendiz es hora de retar tu conocimiento! <br> A continuación, se muestran 10 preguntas de selección múltiple. Recomendamos leer detenidamente cada enunciado y seleccionar la opción que consideres correcta.</p>',
+    image:
+      'https://contenidospmm.s3.amazonaws.com/recursos/icon-indicadores-monetizacion.png',
+    initialMessage:
+      'Antes de comenzar este curso, queremos probar tu conocimientos, demuéstranos todo lo que sabes en la siguiente evaluación.',
+    questions: [
+      {
+        name: 'question_1',
+        type: QuestionType.Radio,
+        label:
+          '¿En qué paquete  de costos se incluyen los gastos por contratación de mano de obra tercerizada del almacén como montacarguistas?',
+        options: [
+          {
+            text: 'People',
+            isCorrect: false
+          },
+          {
+            text: 'Warehouse',
+            isCorrect: false
+          },
+          {
+            text: 'Transport',
+            isCorrect: false
+          },
+          {
+            text: 'Logistic Support',
+            isCorrect: true
+          }
+        ]
+      },
+      {
+        name: 'question_2',
+        type: QuestionType.Radio,
+        label:
+          'Los ___________ de VLC nos permiten determinar impactos y ahorros en performance. Además, son una medida de referencia para entender la optimización de la operación logística.',
+        options: [
+          {
+            text: 'Indicadores',
+            isCorrect: true
+          },
+          {
+            text: 'Hectolitros',
+            isCorrect: false
+          },
+          {
+            text: 'Costos',
+            isCorrect: false
+          },
+          {
+            text: 'Paquetes',
+            isCorrect: false
+          }
+        ]
+      },
+      {
+        name: 'question_3',
+        type: QuestionType.Radio,
+        label:
+          'Las iniciativas de ahorro que se crean en ABI para optimizar el presupuesto con mejores precios o procesos se conocen como:',
+        options: [
+          {
+            text: 'Reestructuración',
+            isCorrect: false
+          },
+          {
+            text: 'VOptimización',
+            isCorrect: false
+          },
+          {
+            text: 'Ahorro',
+            isCorrect: false
+          },
+          {
+            text: 'Champions',
+            isCorrect: true
+          }
+        ]
+      },
+      {
+        name: 'question_4',
+        type: QuestionType.Radio,
+        label:
+          'Uno de los datos principales para calcular el costo de acuerdo con las responsabilidades como importador es tener claro el __________ con el que se ha negociado el producto.',
+        options: [
+          {
+            text: 'Costo fijo',
+            isCorrect: false
+          },
+          {
+            text: 'Precio',
+            isCorrect: false
+          },
+          {
+            text: 'Contrato',
+            isCorrect: false
+          },
+          {
+            text: 'Incoterm',
+            isCorrect: true
+          }
+        ]
+      },
+      {
+        name: 'question_5',
+        type: QuestionType.Radio,
+        label:
+          'Una de las variables que inciden en el cálculo del costo y se puede optimizar a través de las negociaciones con proveedores es:',
+        options: [
+          {
+            text: 'Price',
+            isCorrect: true
+          },
+          {
+            text: 'Performance',
+            isCorrect: false
+          },
+          {
+            text: 'Negotiation',
+            isCorrect: false
+          },
+          {
+            text: 'Procurement',
+            isCorrect: false
+          }
+        ]
+      },
+      {
+        name: 'question_6',
+        type: QuestionType.Radio,
+        label:
+          'Los ___________ son aquellos costos que se dan por situaciones o contingencias que suceden una vez, pero afectan el VLC.',
+        options: [
+          {
+            text: 'Costos variable',
+            isCorrect: false
+          },
+          {
+            text: 'One off',
+            isCorrect: true
+          },
+          {
+            text: 'Others',
+            isCorrect: false
+          },
+          {
+            text: 'Contingencias',
+            isCorrect: false
+          }
+        ]
+      },
+      {
+        name: 'question_7',
+        type: QuestionType.Radio,
+        label:
+          'El efecto volumen y el efecto mix son variaciones que crean impactos o ahorros en los presupuestos. A esto se le conoce como ____________.',
+        options: [
+          {
+            text: 'Budget Variation',
+            isCorrect: false
+          },
+          {
+            text: 'Flex price',
+            isCorrect: false
+          },
+          {
+            text: 'Real',
+            isCorrect: false
+          },
+          {
+            text: 'Flex budget',
+            isCorrect: true
+          }
+        ]
+      },
+      {
+        name: 'question_8',
+        type: QuestionType.Radio,
+        label:
+          'Para comprender el efecto MIX se realiza el cálculo de diferentes dimensiones. ¿Cuál de las siguientes opciones no corresponde a estas dimensiones?',
+        options: [
+          {
+            text: 'Canal',
+            isCorrect: false
+          },
+          {
+            text: 'SKU',
+            isCorrect: false
+          },
+          {
+            text: 'Región',
+            isCorrect: false
+          },
+          {
+            text: 'Zona',
+            isCorrect: true
+          }
+        ]
+      },
+      {
+        name: 'question_9',
+        type: QuestionType.Radio,
+        label:
+          '¿Cuáles son los inputs necesarios para calcular el efecto  MIX?',
+        options: [
+          {
+            text: 'Cuotas y volumen',
+            isCorrect: true
+          },
+          {
+            text: 'Volumen y hectolitros',
+            isCorrect: false
+          },
+          {
+            text: 'Envases y cantidad',
+            isCorrect: false
+          },
+          {
+            text: 'Envases y costos',
+            isCorrect: false
+          }
+        ]
+      },
+      {
+        name: 'question_1',
+        type: QuestionType.Radio,
+        label:
+          'En AB InBev usamos este efecto para conocer el impacto de VLC en términos de volumen a nivel de DC, planta, región e incluso país.',
+        options: [
+          {
+            text: 'Efecto volumen',
+            isCorrect: true
+          },
+          {
+            text: 'Efecto mix',
+            isCorrect: false
+          },
+          {
+            text: 'Efecto price',
+            isCorrect: false
+          },
+          {
+            text: 'Efecto performance',
+            isCorrect: false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    category: 'vclcost_final',
+    page: 'vclcost_final',
+    external: 'vclcost_final',
+    steps: 11,
+    title: 'PRUEBA - Curso  VLC PPM',
+    description:
+      '<p>¡Aprendiz es hora de retar tu conocimiento! <br> A continuación, se muestran 10 preguntas de selección múltiple. Recomendamos leer detenidamente cada enunciado y seleccionar la opción que consideres correcta.</p>',
+    image:
+      'https://contenidospmm.s3.amazonaws.com/recursos/icon-indicadores-monetizacion.png',
+    initialMessage:
+      'Antes de comenzar este curso, queremos probar tu conocimientos, demuéstranos todo lo que sabes en la siguiente evaluación.',
+    questions: [
+      {
+        name: 'question_1',
+        type: QuestionType.Radio,
+        label:
+          '¿En qué paquete  de costos se incluyen los gastos por contratación de mano de obra tercerizada del almacén como montacarguistas?',
+        options: [
+          {
+            text: 'People',
+            isCorrect: false
+          },
+          {
+            text: 'Warehouse',
+            isCorrect: false
+          },
+          {
+            text: 'Transport',
+            isCorrect: false
+          },
+          {
+            text: 'Logistic Support',
+            isCorrect: true
+          }
+        ]
+      },
+      {
+        name: 'question_2',
+        type: QuestionType.Radio,
+        label:
+          'Los ___________ de VLC nos permiten determinar impactos y ahorros en performance. Además, son una medida de referencia para entender la optimización de la operación logística.',
+        options: [
+          {
+            text: 'Indicadores',
+            isCorrect: true
+          },
+          {
+            text: 'Hectolitros',
+            isCorrect: false
+          },
+          {
+            text: 'Costos',
+            isCorrect: false
+          },
+          {
+            text: 'Paquetes',
+            isCorrect: false
+          }
+        ]
+      },
+      {
+        name: 'question_3',
+        type: QuestionType.Radio,
+        label:
+          'Las iniciativas de ahorro que se crean en ABI para optimizar el presupuesto con mejores precios o procesos se conocen como:',
+        options: [
+          {
+            text: 'Reestructuración',
+            isCorrect: false
+          },
+          {
+            text: 'VOptimización',
+            isCorrect: false
+          },
+          {
+            text: 'Ahorro',
+            isCorrect: false
+          },
+          {
+            text: 'Champions',
+            isCorrect: true
+          }
+        ]
+      },
+      {
+        name: 'question_4',
+        type: QuestionType.Radio,
+        label:
+          'Uno de los datos principales para calcular el costo de acuerdo con las responsabilidades como importador es tener claro el __________ con el que se ha negociado el producto.',
+        options: [
+          {
+            text: 'Costo fijo',
+            isCorrect: false
+          },
+          {
+            text: 'Precio',
+            isCorrect: false
+          },
+          {
+            text: 'Contrato',
+            isCorrect: false
+          },
+          {
+            text: 'Incoterm',
+            isCorrect: true
+          }
+        ]
+      },
+      {
+        name: 'question_5',
+        type: QuestionType.Radio,
+        label:
+          'Una de las variables que inciden en el cálculo del costo y se puede optimizar a través de las negociaciones con proveedores es:',
+        options: [
+          {
+            text: 'Price',
+            isCorrect: true
+          },
+          {
+            text: 'Performance',
+            isCorrect: false
+          },
+          {
+            text: 'Negotiation',
+            isCorrect: false
+          },
+          {
+            text: 'Procurement',
+            isCorrect: false
+          }
+        ]
+      },
+      {
+        name: 'question_6',
+        type: QuestionType.Radio,
+        label:
+          'Los ___________ son aquellos costos que se dan por situaciones o contingencias que suceden una vez, pero afectan el VLC.',
+        options: [
+          {
+            text: 'Costos variable',
+            isCorrect: false
+          },
+          {
+            text: 'One off',
+            isCorrect: true
+          },
+          {
+            text: 'Others',
+            isCorrect: false
+          },
+          {
+            text: 'Contingencias',
+            isCorrect: false
+          }
+        ]
+      },
+      {
+        name: 'question_7',
+        type: QuestionType.Radio,
+        label:
+          'El efecto volumen y el efecto mix son variaciones que crean impactos o ahorros en los presupuestos. A esto se le conoce como ____________.',
+        options: [
+          {
+            text: 'Budget Variation',
+            isCorrect: false
+          },
+          {
+            text: 'Flex price',
+            isCorrect: false
+          },
+          {
+            text: 'Real',
+            isCorrect: false
+          },
+          {
+            text: 'Flex budget',
+            isCorrect: true
+          }
+        ]
+      },
+      {
+        name: 'question_8',
+        type: QuestionType.Radio,
+        label:
+          'Para comprender el efecto MIX se realiza el cálculo de diferentes dimensiones. ¿Cuál de las siguientes opciones no corresponde a estas dimensiones?',
+        options: [
+          {
+            text: 'Canal',
+            isCorrect: false
+          },
+          {
+            text: 'SKU',
+            isCorrect: false
+          },
+          {
+            text: 'Región',
+            isCorrect: false
+          },
+          {
+            text: 'Zona',
+            isCorrect: true
+          }
+        ]
+      },
+      {
+        name: 'question_9',
+        type: QuestionType.Radio,
+        label:
+          '¿Cuáles son los inputs necesarios para calcular el efecto  MIX?',
+        options: [
+          {
+            text: 'Cuotas y volumen',
+            isCorrect: true
+          },
+          {
+            text: 'Volumen y hectolitros',
+            isCorrect: false
+          },
+          {
+            text: 'Envases y cantidad',
+            isCorrect: false
+          },
+          {
+            text: 'Envases y costos',
+            isCorrect: false
+          }
+        ]
+      },
+      {
+        name: 'question_1',
+        type: QuestionType.Radio,
+        label:
+          'En AB InBev usamos este efecto para conocer el impacto de VLC en términos de volumen a nivel de DC, planta, región e incluso país.',
+        options: [
+          {
+            text: 'Efecto volumen',
+            isCorrect: true
+          },
+          {
+            text: 'Efecto mix',
+            isCorrect: false
+          },
+          {
+            text: 'Efecto price',
+            isCorrect: false
+          },
+          {
+            text: 'Efecto performance',
+            isCorrect: false
+          }
+        ]
+      }
+    ]
   }
 ]

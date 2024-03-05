@@ -18,7 +18,7 @@ export const LEVELS: Level[] = [
   {
     id: 'advanced',
     name: 'PPM AVANZADO',
-    coursesIds: [16],
+    coursesIds: [16, 17],
     image:
       'https://superlikers-themes.s3.amazonaws.com/PPMuniversity/Thumbnail_PPM_LEVELS_V2_avanzado2.png'
   }

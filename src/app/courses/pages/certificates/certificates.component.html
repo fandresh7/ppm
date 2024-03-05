@@ -35,7 +35,7 @@
           class="relative bg-white rounded-lg flex flex-row gap-4 items-center text-center justify-start p-4 md:flex-col md:justify-center md:items-center lg:py-12 lg:gap-0">
           <p class="text-4xl lg:text-5xl">
             {{ data.completeCourses.length }} /
-            {{ data.completeCourses.length + data.inProgressCourses.length }}
+            {{ data.completeCourses.length + data.totalCourses.length }}
           </p>
           <p class="text-2xl">Cursos terminados</p>
           <img
@@ -49,7 +49,7 @@
         <section class="bg-theme-grey-dark flex flex-col gap-4 p-4 rounded-xl">
           <h3 class="text-lg font-bold">Cursos en progreso</h3>
           <app-courses-slider
-            [courses]="data.inProgressCourses"
+            [courses]="data.totalCourses"
             [sliderOptions]="coursesSwiperOptions">
           </app-courses-slider>
         </section>

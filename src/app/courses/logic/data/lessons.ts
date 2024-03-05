@@ -2901,5 +2901,409 @@ export const LESSONS: Lesson[] = [
     category: 'leasing_final',
     type: LessonType.Test,
     name: 'EVALUACION FINAL'
+  },
+  {
+    id: 175,
+    category: 'postmortem_initial',
+    type: LessonType.Test,
+    initial: true,
+    name: 'EVALUACION INICIAL'
+  },
+  {
+    id: 176,
+    category: 'lesson_135',
+    type: LessonType.Video,
+    name: '1. INTRO Postmortem: Paso a Paso',
+    description:
+      'Aprendiz, bienvenido a tu curso Postmortem: Paso a Paso. Un curso básico que te ayudará a comprender cómo se realiza la revisión post-implementación de proyectos CAPEX denomina Postmortem. ¿Qué esperas para iniciar el recorrido? Da play y explora este formato junto a los expertos.',
+    image:
+      'https://superlikers-themes.s3.amazonaws.com/PPMuniversity/vicbasico/as.png',
+    VideoContent: {
+      video:
+        'https://contenidospmm.s3.amazonaws.com/cursos/course_16/Intro_Curso_Postmortem.mp4',
+      duration: '1:21',
+      subtitles:
+        'https://contenidospmm.s3.amazonaws.com/subtitulos/curso_16/%5BSUB_ESP%5D+Intro+del+Curso_Postmortem.vtt'
+    },
+    resources: []
+  },
+  {
+    id: 177,
+    category: 'lesson_136',
+    type: LessonType.Video,
+    name: '2. Recap: RIA',
+    description:
+      'El RIA es uno de los insumos principales para el Postmortem , ya que en él encontramos la actualización del caso de negocio con los beneficios actuales, en él se incluyen los Inputs del proyecto como: costos, referencias, tiempos, beneficios entre otros. Acompaña a nuestro experto Rafael Martínez en un recorrido breve por este formato. ',
+    image:
+      'https://superlikers-themes.s3.amazonaws.com/PPMuniversity/vicbasico/as.png',
+    VideoContent: {
+      video:
+        'https://contenidospmm.s3.amazonaws.com/cursos/course_16/Unit1_Lesson1_Curso_Postmortem.mp4',
+      duration: '3:38',
+      subtitles:
+        'https://contenidospmm.s3.amazonaws.com/subtitulos/curso_16/%5BSUB_ESP%5D+Unit1_Lesson1_Postmortem.vtt'
+    },
+    resources: []
+  },
+  {
+    id: 178,
+    category: 'lesson_137',
+    type: LessonType.Video,
+    name: '3. Postmortem: Concepto, alcance y objetivo',
+    description:
+      'Avanza y descubre más detalles. En esta lección respondemos qué es postmortem, porqué se realiza y cuándo se realiza. ',
+    image:
+      'https://superlikers-themes.s3.amazonaws.com/PPMuniversity/vicbasico/as.png',
+    VideoContent: {
+      video:
+        'https://contenidospmm.s3.amazonaws.com/cursos/course_16/Unit1_Lesson2_Curso_Postmortem.mp4',
+      duration: '4:36',
+      subtitles:
+        'https://contenidospmm.s3.amazonaws.com/subtitulos/curso_16/%5BSUB_ESP%5D+Unit1_Lesson2_Postmortem.vtt'
+    },
+    resources: []
+  },
+  {
+    id: 179,
+    category: 'lesson_138',
+    type: LessonType.Video,
+    name: '4. Team structure: ¿quién participa y para quién es?',
+    description:
+      '¡Llegó el momento de subir algunos grados a tu curso! Unete a un recorrido guiado con el experto Carlos Marín por los roles participantes en el desarrollo de esta evaluación de proyectos.',
+    image:
+      'https://superlikers-themes.s3.amazonaws.com/PPMuniversity/vicbasico/as.png',
+    VideoContent: {
+      video:
+        'https://contenidospmm.s3.amazonaws.com/cursos/course_16/Unit1_Lesson3_Curso_Postmortem.mp4',
+      duration: '2:05',
+      subtitles:
+        'https://contenidospmm.s3.amazonaws.com/subtitulos/curso_16/%5BSUB_ESP%5D+Unit1_Lesson3_Postmortem.vtt'
+    },
+    resources: []
+  },
+  {
+    id: 180,
+    category: 'lesson_139',
+    type: LessonType.Video,
+    name: '5. Key concept',
+    description:
+      '¿Sabes que es NPV, Payback o IRR? Da play en el video y descubre los conceptos claves que necesitas conocer antes de iniciar un postmortem.',
+    image:
+      'https://superlikers-themes.s3.amazonaws.com/PPMuniversity/vicbasico/as.png',
+    VideoContent: {
+      video:
+        'https://contenidospmm.s3.amazonaws.com/cursos/course_16/Unit1_Lesson4_Curso_Postmortem.mp4',
+      duration: '3:46',
+      subtitles:
+        'https://contenidospmm.s3.amazonaws.com/subtitulos/curso_16/%5BSUB_ESP%5D+Unit1_Lesson4_Postmortem.vtt'
+    },
+    resources: []
+  },
+  {
+    id: 181,
+    category: 'lesson_140',
+    type: LessonType.Video,
+    name: '6. Estructura del template',
+    description:
+      '¡Bienvenido a una nueva unidad de conocimiento! Recordemos que un Postmortem es el análisis basado en datos históricos que realizamos una vez finalizado un proyecto. Es momento de avanzar y conocer las pestañas que componen nuestro formato y la información que contienen.',
+    image:
+      'https://superlikers-themes.s3.amazonaws.com/PPMuniversity/vicbasico/as.png',
+    VideoContent: {
+      video:
+        'https://contenidospmm.s3.amazonaws.com/cursos/course_16/Unit2_Lesson5_Curso_Postmortem.mp4',
+      duration: '4:48',
+      subtitles:
+        'https://contenidospmm.s3.amazonaws.com/subtitulos/curso_16/%5BSUB_ESP%5D+Unit2_Lesson5_Postmortem.vtt'
+    },
+    resources: [
+      {
+        name: 'CPD_CAPEX Post Mortem Template PET BAQ-1.pptx',
+        file: 'https://contenidospmm.s3.amazonaws.com/cursos/course_16/CPD_CAPEX+Post+Mortem+Template+PET+BAQ-1.pptx'
+      },
+      {
+        name: 'CSD_CAPEX Post Mortem Template_Compuertas MGYE V5 (003).pptx',
+        file: 'https://contenidospmm.s3.amazonaws.com/cursos/course_16/CSD_CAPEX+Post+Mortem+Template_Compuertas+MGYE++V5+(003).pptx'
+      }
+    ]
+  },
+  {
+    id: 182,
+    category: 'lesson_141',
+    type: LessonType.Infografia,
+    name: '7. Infografía: Tips y recomendaciones',
+    description:
+      'Aprendiz antes de finalizar el curso, recuerda que el Postmortem nos permite conocer la eficiencia de nuestros proyectos de forma real y en base a datos. Te invitamos a descarga la infografía y tener a la mano todos los datos claves vistos a lo largo del curso.',
+    image:
+      'https://superlikers-themes.s3.amazonaws.com/PPMuniversity/vicbasico/as.png',
+    InfografiaContent: {
+      infografia:
+        'https://contenidospmm.s3.amazonaws.com/cursos/course_16/Unit2_Lesson6_Curso_Postmortem.pdf'
+    },
+    resources: []
+  },
+  {
+    id: 183,
+    category: 'lesson_142',
+    type: LessonType.Infografia,
+    name: '8. Presetación final del curso',
+    description: 'Presetación final del curso',
+    image:
+      'https://superlikers-themes.s3.amazonaws.com/PPMuniversity/vicbasico/as.png',
+    InfografiaContent: {
+      infografia:
+        'https://contenidospmm.s3.amazonaws.com/cursos/course_16/%5BPress%5D+Curso+Postmortem.pdf'
+    },
+    resources: []
+  },
+  {
+    id: 184,
+    category: 'postmortem_final',
+    type: LessonType.Test,
+    name: 'EVALUACION FINAL',
+    attempt: {
+      video:
+        'https://contenidospmm.s3.amazonaws.com/cursos/course_16/Intro_Curso_Postmortem.mp4',
+      duration: '1:17'
+    }
+  },
+  {
+    id: 185,
+    category: 'vclcost_initial',
+    type: LessonType.Test,
+    initial: true,
+    name: 'EVALUACION INICIAL'
+  },
+  {
+    id: 186,
+    category: 'lesson_143',
+    type: LessonType.Video,
+    name: '1. INTRO',
+    description:
+      'Es momento de que te sumerjas en esta nueva aventura por VLC y logres optimizar tus costos, analizar los reportes del gasto y tomar mejores decisiones tanto para tu equipo como para la operación.',
+    image:
+      'https://superlikers-themes.s3.amazonaws.com/PPMuniversity/vicbasico/as.png',
+
+    VideoContent: {
+      video:
+        'https://contenidospmm.s3.amazonaws.com/cursos/course_17/Intro_Curso_VLC_PPM.mp4',
+      duration: '2:05',
+      subtitles:
+        'https://contenidospmm.s3.amazonaws.com/subtitulos/curso_17/Intro+del+curso_VLC_PPM.mp4_es.vtt'
+    },
+    resources: []
+  },
+  {
+    id: 187,
+    category: 'lesson_144',
+    type: LessonType.Video,
+    name: '2. T1: Nacional',
+    description:
+      'Da play en esta lección y conoce a detalle los costos asociados al proceso de distribución nacional que son contabilizados en AB InBev  y su impacto en cada uno de los paquetes. ',
+    image:
+      'https://superlikers-themes.s3.amazonaws.com/PPMuniversity/vicbasico/as.png',
+    VideoContent: {
+      video:
+        'https://contenidospmm.s3.amazonaws.com/cursos/course_17/Unit1_Lesson1_VLC_PPM.mp4',
+      duration: '6:55',
+      subtitles:
+        'https://contenidospmm.s3.amazonaws.com/subtitulos/curso_17/VLC_PPM_U1L1_Sub_es.vtt'
+    },
+    resources: []
+  },
+  {
+    id: 188,
+    category: 'lesson_145',
+    type: LessonType.Video,
+    name: '3. T1: Internacional',
+    description:
+      '¡Anímate y avanza a la siguiente lección! Aprende todo lo relacionado con los costos de VLC en el proceso de distribución internacional. ',
+    image:
+      'https://superlikers-themes.s3.amazonaws.com/PPMuniversity/vicbasico/as.png',
+    VideoContent: {
+      video:
+        'https://contenidospmm.s3.amazonaws.com/cursos/course_17/Unit1_Lesson2_VLC_PPM.mp4',
+      duration: '6:48',
+      subtitles:
+        'https://contenidospmm.s3.amazonaws.com/subtitulos/curso_17/VLC_PPM_U1L2_Sub_es.vtt'
+    },
+    resources: []
+  },
+  {
+    id: 189,
+    category: 'quiz_vclppm',
+    type: LessonType.Dragdrop,
+    name: 'Quiz station'
+  },
+  {
+    id: 190,
+    category: 'lesson_146',
+    type: LessonType.Video,
+    name: '4. T2: Proceso Logístico',
+    description:
+      'Es momento de aprender como se contabilizan los costos en T2 y cómo cada una de las etapas de la línea de distribución se refleja y conecta con nuestros costos en AB InBev.',
+    image:
+      'https://superlikers-themes.s3.amazonaws.com/PPMuniversity/vicbasico/as.png',
+    VideoContent: {
+      video:
+        'https://contenidospmm.s3.amazonaws.com/cursos/course_17/Unit1_Lesson3_VLC_PPM.mp4',
+      duration: '6:33',
+      subtitles:
+        'https://contenidospmm.s3.amazonaws.com/subtitulos/curso_17/VLC_PPM_U1L3_Sub_es.vtt'
+    },
+    resources: []
+  },
+  {
+    id: 191,
+    category: 'lesson_147',
+    type: LessonType.Video,
+    name: '5. Flex Budget: ¿Qué es? ',
+    description:
+      '¡Sube de nivel! Para entender el comportamiento de VLC, tomar decisiones y buscar mejores estrategias para el negocio es importante aprender qué es y cómo se calcula el volumen y mix, dos efectos que crean la flexibilización del budget. Presta mucha atención al video y afianza tus conocimientos.',
+    image:
+      'https://superlikers-themes.s3.amazonaws.com/PPMuniversity/vicbasico/as.png',
+    VideoContent: {
+      video:
+        'https://contenidospmm.s3.amazonaws.com/cursos/course_17/Unit2_Lesson4_VLC_PPM.mp4',
+      duration: '2:32',
+      subtitles:
+        'https://contenidospmm.s3.amazonaws.com/subtitulos/curso_17/VLC_PPM_U2L4_Sub_es.vtt'
+    },
+    resources: []
+  },
+  {
+    id: 192,
+    category: 'lesson_148',
+    type: LessonType.Video,
+    name: '6. FMix Calculation ',
+    description:
+      'Dentro de nuestro portafolio contamos con diferentes SKU´s y además, vendemos en diferentes regiones y canales, lo cual genera un mix o combinaciones de venta que se traduce en el Efecto MIX. Avanza y aprende cómo calcularlo.',
+    image:
+      'https://superlikers-themes.s3.amazonaws.com/PPMuniversity/vicbasico/as.png',
+    VideoContent: {
+      video:
+        'https://contenidospmm.s3.amazonaws.com/cursos/course_17/Unit2_Lesson5_VLC_PPM.mp4',
+      duration: '6:09',
+      subtitles:
+        'https://contenidospmm.s3.amazonaws.com/subtitulos/curso_17/VLC_PPM_U2L5_Sub_es.vtt'
+    },
+    resources: [
+      {
+        name: 'Mix Methodology',
+        file: 'https://contenidospmm.s3.amazonaws.com/cursos/course_17/Mix+Methodology.pdf'
+      }
+    ]
+  },
+  {
+    id: 193,
+    category: 'lesson_149',
+    type: LessonType.Video,
+    name: '7. Volume Effect',
+    description:
+      'El efecto volumen responde al resultado del volumen real frente a lo planeado en budget. Presta atención y conoce mucho más sobre cómo calculamos este efecto en VLC.',
+    image:
+      'https://superlikers-themes.s3.amazonaws.com/PPMuniversity/vicbasico/as.png',
+    VideoContent: {
+      video:
+        'https://contenidospmm.s3.amazonaws.com/cursos/course_17/Unit2_Lesson6_VLC_PPM.mp4',
+      duration: '6:09',
+      subtitles:
+        'https://contenidospmm.s3.amazonaws.com/subtitulos/curso_17/VLC_PPM_U2L6_Sub_es.vtt'
+    },
+    resources: []
+  },
+  {
+    id: 194,
+    category: 'quiz_vclppmv2',
+    type: LessonType.Dragdrop,
+    name: 'Quiz station'
+  },
+  {
+    id: 195,
+    category: 'lesson_150',
+    type: LessonType.Video,
+    name: '8. SCFD: Overview',
+    description:
+      'CFD, ¡Una forma más rápida, fácil e interactiva de visualizar tus reportes del gasto generados desde cada una de sus líneas! Anímate a conocer todo sobre el SCFD 3.0 y la forma en la que se actualiza la información al cierre de VLC.',
+    image:
+      'https://superlikers-themes.s3.amazonaws.com/PPMuniversity/vicbasico/as.png',
+    VideoContent: {
+      video:
+        'https://contenidospmm.s3.amazonaws.com/cursos/course_17/Unit3_Lesson7_VLC_PPM.mp4',
+      duration: '4:36',
+      subtitles:
+        'https://contenidospmm.s3.amazonaws.com/subtitulos/curso_17/VLC_PPM_U3L7_Sub_es.vtt'
+    },
+    resources: [
+      {
+        name: '2023 LCP LCM Handbook',
+        file: 'https://contenidospmm.s3.amazonaws.com/cursos/course_17/2023_LCP_LCM+Handbook.pdf'
+      }
+    ]
+  },
+  {
+    id: 196,
+    category: 'lesson_151',
+    type: LessonType.Video,
+    name: '9. SCFD: Estructura',
+    description:
+      'Como ya viste, el SCFD 3.0 es el módulo en Anaplan que tenemos para registrar la información de VLC. Preparate para un recorrido guiado con la experta Leticia López por la visual de este reporte en Anaplan.',
+    image:
+      'https://superlikers-themes.s3.amazonaws.com/PPMuniversity/vicbasico/as.png',
+    VideoContent: {
+      video:
+        'https://contenidospmm.s3.amazonaws.com/cursos/course_17/Unit3_Lesson8_VLC_PPM.mp4',
+      duration: '4:24',
+      subtitles:
+        'https://contenidospmm.s3.amazonaws.com/subtitulos/curso_17/VLC_PPM_U3L8_Sub_es.vtt'
+    },
+    resources: []
+  },
+  {
+    id: 197,
+    category: 'lesson_152',
+    type: LessonType.Video,
+    name: '10. Paquetes y Subpaquetes',
+    description:
+      'Has llegado a la última lección de tu curso. Ya en este punto debes reconer que en VLC tenemos tres paquetes: People, Logistic Support y Transport. Ahora es mometo de conocer cada uno de los subpaquetes que los componen. ',
+    image:
+      'https://superlikers-themes.s3.amazonaws.com/PPMuniversity/vicbasico/as.png',
+    VideoContent: {
+      video:
+        'https://contenidospmm.s3.amazonaws.com/cursos/course_17/Unit3_Lesson9_VLC_PPM.mp4',
+      duration: '4:36',
+      subtitles:
+        'https://contenidospmm.s3.amazonaws.com/subtitulos/curso_17/VLC_PPM_U3L9_Sub_es.vtt'
+    },
+    resources: [
+      {
+        name: '[PDF] Chart of accounts Logistics',
+        file: 'https://contenidospmm.s3.amazonaws.com/cursos/course_17/%5BPDF%5D+Chart+of+accounts+Logistics+(1).pdf'
+      }
+    ]
+  },
+  {
+    id: 198,
+    category: 'lesson_153',
+    type: LessonType.Infografia,
+    name: 'Presetación final del curso',
+    description: 'Presetación final del curso',
+    image:
+      'https://superlikers-themes.s3.amazonaws.com/PPMuniversity/vicbasico/as.png',
+    InfografiaContent: {
+      infografia:
+        'https://contenidospmm.s3.amazonaws.com/cursos/course_17/%5BPPT%5D+Curso+VLC+PPM.pdf'
+    },
+    resources: []
+  },
+  {
+    id: 199,
+    category: 'vclcost_final',
+    type: LessonType.Test,
+    name: 'EVALUACION FINAL',
+    attempt: {
+      video:
+        'https://contenidospmm.s3.amazonaws.com/cursos/course_17/Intro_Curso_VLC_PPM.mp4',
+      duration: '2:05'
+    }
   }
 ]

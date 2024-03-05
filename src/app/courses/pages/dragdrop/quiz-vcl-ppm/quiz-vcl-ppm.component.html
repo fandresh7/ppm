@@ -1,0 +1,103 @@
+<header class="flex flex-row items-end gap-6 mb-10">
+  <img
+    class="w-40"
+    src="https://superlikers-themes.s3.amazonaws.com/ppmu/quiz-station-img.svg"
+    alt="quiz" />
+  <div>
+    <h2 class="font-bold">Quiz Station</h2>
+    <p>¡Llegó el momento de poner a prueba tus conocimientos!</p>
+  </div>
+</header>
+
+<div class="bg-theme-grey p-6 rounded-xl">
+  <div
+    class="max-w-4xl mx-auto flex flex-col gap-4"
+    cdkDropListGroup>
+    <p class="text-center">
+      Lee las opciones, arrastra y ubica cada uno de los costos e indicadores
+      que influyen en el Price y Performance a nivel de T1.
+    </p>
+
+    <div
+      id="options"
+      cdkDropList
+      [cdkDropListData]="dragdrop.options"
+      (cdkDropListDropped)="onDrop($event)"
+      class="options flex flex-wrap gap-2 justify-stretch items-stretch min-w-full">
+      @for (option of dragdrop.options; track option) {
+        <div
+          cdkDrag
+          [ngClass]="option.color"
+          class="cursor-move rounded-xl max-w-[200px] px-4 py-2 text-center bg-white text-theme-black">
+          {{ option.value }}
+        </div>
+      }
+    </div>
+
+    <div class="overflow-x-auto">
+      <div class="w-[900px] py-2">
+        <img
+          class="w-11/12 mx-auto"
+          src="https://superlikers-themes.s3.amazonaws.com/PPMuniversity/quiz_vclppm_WEB.png"
+          alt="" />
+        <div class="flex flex-row gap-2 w-[95%] m-auto">
+          <div class="w-[250px]">
+            <app-vcl-ppm-dropzone
+              customClasses="border-theme-yellow"
+              [dropzoneItems]="dragdrop.dropzones[0]"
+              question="question1"
+              (dropEvent)="onDrop($event)">
+            </app-vcl-ppm-dropzone>
+          </div>
+          <div class="w-[250px]">
+            <app-vcl-ppm-dropzone
+              customClasses="border-theme-yellow"
+              [dropzoneItems]="dragdrop.dropzones[1]"
+              question="question2"
+              (dropEvent)="onDrop($event)">
+            </app-vcl-ppm-dropzone>
+          </div>
+          <div class="w-[250px]">
+            <app-vcl-ppm-dropzone
+              customClasses="border-theme-yellow"
+              [dropzoneItems]="dragdrop.dropzones[2]"
+              question="question3"
+              (dropEvent)="onDrop($event)">
+            </app-vcl-ppm-dropzone>
+          </div>
+          <div class="w-[250px]">
+            <app-vcl-ppm-dropzone
+              customClasses="border-theme-blue"
+              [dropzoneItems]="dragdrop.dropzones[3]"
+              question="question4"
+              (dropEvent)="onDrop($event)">
+            </app-vcl-ppm-dropzone>
+          </div>
+          <div class="w-[250px]">
+            <app-vcl-ppm-dropzone
+              customClasses="border-theme-blue"
+              [dropzoneItems]="dragdrop.dropzones[4]"
+              question="question5"
+              (dropEvent)="onDrop($event)">
+            </app-vcl-ppm-dropzone>
+          </div>
+          <div class="w-[250px]">
+            <app-vcl-ppm-dropzone
+              customClasses="border-theme-blue"
+              [dropzoneItems]="dragdrop.dropzones[5]"
+              question="question6"
+              (dropEvent)="onDrop($event)">
+            </app-vcl-ppm-dropzone>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <app-submit-button
+      class="mx-auto"
+      [isLoading]="false"
+      (click)="submit()">
+      Continuar
+    </app-submit-button>
+  </div>
+</div>

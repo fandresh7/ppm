@@ -308,8 +308,29 @@ export const COURSES: Course[] = [
       'https://contenidospmm.s3.amazonaws.com/cursos/course_15/Leasing.png',
     assessment: 11,
     expert: 'Rafael Martinez | Marisol Pilco | Carlos Marin',
-    lessonsIds: [175, 176, 177, 178, 179, 180, 181, 182],
+    lessonsIds: [175, 176, 177, 178, 179, 180, 181, 182, 183, 184],
     requirements: [6, 7, 8, 9, 10],
+    contentHours: 2,
+    practiceHours: 12
+  },
+  {
+    id: 17,
+    category: 'course_17',
+    name: 'VLC PPM',
+    description:
+      '<p>Es momento de subir unos escalones en tu conocimiento.</p> <p>Bienvenido a tu curso VLC PPM</p> <p>¡Una oportunidad sin igual para profundizar en los costos de VLC!</p> <p>Aprende de la mano de nuestra experta Leticia López PPM T1 y T2 Performance Manager a:</p> <ul> <li>Identificar cuáles son los costos variables logísticos que se contabilizan en AB InBev y su impacto en cada uno de los paquetes.</li> <li>Conocer el Flex Budget y las variaciones que se pueden presentar en el proceso logistico.</li> <li>Y realizar un recorrido detallado por el SCFD, la herramienta en la que reportamos mensualmente al equipo global toda la información del gasto generado al cierre de VLC.</li> </ul> <p>¿Estás listo? </p>',
+    pilar: 'VLC',
+    level: 'level1',
+    introductionVideo:
+      'https://contenidospmm.s3.amazonaws.com/cursos/course_17/Intro_Curso_VLC_PPM.mp4',
+    certificadoImage:
+      'https://superlikers-themes.s3.amazonaws.com/ppmu/vclpmmCertificado.png',
+    assessment: 11,
+    expert: 'Leticia Lopez Lazaro',
+    lessonsIds: [
+      185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199
+    ],
+    requirements: [1],
     contentHours: 2,
     practiceHours: 12
   }

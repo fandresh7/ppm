@@ -1,0 +1,22 @@
+<div
+  cdkDropList
+  [cdkDropListData]="dropzoneItems"
+  (cdkDropListDropped)="onDrop($event)"
+  [cdkDropListEnterPredicate]="dropListEnterPredicate"
+  [id]="question"
+  [class]="customClasses"
+  class="group rounded-lg text-sm border-dashed border-[1px] bg-white p-2 text-center flex items-center min-h-[200px]">
+  @for (item of dropzoneItems; track item) {
+    <div
+      cdkDrag
+      class="cursor-move mx-auto relative option peer bg-white rounded-xl grow text-center text-theme-black"
+      style="text-wrap: balance">
+      {{ item.value }}
+    </div>
+  }
+  <p
+    class="text-theme-black peer-[.option]:hidden group-[.cdk-drop-list-dragging]:hidden"
+    style="text-wrap: balance">
+    Arrastra aquí tu actividad correcta
+  </p>
+</div>

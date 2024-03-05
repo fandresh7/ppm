@@ -34,18 +34,18 @@ export class CertificatesComponent {
 
   data$!: Observable<{
     completeCourses: Course[]
-    inProgressCourses: Course[]
+    totalCourses: Course[]
     loading: boolean
   }>
 
   constructor() {
     this.data$ = combineLatest([
       this.levelsStore.getCompleteCourses(),
-      this.levelsStore.getInProgressCourses(),
+      this.levelsStore.getAllCourses(),
       this.loadingService.loading$
     ]).pipe(
-      map(([completeCourses, inProgressCourses, loading]) => {
-        return { completeCourses, inProgressCourses, loading }
+      map(([completeCourses, totalCourses, loading]) => {
+        return { completeCourses, totalCourses, loading }
       })
     )
   }

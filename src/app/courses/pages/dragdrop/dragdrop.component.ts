@@ -17,6 +17,8 @@ import { Lesson } from '@courses/logic/models/lessons'
 import { DragdropService } from '@shared/features/dragdrop/services/dragdrop.service'
 import { LoadingService } from '@shared/loading/loading.service'
 import { DragDropData } from '@courses/logic/models/dragdrop'
+import { QuizVclPpmComponent } from './quiz-vcl-ppm/quiz-vcl-ppm.component'
+import { QuizVclPpm2Component } from './quiz-vcl-ppm2/quiz-vcl-ppm2.component'
 
 @Component({
   selector: 'app-dragdrop',
@@ -31,7 +33,9 @@ import { DragDropData } from '@courses/logic/models/dragdrop'
     QuizVclComponent,
     QuizVclV2Component,
     QuizZbbComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    QuizVclPpmComponent,
+    QuizVclPpm2Component
   ],
   templateUrl: './dragdrop.component.html',
   styleUrl: './dragdrop.component.css'
@@ -57,7 +61,9 @@ export class DragdropComponent {
     quiz_vcl_v2: QuizVclV2Component,
     quiz_capex_mazsive: QuizCapexMazsiveComponent,
     quiz_champions_eng_initial: QuizChampionsEngInitialComponent,
-    quiz_leasing: QuizLeasingComponent
+    quiz_leasing: QuizLeasingComponent,
+    quiz_vclppm: QuizVclPpmComponent,
+    quiz_vclppmv2: QuizVclPpm2Component
   }
 
   constructor() {

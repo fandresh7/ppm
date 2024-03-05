@@ -16,7 +16,7 @@ import { DragdropService } from '@shared/features/dragdrop/services/dragdrop.ser
 import { DropzoneComponent } from './dropzone/dropzone.component'
 
 @Component({
-  selector: 'app-quiz-champions-eng-initial',
+  selector: 'app-quiz-vcl-ppm',
   standalone: true,
   imports: [
     CommonModule,
@@ -27,9 +27,10 @@ import { DropzoneComponent } from './dropzone/dropzone.component'
     SubmitButtonComponent,
     DropzoneComponent
   ],
-  templateUrl: './quiz-champions-eng-initial.component.html'
+  templateUrl: './quiz-vcl-ppm.component.html',
+  styleUrl: './quiz-vcl-ppm.component.css'
 })
-export class QuizChampionsEngInitialComponent implements OnInit {
+export class QuizVclPpmComponent implements OnInit {
   @Input() lesson!: Lesson | undefined
   @Input() dragdrop!: DragDropData
 
